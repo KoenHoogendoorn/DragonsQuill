@@ -1,0 +1,25 @@
+.AdventureWrapper {
+    /* width: 1440px; */
+    width: 720px;
+    margin: 0 auto;
+}
+
+.ContentWrapper {
+    width: 50%;
+    height: 98.4vh;
+}
+
+.WrapperLeft {
+    display: inline-block;
+    background-color: aquamarine;
+}
+
+.WrapperRight {
+    display: inline-block;
+    background-color:cadetblue;
+}
+
+.EditorWrapper {
+    width: 80%;
+    margin: 0 auto;
+}
