@@ -1,0 +1,40 @@
+.EditorContainer {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.WrapperRightContent {
+  height: 100vh;
+  width: 100vw;
+}
+
+.mention {
+  background-color: unset;
+}
+
+.ql-container {
+  font-family: "Mulish", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+.ql-editor {
+  padding: 0;
+  height: 100%;
+}
+
+/* Removes placeholder whitespace  */
+.ql-editor.ql-blank::before {
+  left: 0;
+}
+
+.ql-container.ql-snow {
+  border: none;
+}
+
+#toolbar {
+  border: none;
+  /* border-bottom: 1px solid #e1d8f1; */
+  background-color: #e5e5e5;
+}
