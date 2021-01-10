@@ -1,12 +1,14 @@
 .AdventureWrapper {
   width: 1440px;
   margin: 0 auto;
+  height: 100%;
 }
 
 .ContentWrapper {
   width: 50%;
   display: inline-block;
   vertical-align: top;
+  min-height: 100vh;
 }
 
 .WrapperLeft {
@@ -18,11 +20,13 @@
   background-color: white;
   border: 1px solid #e1d8f1;
   border-top: none;
+  height: 100%;
 }
 
 .WrapperRightContent {
   padding: 32px;
   padding-top: 72px;
+  min-height: 100%;
 }
 
 @media screen and (max-width: 1480px) {

@@ -1,15 +1,9 @@
-.EditorContainer {
-  margin: 0 auto;
-  width: 80%;
-}
-
-.WrapperRightContent {
-  height: 100vh;
-  width: 100vw;
-}
-
 .mention {
   background-color: unset;
+}
+
+.quill {
+  /* height: 100%; */
 }
 
 .ql-container {
@@ -21,7 +15,8 @@
 
 .ql-editor {
   padding: 0;
-  height: 100%;
+  overflow-y: auto;
+  min-height: 85vh;
 }
 
 /* Removes placeholder whitespace  */
@@ -35,6 +30,5 @@
 
 #toolbar {
   border: none;
-  /* border-bottom: 1px solid #e1d8f1; */
   background-color: #e5e5e5;
 }

@@ -1,3 +1,33 @@
 .TabDivider {
   margin-top: 8px;
 }
+
+.CardToolbar {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.CardToolbar > input,
+.CardToolbar > button {
+  display: inline-block;
+}
+
+.CardToolbar > input {
+  flex-grow: 2;
+  margin-right: 8px;
+}
+
+.CardToolbar > button {
+  flex-grow: 1;
+}
+
+@media screen and (max-width: 820px) {
+  .CardToolbar {
+    flex-direction: column;
+  }
+
+  .CardToolbar > input {
+    margin-bottom: 8px;
+    width: 100%;
+  }
+}
