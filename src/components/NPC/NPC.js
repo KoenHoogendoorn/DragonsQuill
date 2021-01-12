@@ -3,8 +3,10 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/actionsIndex";
 
-import Card from "../Card/Card";
 import classes from "../Card/Card.module.css";
+
+import Card from "../Card/Card";
+import Chevron from "../Card/Chevron/Chevron";
 
 const NPC = (props) => {
   //const [cardOpen, setCardOpen] = useState(false);
@@ -21,11 +23,11 @@ const NPC = (props) => {
   //   }
   // };
 
-  const chevronIcon = props.cardOpen ? (
-    <i className={`fas fa-chevron-down ${classes.cardOpenIcon}`}></i>
-  ) : (
-    <i className={`fas fa-chevron-down ${classes.cardClosedIcon}`}></i>
-  );
+  // const chevronIcon = props.cardOpen ? (
+  //   <i className={`fas fa-chevron-down ${classes.cardOpenIcon}`}></i>
+  // ) : (
+  //   <i className={`fas fa-chevron-down ${classes.cardClosedIcon}`}></i>
+  // );
 
   return (
     <Card clicked={() => props.toggleCardHandler(props.npcId)} clickable={true}>
@@ -35,7 +37,7 @@ const NPC = (props) => {
             <h4>{props.name}</h4>
             <p className="CardSubtitle">{props.description}</p>
           </div>
-          {chevronIcon}
+          <Chevron />
         </section>
         <section
           id={props.npcId}

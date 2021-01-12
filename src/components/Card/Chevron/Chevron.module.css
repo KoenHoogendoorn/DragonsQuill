@@ -1,0 +1,9 @@
+.cardClosedIcon {
+  transition: transform 0.3s;
+  transform: rotate(-180deg);
+}
+
+.cardOpenIcon {
+  transition: transform 0.3s;
+  transform: rotate(0deg);
+}
