@@ -1,8 +1,46 @@
 .Card {
-  display: block;
   padding: 16px;
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   margin-bottom: 16px;
   background-color: white;
+  position: relative;
+}
+
+.Clickable {
+  cursor: pointer;
+}
+
+.Card > h4 {
+  margin-bottom: 0px;
+}
+
+.CardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.CardHeader:hover {
+  color: #673ab7;
+}
+
+.NPCContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.175s ease-out;
+}
+
+.NPCContent > :first-child {
+  margin-top: 8px;
+}
+
+.cardClosedIcon {
+  transition: transform 0.3s;
+  transform: rotate(-180deg);
+}
+
+.cardOpenIcon {
+  transition: transform 0.3s;
+  transform: rotate(0deg);
 }

@@ -9,9 +9,28 @@
   outline: none;
   border: none;
   border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .Tab:hover {
   background-color: #9b9b9b;
   color: #e5e5e5;
+}
+
+.Tab:active {
+  background-color: #777777;
+  color: #e5e5e5;
+}
+
+.ActiveTab {
+  background-color: #e1d8f1;
+  border: 1px solid #673ab7;
+  color: #673ab7;
+}
+
+.ActiveTab:hover,
+.ActiveTab:active {
+  background-color: #c3abee;
+  border: 1px solid #351e61;
+  color: #351e61;
 }

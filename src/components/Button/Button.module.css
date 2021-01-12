@@ -17,3 +17,7 @@
 .Button:active {
   background-color: #351e61;
 }
+
+.Button > i {
+  margin-right: 8px;
+}
