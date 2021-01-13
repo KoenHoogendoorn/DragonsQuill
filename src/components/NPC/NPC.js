@@ -9,29 +9,9 @@ import Card from "../Card/Card";
 import Chevron from "../Card/Chevron/Chevron";
 
 const NPC = (props) => {
-  //const [cardOpen, setCardOpen] = useState(false);
-
-  // const ShowCardToggle = (id) => {
-  //   const content = document.getElementById(id);
-
-  //   if (content.style.maxHeight) {
-  //     setCardOpen(false);
-  //     content.style.maxHeight = null;
-  //   } else {
-  //     setCardOpen(true);
-  //     content.style.maxHeight = content.scrollHeight + "px";
-  //   }
-  // };
-
-  // const chevronIcon = props.cardOpen ? (
-  //   <i className={`fas fa-chevron-down ${classes.cardOpenIcon}`}></i>
-  // ) : (
-  //   <i className={`fas fa-chevron-down ${classes.cardClosedIcon}`}></i>
-  // );
-
   return (
     <Card clicked={() => props.toggleCardHandler(props.npcId)} clickable={true}>
-      <div>
+      <div id={props.npcId}>
         <section className={classes.CardHeader}>
           <div>
             <h4>{props.name}</h4>
@@ -40,7 +20,7 @@ const NPC = (props) => {
           <Chevron />
         </section>
         <section
-          id={props.npcId}
+          // id={props.npcId}
           onClick={() => props.toggleCardHandler(props.npcId)}
           className={classes.NPCContent}
         >
@@ -55,16 +35,10 @@ const NPC = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    cardOpen: state.card.cardOpen
-  };
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleCardHandler: (id) => dispatch(actions.toggleCard(id))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NPC);
+export default connect(null, mapDispatchToProps)(NPC);
