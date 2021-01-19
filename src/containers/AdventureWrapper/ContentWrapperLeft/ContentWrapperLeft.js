@@ -7,8 +7,9 @@ import classes2 from "./ContentWrapperLeft.module.css";
 import Tab from "../../../components/Tab/Tab";
 import Inputbar from "../../../components/Inputbar/Inputbar";
 import Button from "../../../components/Button/Button";
-import NPC from "../../../components/NPC/NPC";
 import Chapter from "../../../components/Chapter/Chapter";
+import NPC from "../../../components/NPC/NPC";
+import Monster from "../../../components/Monster/Monster";
 
 import * as actions from "../../../store/actions/actionsIndex";
 
@@ -20,20 +21,37 @@ const ContentWrapperLeft = (props) => {
       <Chapter key={chapter.id} test={chapter.id} name={chapter.name} />
     ));
 
-    const npcsList = props.npcs.map((npc) => (
-      <NPC
-        key={npc.id}
-        npcId={npc.id}
-        name={npc.name}
-        description={npc.description}
-      />
-    ));
+    const npcsList = props.npcs.map((npc) => {
+      return !npc.disabled ? (
+        <NPC
+          key={npc.id}
+          id={npc.id}
+          name={npc.value}
+          description={npc.description}
+          content={npc.content}
+        />
+      ) : null;
+    });
+
+    const monstersList = props.monsters.map((monster) => {
+      return !monster.disabled ? (
+        <Monster
+          key={monster.id}
+          id={monster.id}
+          name={monster.value}
+          description={monster.description}
+          content={monster.content}
+        />
+      ) : null;
+    });
 
     switch (activeTab) {
       case "Chapters":
         return chaptersList;
       case "NPCs":
         return npcsList;
+      case "Monsters":
+        return monstersList;
       default:
         return chaptersList;
     }
@@ -57,8 +75,13 @@ const ContentWrapperLeft = (props) => {
         >
           NPC's
         </Tab>
+        <Tab
+          contentType={"Monsters"}
+          clicked={() => props.activeTabHandler("Monsters")}
+        >
+          Monsters
+        </Tab>
         <Tab>Locations</Tab>
-        <Tab>Monsters</Tab>
       </section>
       <hr className={classes.TabDivider} />
       <section className={classes.CardToolbar}>
@@ -78,6 +101,7 @@ const ContentWrapperLeft = (props) => {
 const mapStateToProps = (state) => {
   return {
     npcs: state.contentData.npcs,
+    monsters: state.contentData.monsters,
     chapters: state.contentData.chapters,
     activeTab: state.activeTab.activeTab
   };

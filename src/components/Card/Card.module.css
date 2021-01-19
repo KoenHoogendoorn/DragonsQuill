@@ -25,13 +25,13 @@
   color: #673ab7;
 }
 
-.NPCContent {
+.CardContent {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.175s ease-out;
 }
 
-.NPCContent > :first-child {
+.CardContent > :first-child {
   margin-top: 8px;
 }
 

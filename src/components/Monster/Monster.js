@@ -8,7 +8,7 @@ import classes from "../Card/Card.module.css";
 import Card from "../Card/Card";
 import Chevron from "../Card/Chevron/Chevron";
 
-const NPC = (props) => {
+const Monster = (props) => {
   return (
     <Card clicked={() => props.toggleCardHandler(props.id)} clickable={true}>
       <div id={props.id}>
@@ -20,7 +20,6 @@ const NPC = (props) => {
           <Chevron />
         </section>
         <section
-          // id={props.id}
           onClick={() => props.toggleCardHandler(props.id)}
           className={classes.CardContent}
         >
@@ -39,4 +38,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(NPC);
+export default connect(null, mapDispatchToProps)(Monster);

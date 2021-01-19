@@ -1,9 +1,35 @@
-.mention {
+.dndmention {
   background-color: unset;
+  color: #673ab7;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.quill {
-  /* height: 100%; */
+.dndmention:hover {
+  color: #351e61;
+}
+
+/* .dndmention span a {
+  user-select: auto;
+} */
+
+/* Set opacity of selection to 0 because it selects the whole word when clicked */
+/* .mention span::selection {
+  opacity: 0;
+}
+
+.mention span::-moz-selection {
+  opacity: 0;
+} */
+.disabled {
+  background-color: #e5e5e5;
+}
+.disabled > div {
+  line-height: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 -12px;
+  padding: 8px 0;
 }
 
 .ql-container {
