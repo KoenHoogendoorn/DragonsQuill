@@ -9,18 +9,6 @@
   color: #351e61;
 }
 
-/* .dndmention span a {
-  user-select: auto;
-} */
-
-/* Set opacity of selection to 0 because it selects the whole word when clicked */
-/* .mention span::selection {
-  opacity: 0;
-}
-
-.mention span::-moz-selection {
-  opacity: 0;
-} */
 .disabled {
   background-color: #e5e5e5;
 }
@@ -41,8 +29,9 @@
 
 .ql-editor {
   padding: 0;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   min-height: 85vh;
+  /* height: calc(100vh - (32px + 40px + 38px)); */
 }
 
 /* Removes placeholder whitespace  */
@@ -57,4 +46,17 @@
 #toolbar {
   border: none;
   background-color: #e5e5e5;
+}
+
+.ql-editor h1 {
+  font-size: 2em;
+}
+
+.ql-editor h2 {
+  font-size: 1.5em;
+}
+
+.ql-editor h3 {
+  font-size: 1em;
+  font-weight: bold;
 }

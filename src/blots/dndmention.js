@@ -12,7 +12,6 @@ class MentionBlot extends Embed {
     denotationChar.innerHTML = data.denotationChar;
     // node.appendChild(denotationChar);
     node.innerHTML += data.value;
-    console.log(This);
     //node.addEventListener("click", () => this.props.toggleCardHandler(data.id)); // https://stackoverflow.com/questions/45421941/can-quill-blockembeds-use-arbitrary-tags  -  https://stackoverflow.com/questions/57730855/pass-props-to-react-quill-handler
     node.addEventListener("click", () => MentionBlot.onClick(data.id, This));
     return MentionBlot.setDataValues(node, data);

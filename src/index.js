@@ -8,11 +8,13 @@ import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import contentDataReducer from "./store/reducers/contentData";
 import activeTabReducer from "./store/reducers/activeTab";
+import activeChapterReducer from "./store/reducers/activeChapter";
 import cardReducer from "./store/reducers/card";
 
 const rootReducer = combineReducers({
   contentData: contentDataReducer,
   activeTab: activeTabReducer,
+  activeChapter: activeChapterReducer,
   card: cardReducer
 });
 

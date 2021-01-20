@@ -18,7 +18,7 @@ const classes = { ...classes1, ...classes2 };
 const ContentWrapperLeft = (props) => {
   const activeContentHandler = (activeTab) => {
     const chaptersList = props.chapters.map((chapter) => (
-      <Chapter key={chapter.id} test={chapter.id} name={chapter.name} />
+      <Chapter key={chapter.id} id={chapter.id} name={chapter.name} />
     ));
 
     const npcsList = props.npcs.map((npc) => {
@@ -86,7 +86,7 @@ const ContentWrapperLeft = (props) => {
       <hr className={classes.TabDivider} />
       <section className={classes.CardToolbar}>
         <Inputbar type="search" placeholder="Search for anything..." />
-        <Button>
+        <Button size={"big"}>
           <i className="fas fa-plus"></i>
           {buttonText}
         </Button>

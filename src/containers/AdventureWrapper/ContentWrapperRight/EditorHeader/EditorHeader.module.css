@@ -1,0 +1,12 @@
+.EditorHeaderContainer {
+  background-color: #e1d8f1;
+  padding: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.EditorHeader {
+  font-weight: bold;
+  margin-left: 4px;
+}

@@ -5,10 +5,9 @@
   margin-bottom: 16px;
   background-color: white;
   position: relative;
-}
-
-.Clickable {
   cursor: pointer;
+  border: 1px solid transparent;
+  /* A transparent border is needed because there is no fixed height/width, so border-box doesn't work*/
 }
 
 .Card > h4 {
@@ -43,4 +42,8 @@
 .cardOpenIcon {
   transition: transform 0.3s;
   transform: rotate(0deg);
+}
+
+.ActiveCard {
+  border: 1px solid #673ab7;
 }

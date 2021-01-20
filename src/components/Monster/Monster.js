@@ -10,7 +10,7 @@ import Chevron from "../Card/Chevron/Chevron";
 
 const Monster = (props) => {
   return (
-    <Card clicked={() => props.toggleCardHandler(props.id)} clickable={true}>
+    <Card clicked={() => props.toggleCardHandler(props.id)}>
       <div id={props.id}>
         <section className={classes.CardHeader}>
           <div>

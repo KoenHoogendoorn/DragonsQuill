@@ -4,7 +4,10 @@ import { connect } from "react-redux";
 import "react-quill/dist/quill.snow.css";
 import "quill-mention";
 import "quill-mention/dist/quill.mention.css";
+
 import "../../../blots/dndmention";
+import EditorToolbar from "./EditorToolbar/EditorToolbar";
+import EditorHeader from "./EditorHeader/EditorHeader";
 
 import classes from "../AdventureWrapper.module.css";
 import "./ContentWrapperRight.css";
@@ -20,12 +23,6 @@ DividerBlot.tagName = "hr";
 
 Quill.register(DividerBlot);
 
-// ---------
-
-/*
- * Event handler to be attached using Quill toolbar module
- * http://quilljs.com/docs/modules/toolbar/
- */
 function insertStar() {
   const cursorPosition = this.quill.getSelection().index;
   this.quill.insertText(cursorPosition, "★");
@@ -38,38 +35,6 @@ function addDivider() {
   this.quill.insertEmbed(range.index + 1, "divider", true, Quill.sources.USER);
   this.quill.setSelection(range.index + 2, Quill.sources.SILENT);
 }
-
-/*
- * Custom toolbar component including insertStar button and dropdowns
- */
-const CustomToolbar = () => (
-  <div id="toolbar">
-    <select
-      className="ql-header"
-      defaultValue={""}
-      onChange={(e) => e.persist()}
-    >
-      <option value="1"></option>
-      <option value="2"></option>
-      <option value></option>
-    </select>
-    <button className="ql-bold"></button>
-    <button className="ql-italic"></button>
-    <button className="ql-blockquote"></button>
-    <button className="ql-link"></button>
-    <select className="ql-color">
-      <option value="red"></option>
-      <option value="green"></option>
-      <option value="blue"></option>
-      <option value="orange"></option>
-      <option value="violet"></option>
-      <option value="#d0d1d2"></option>
-      <option value></option>
-    </select>
-    <button className="ql-insertStar">★</button>
-    <button className="ql-addDivider">--</button>
-  </div>
-);
 
 /*
  * Editor component with custom toolbar and content containers
@@ -123,18 +88,33 @@ const CustomToolbar = () => (
 // ------
 
 class ContentWrapperRight extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = { editorHtml: "" };
-  //   // this.modules.mention.onSelect = this.modules.mention.onSelect.bind(this);
-  //   // this.handleChange = this.handleChange.bind(this);
-  // }
   state = {
-    editorHtml: ""
+    ch1Html: `<h1>${this.props.chapters[0].name}</h1>`,
+    ch2Html: `<h1>${this.props.chapters[1].name}</h1>`
   };
 
   handleChange = (html) => {
-    this.setState({ editorHtml: html });
+    switch (this.props.activeChapter) {
+      case "ch1":
+        this.setState({ ch1Html: html });
+        break;
+      case "ch2":
+        this.setState({ ch2Html: html });
+        break;
+      default:
+        break;
+    }
+  };
+
+  handleValue = () => {
+    switch (this.props.activeChapter) {
+      case "ch1":
+        return this.state.ch1Html;
+      case "ch2":
+        return this.state.ch2Html;
+      default:
+        return this.state.ch1Html;
+    }
   };
 
   modules = {
@@ -181,6 +161,8 @@ class ContentWrapperRight extends Component {
     }
   };
 
+  scrollingContainer = ".ql-editor";
+
   formats = [
     "header",
     "font",
@@ -204,14 +186,16 @@ class ContentWrapperRight extends Component {
   render() {
     return (
       <div className={`${classes.ContentWrapper} ${classes.WrapperRightBlock}`}>
-        <CustomToolbar />
-        <div className={classes.WrapperRightContent}>
+        <EditorHeader />
+        <EditorToolbar />
+        <div className={`${classes.WrapperRightContent} .scroll-container`}>
           <ReactQuill
             theme="snow"
-            onChange={this.handleChange}
+            onChange={(event) => this.handleChange(event)}
             modules={this.modules}
             placeholder="Start writing here..."
             formats={this.formats}
+            value={this.handleValue()}
           />
         </div>
       </div>
@@ -225,7 +209,8 @@ const mapStateToProps = (state) => {
   return {
     npcs: state.contentData.npcs,
     monsters: state.contentData.monsters,
-    chapters: state.contentData.chapters
+    chapters: state.contentData.chapters,
+    activeChapter: state.activeChapter.activeChapter
   };
 };
 

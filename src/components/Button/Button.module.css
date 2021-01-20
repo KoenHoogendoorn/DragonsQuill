@@ -3,7 +3,6 @@
   border-radius: 4px;
   font-weight: 600;
   color: #ffffff;
-  padding: 16px;
   border: none;
   outline: none;
   white-space: nowrap;
@@ -20,4 +19,17 @@
 
 .Button > i {
   margin-right: 8px;
+}
+
+.Big {
+  padding: 16px;
+}
+
+.Medium {
+  padding: 8px 16px;
+}
+
+.Small {
+  padding: 4px 8px;
+  font-size: 14px;
 }
