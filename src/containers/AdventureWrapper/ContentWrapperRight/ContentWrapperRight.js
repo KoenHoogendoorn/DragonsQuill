@@ -5,7 +5,7 @@ import "react-quill/dist/quill.snow.css";
 import "quill-mention";
 import "quill-mention/dist/quill.mention.css";
 
-import "../../../blots/dndmention";
+// import "../../../blots/dndmention";
 import EditorToolbar from "./EditorToolbar/EditorToolbar";
 import EditorHeader from "./EditorHeader/EditorHeader";
 
@@ -36,62 +36,70 @@ function addDivider() {
   this.quill.setSelection(range.index + 2, Quill.sources.SILENT);
 }
 
-/*
- * Editor component with custom toolbar and content containers
- */
-
-// ------
-// quill.getModule('toolbar').addHandler('image', () => {
-//   importImage(quill);
-// });
-// this.quill.getModule("mention");
-
-//import Mention from "quill-mention";
-
-// Mention.insertItem = (data, programmaticInsert) => {
-//   alert("InsertItem");
-//   const render = data;
-//   if (render === null) {
-//     return;
-//   }
-//   if (!this.options.showDenotationChar) {
-//     render.denotationChar = "";
-//   }
-
-//   var insertAtPos;
-
-//   if (!programmaticInsert) {
-//     insertAtPos = this.mentionCharPos;
-//     this.quill.deleteText(
-//       this.mentionCharPos,
-//       this.cursorPos - this.mentionCharPos,
-//       Quill.sources.USER
-//     );
-//   } else {
-//     insertAtPos = this.cursorPos;
-//   }
-//   this.quill.insertEmbed(
-//     insertAtPos,
-//     this.options.blotName,
-//     render,
-//     Quill.sources.USER
-//   );
-//   if (this.options.spaceAfterInsert) {
-//     this.quill.insertText(insertAtPos + 1, " ", Quill.sources.USER);
-//     // setSelection here sets cursor position
-//     this.quill.setSelection(insertAtPos + 2, Quill.sources.USER);
-//   } else {
-//     this.quill.setSelection(insertAtPos + 1, Quill.sources.USER);
-//   }
-//   this.hideMentionList();
-// };
-// ------
-
 class ContentWrapperRight extends Component {
-  state = {
-    ch1Html: `<h1>${this.props.chapters[0].name}</h1>`,
-    ch2Html: `<h1>${this.props.chapters[1].name}</h1>`
-  };
+  constructor(props) {
+    // this.formats = formats;
+    // this.props = React.createRef();
+    super(props);
+    this.state = {
+      ch1Html: `<h1>${this.props.chapters[0].name}</h1>`,
+      ch2Html: `<h1>${this.props.chapters[1].name}</h1>`
+    };
+  }
+
+  componentDidMount() {
+    const Embed = Quill.import("blots/embed");
+
+    class MentionBlot extends Embed {
+      static create = (data) => {
+        const node = super.create();
+        // let data = dataAndThis;
+        // let This = null;
+        // if (Array.isArray(dataAndThis)) {
+        //   data = dataAndThis[0];
+        //   This = dataAndThis[1];
+        // }
+        const denotationChar = document.createElement("span");
+        denotationChar.className = "ql-mention-denotation-char";
+        denotationChar.innerHTML = data.denotationChar;
+        // node.appendChild(denotationChar);
+        node.innerHTML += data.value;
+        node.addEventListener("click", () => MentionBlot.onClick(data.id));
+        return MentionBlot.setDataValues(node, data);
+      };
+
+      static setDataValues(element, data) {
+        const domNode = element;
+        Object.keys(data).forEach((key) => {
+          domNode.dataset[key] = data[key];
+        });
+        return domNode;
+      }
+
+      static value(domNode) {
+        return domNode.dataset;
+      }
+    }
+
+    MentionBlot.blotName = "dndmention";
+    MentionBlot.tagName = "span";
+    MentionBlot.className = "dndmention";
+    MentionBlot.onClick = (id) => {
+      switch (id.substring(0, 2)) {
+        case "np":
+          this.props.activeTabHandler("NPCs");
+          break;
+        case "mo":
+          this.props.activeTabHandler("Monsters");
+          break;
+        default:
+          break;
+      }
+      this.props.toggleCardHandler(id);
+    };
+
+    Quill.register(MentionBlot);
+  }
 
   handleChange = (html) => {
     switch (this.props.activeChapter) {
@@ -126,14 +134,9 @@ class ContentWrapperRight extends Component {
       }
     },
     mention: {
-      onSelect: (item, insertItem) => {
-        //this.props.toggleCardHandler(item.id); //opens card on mentioncreation
-        const itemAndThis = [item, this];
-        insertItem(itemAndThis);
-      },
       blotName: "dndmention",
       allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
-      mentionDenotationChars: ["@", "#"],
+      mentionDenotationChars: ["@"],
       showDenotationChar: false,
       dataAttributes: ["id", "value", "denotationChar", "target"],
       source: (searchTerm, renderList, mentionChar) => {
@@ -157,11 +160,14 @@ class ContentWrapperRight extends Component {
           <div class="cql-list-item-inner">
           ${item.value}
           </div>`;
+      },
+      onSelect: (item, insertItem) => {
+        //this.props.toggleCardHandler(item.id); //opens card on mentioncreation
+        // const itemAndThis = [item, this];
+        insertItem(item);
       }
     }
   };
-
-  scrollingContainer = ".ql-editor";
 
   formats = [
     "header",
@@ -188,7 +194,7 @@ class ContentWrapperRight extends Component {
       <div className={`${classes.ContentWrapper} ${classes.WrapperRightBlock}`}>
         <EditorHeader />
         <EditorToolbar />
-        <div className={`${classes.WrapperRightContent} .scroll-container`}>
+        <div className={classes.WrapperRightContent}>
           <ReactQuill
             theme="snow"
             onChange={(event) => this.handleChange(event)}

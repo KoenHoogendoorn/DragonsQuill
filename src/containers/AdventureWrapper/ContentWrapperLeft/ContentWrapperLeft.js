@@ -21,35 +21,40 @@ const ContentWrapperLeft = (props) => {
       <Chapter key={chapter.id} id={chapter.id} name={chapter.name} />
     ));
 
-    const npcsList = props.npcs.map((npc) => {
-      return !npc.disabled ? (
-        <NPC
-          key={npc.id}
-          id={npc.id}
-          name={npc.value}
-          description={npc.description}
-          content={npc.content}
-        />
-      ) : null;
-    });
+    const npcsList = props.npcs
+      .sort((a, b) => (a.value > b.value ? 1 : -1)) //sorts alfabetically
+      .map((npc) => {
+        return !npc.disabled ? (
+          <NPC
+            key={npc.id}
+            id={npc.id}
+            name={npc.value}
+            description={npc.description}
+            content={npc.content}
+          />
+        ) : null;
+      });
 
-    const monstersList = props.monsters.map((monster) => {
-      return !monster.disabled ? (
-        <Monster
-          key={monster.id}
-          id={monster.id}
-          name={monster.value}
-          description={monster.description}
-          content={monster.content}
-        />
-      ) : null;
-    });
+    const monstersList = props.monsters
+      .sort((a, b) => (a.value > b.value ? 1 : -1)) //sorts alfabetically
+      .map((monster) => {
+        return !monster.disabled ? (
+          <Monster
+            key={monster.id}
+            id={monster.id}
+            name={monster.value}
+            description={monster.description}
+            content={monster.content}
+          />
+        ) : null;
+      });
 
     switch (activeTab) {
       case "Chapters":
         return chaptersList;
       case "NPCs":
         return npcsList;
+
       case "Monsters":
         return monstersList;
       default:
