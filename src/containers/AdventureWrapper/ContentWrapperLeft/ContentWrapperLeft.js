@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 import classes1 from "../AdventureWrapper.module.css";
 import classes2 from "./ContentWrapperLeft.module.css";
+
+// import SearchResults from "./SearchResults/SearchResults";
 
 import Tab from "../../../components/Tab/Tab";
 import Inputbar from "../../../components/Inputbar/Inputbar";
@@ -16,50 +18,90 @@ import * as actions from "../../../store/actions/actionsIndex";
 const classes = { ...classes1, ...classes2 };
 
 const ContentWrapperLeft = (props) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
   useEffect(() => {
     props.sortContentHandler();
   }, []);
 
+  const editSearchTerm = (input) => {
+    setSearchTerm(input.target.value);
+  };
+
   const activeContentHandler = () => {
-    const chaptersList = props.chapters.map((chapter) => (
-      <Chapter key={chapter.id} id={chapter.id} name={chapter.name} />
-    ));
+    // const chaptersList = props.chapters.map((chapter) => (
+    //   <Chapter key={chapter.id} id={chapter.id} name={chapter.name} />
+    // ));
 
-    const npcsList = props.npcs.map((npc) => {
-      return !npc.disabled ? (
-        <NPC
-          key={npc.id}
-          id={npc.id}
-          name={npc.value}
-          description={npc.description}
-          content={npc.content}
-        />
-      ) : null;
-    });
+    // const npcsList = props.npcs.map((npc) => {
+    //   return !npc.disabled ? (
+    //     <NPC
+    //       key={npc.id}
+    //       id={npc.id}
+    //       name={npc.value}
+    //       description={npc.description}
+    //       content={npc.content}
+    //     />
+    //   ) : null;
+    // });
 
-    // const npcsList = props.mapNPCCardsHandler(props.npcs);
+    const chaptersList = () => {
+      return props.chapters
+        .filter((chapter) =>
+          chapter.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+        )
+        .map((chapter) => {
+          return (
+            <Chapter key={chapter.id} id={chapter.id} name={chapter.name} />
+          );
+        });
+    };
 
-    const monstersList = props.monsters.map((monster) => {
-      return !monster.disabled ? (
-        <Monster
-          key={monster.id}
-          id={monster.id}
-          name={monster.value}
-          description={monster.description}
-          content={monster.content}
-        />
-      ) : null;
-    });
+    const npcsList = () => {
+      return props.npcs
+        .filter((npc) =>
+          npc.value.toLowerCase().startsWith(searchTerm.toLowerCase())
+        )
+        .map((npc) => {
+          return !npc.disabled ? (
+            <NPC
+              key={npc.id}
+              id={npc.id}
+              name={npc.value}
+              description={npc.description}
+              content={npc.content}
+            />
+          ) : null;
+        });
+    };
+
+    const monstersList = () => {
+      return props.monsters
+        .filter((monster) =>
+          monster.value.toLowerCase().startsWith(searchTerm.toLowerCase())
+        )
+        .map((monster) => {
+          return !monster.disabled ? (
+            <Monster
+              key={monster.id}
+              id={monster.id}
+              name={monster.value}
+              description={monster.description}
+              content={monster.content}
+            />
+          ) : null;
+        });
+    };
 
     switch (props.activeTab) {
       case "Chapters":
-        return chaptersList;
+        return chaptersList();
       case "NPCs":
-        return npcsList;
+        return npcsList();
       case "Monsters":
-        return monstersList;
+        return monstersList();
       default:
-        return chaptersList;
+        return chaptersList();
     }
   };
 
@@ -91,7 +133,12 @@ const ContentWrapperLeft = (props) => {
       </section>
       <hr className={classes.TabDivider} />
       <section className={classes.CardToolbar}>
-        <Inputbar type="search" placeholder="Search for anything..." />
+        <Inputbar
+          type="search"
+          placeholder={`Search for ${props.activeTab}...`}
+          val={searchTerm}
+          changed={editSearchTerm}
+        />
         <Button size={"big"}>
           <i className="fas fa-plus"></i>
           {buttonText}

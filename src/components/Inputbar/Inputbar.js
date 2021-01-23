@@ -9,6 +9,8 @@ const Inputbar = (props) => {
       style={props.style}
       type={props.type}
       placeholder={props.placeholder}
+      value={props.val}
+      onChange={props.changed}
     />
   );
 };
