@@ -9,34 +9,63 @@ import Card from "../Card/Card";
 import Chevron from "../Card/Chevron/Chevron";
 
 const NPC = (props) => {
+  let chevronClass = classes.CardClosedIcon;
+
+  const clickedNPC = props.npcs.find((npc) => npc.id === props.id);
+
+  if (clickedNPC.open) {
+    chevronClass = classes.CardOpenIcon;
+  } else {
+    chevronClass = classes.CardClosedIcon;
+  }
+
+  const clickCardHandler = (id) => {
+    if (clickedNPC.open) {
+      //togglecardhandler (closes and unhighlights item)
+      props.toggleCardHandler(id);
+      setTimeout(() => {
+        //sort cards to make them go back in alfabetical order
+        props.sortContentHandler();
+      }, 175);
+    } else {
+      //togglecardhandler (opens card)
+
+      props.toggleCardHandler(id);
+    }
+  };
+
   return (
-    <Card clicked={() => props.toggleCardHandler(props.id)}>
+    <Card clicked={() => clickCardHandler(props.id)}>
       <div id={props.id}>
         <section className={classes.CardHeader}>
           <div>
             <h4>{props.name}</h4>
             <p className="CardSubtitle">{props.description}</p>
           </div>
-          <Chevron />
+          <Chevron class={chevronClass} />
         </section>
         <section
-          // id={props.id}
-          onClick={() => props.toggleCardHandler(props.id)}
+          onClick={() => clickCardHandler(props.id)}
           className={classes.CardContent}
         >
-          <p onClick={() => props.toggleCardHandler(props.id)}>
-            {props.content}
-          </p>
+          <p onClick={() => clickCardHandler(props.id)}>{props.content}</p>
         </section>
       </div>
     </Card>
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
   return {
-    toggleCardHandler: (id) => dispatch(actions.toggleCard(id))
+    npcs: state.contentData.npcs
   };
 };
 
-export default connect(null, mapDispatchToProps)(NPC);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleCardHandler: (id) => dispatch(actions.toggleCard(id)),
+    sortContentHandler: () => dispatch(actions.sortContent())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NPC);

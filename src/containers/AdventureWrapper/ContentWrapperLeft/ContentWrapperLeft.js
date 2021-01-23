@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import classes1 from "../AdventureWrapper.module.css";
@@ -16,45 +16,46 @@ import * as actions from "../../../store/actions/actionsIndex";
 const classes = { ...classes1, ...classes2 };
 
 const ContentWrapperLeft = (props) => {
-  const activeContentHandler = (activeTab) => {
+  useEffect(() => {
+    props.sortContentHandler();
+  }, []);
+
+  const activeContentHandler = () => {
     const chaptersList = props.chapters.map((chapter) => (
       <Chapter key={chapter.id} id={chapter.id} name={chapter.name} />
     ));
 
-    const npcsList = props.npcs
-      .sort((a, b) => (a.value > b.value ? 1 : -1)) //sorts alfabetically
-      .map((npc) => {
-        return !npc.disabled ? (
-          <NPC
-            key={npc.id}
-            id={npc.id}
-            name={npc.value}
-            description={npc.description}
-            content={npc.content}
-          />
-        ) : null;
-      });
+    const npcsList = props.npcs.map((npc) => {
+      return !npc.disabled ? (
+        <NPC
+          key={npc.id}
+          id={npc.id}
+          name={npc.value}
+          description={npc.description}
+          content={npc.content}
+        />
+      ) : null;
+    });
 
-    const monstersList = props.monsters
-      .sort((a, b) => (a.value > b.value ? 1 : -1)) //sorts alfabetically
-      .map((monster) => {
-        return !monster.disabled ? (
-          <Monster
-            key={monster.id}
-            id={monster.id}
-            name={monster.value}
-            description={monster.description}
-            content={monster.content}
-          />
-        ) : null;
-      });
+    // const npcsList = props.mapNPCCardsHandler(props.npcs);
 
-    switch (activeTab) {
+    const monstersList = props.monsters.map((monster) => {
+      return !monster.disabled ? (
+        <Monster
+          key={monster.id}
+          id={monster.id}
+          name={monster.value}
+          description={monster.description}
+          content={monster.content}
+        />
+      ) : null;
+    });
+
+    switch (props.activeTab) {
       case "Chapters":
         return chaptersList;
       case "NPCs":
         return npcsList;
-
       case "Monsters":
         return monstersList;
       default:
@@ -97,7 +98,7 @@ const ContentWrapperLeft = (props) => {
         </Button>
       </section>
       <section className={classes.CardsContainer}>
-        {activeContentHandler(props.activeTab)}
+        {activeContentHandler()}
       </section>
     </div>
   );
@@ -114,7 +115,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    activeTabHandler: (contentType) => dispatch(actions.activeTab(contentType))
+    activeTabHandler: (contentType) => dispatch(actions.activeTab(contentType)),
+    sortContentHandler: () => dispatch(actions.sortContent())
   };
 };
 

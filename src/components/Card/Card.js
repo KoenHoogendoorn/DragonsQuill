@@ -11,6 +11,7 @@ const Card = (props) => {
   } else {
     cardClasses = classes.Card;
   }
+
   return (
     <div className={cardClasses} onClick={props.clicked}>
       {props.children}

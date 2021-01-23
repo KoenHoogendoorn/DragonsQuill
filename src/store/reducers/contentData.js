@@ -1,4 +1,4 @@
-// const consoleLog = "javascript:console.log('Hello')";
+import { updateObject } from "../../shared/utility";
 
 const initialState = {
   chapters: [
@@ -70,7 +70,137 @@ const initialState = {
   ]
 };
 
+const pushHeadersFirst = (contentTypeArray) => {
+  contentTypeArray.sort((a, b) => {
+    return a.disabled === true ? -1 : b.disabled === true ? 1 : 0;
+  });
+  return contentTypeArray;
+};
+
 const reducer = (state = initialState, action) => {
-  return state;
+  switch (action.type) {
+    case "SORT_CONTENT":
+      let npcs = state.npcs.slice();
+      let monsters = state.monsters.slice();
+
+      npcs.sort((a, b) =>
+        a.value.toLowerCase() > b.value.toLowerCase() ? 1 : -1
+      );
+      monsters.sort((a, b) =>
+        a.value.toLowerCase() > b.value.toLowerCase() ? 1 : -1
+      );
+
+      // -- make sure the headers stay in front for the mention dropdown
+
+      pushHeadersFirst(npcs);
+      pushHeadersFirst(monsters);
+
+      // npcs.forEach((element) => {
+      //   element.open = false;
+      //   element.highlighted = false;
+      // });
+      // monsters.forEach((element) => {
+      //   element.open = false;
+      //   element.highlighted = false;
+      // });
+
+      const updatedState = {
+        npcs: npcs,
+        monsters: monsters
+      };
+      return updateObject(state, updatedState);
+
+    case "TOGGLE_CARD":
+      const selectedItemHtml = document.getElementById(action.id);
+      const content = selectedItemHtml.lastChild;
+      //----
+      const clickedId = action.id;
+      let npcs2 = state.npcs.slice();
+      let monsters2 = state.monsters.slice();
+
+      const toggleCard = (contentTypeArray) => {
+        const clickedItem = contentTypeArray.find(
+          (item) => item.id === clickedId
+        );
+
+        clickedItem.open = !clickedItem.open;
+
+        //show and open clicked html card content
+        if (clickedItem.open) {
+          content.style.maxHeight = content.scrollHeight + "px";
+        } else {
+          content.style.maxHeight = null;
+          clickedItem.highlighted = false;
+        }
+      };
+
+      //only go through one contenttype array
+      switch (clickedId.substring(0, 2)) {
+        case "np":
+          toggleCard(npcs2);
+          break;
+        case "mo":
+          toggleCard(monsters2);
+          break;
+        default:
+          break;
+      }
+      const updatedState2 = {
+        npcs: npcs2,
+        monsters: monsters2
+      };
+      return updateObject(state, updatedState2);
+
+    case "HIGHLIGHT_CARD":
+      const highlightedId = action.id;
+      let npcs3 = state.npcs.slice();
+      let monsters3 = state.monsters.slice();
+
+      const pushCardFirst = (contentTypeArray) => {
+        contentTypeArray.sort((a, b) => {
+          return a.id === highlightedId ? -1 : b.id === highlightedId ? 1 : 0;
+        });
+        return contentTypeArray;
+      };
+
+      const setHighlighted = (contentTypeArray) => {
+        // set all items highlighted = false so when they're clicked,
+        // they don't affect others that have highlighted = true.
+        // They don't change the order of others.
+        contentTypeArray.forEach((item) => {
+          item.highlighted = false;
+        });
+
+        const clickedItem = contentTypeArray.find(
+          (item) => item.id === highlightedId
+        );
+        clickedItem.highlighted = true;
+      };
+
+      switch (highlightedId.substring(0, 2)) {
+        case "np":
+          pushCardFirst(npcs3);
+          setHighlighted(npcs3);
+          break;
+        case "mo":
+          pushCardFirst(monsters3);
+          setHighlighted(monsters3);
+          break;
+        default:
+          break;
+      }
+
+      // -- make sure the headers stay in front for the mention dropdown
+      pushHeadersFirst(npcs3);
+      pushHeadersFirst(monsters3);
+
+      const updatedState3 = {
+        npcs: npcs3,
+        monsters: monsters3
+      };
+      return updateObject(state, updatedState3);
+    default:
+      return state;
+  }
 };
 export default reducer;

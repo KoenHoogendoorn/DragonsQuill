@@ -85,17 +85,41 @@ class ContentWrapperRight extends Component {
     MentionBlot.tagName = "span";
     MentionBlot.className = "dndmention";
     MentionBlot.onClick = (id) => {
+      this.props.highlightCardHandler(id);
+      let clickedItem = null;
+
+      const clickCardHandler = (clickedItem) => {
+        if (clickedItem.open) {
+          //togglecardhandler (closes card and unhighlights item)
+          this.props.toggleCardHandler(id);
+          setTimeout(() => {
+            //sort cards to make them go back in alfabetical order
+            this.props.sortContentHandler();
+          }, 175);
+        } else {
+          //togglecardhandler (opens card)
+          this.props.toggleCardHandler(id);
+        }
+      };
+
       switch (id.substring(0, 2)) {
         case "np":
           this.props.activeTabHandler("NPCs");
+          clickedItem = this.props.npcs.find((npc) => npc.id === id);
+          clickCardHandler(clickedItem);
           break;
         case "mo":
           this.props.activeTabHandler("Monsters");
+          clickedItem = this.props.monsters.find(
+            (monster) => monster.id === id
+          );
+          clickCardHandler(clickedItem);
           break;
         default:
           break;
       }
-      this.props.toggleCardHandler(id);
+
+      // this.props.toggleCardHandler(id);
     };
 
     Quill.register(MentionBlot);
@@ -223,7 +247,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     activeTabHandler: (contentType) => dispatch(actions.activeTab(contentType)),
-    toggleCardHandler: (id) => dispatch(actions.toggleCard(id))
+    toggleCardHandler: (id) => dispatch(actions.toggleCard(id)),
+    highlightCardHandler: (id) => dispatch(actions.highlightCard(id)),
+    sortContentHandler: (id) => dispatch(actions.sortContent(id))
   };
 };
 

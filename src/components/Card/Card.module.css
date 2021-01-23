@@ -24,6 +24,20 @@
   color: #673ab7;
 }
 
+.CardClosedIcon {
+  transition: transform 0.3s;
+  transform: rotate(0deg);
+}
+
+.CardOpenIcon {
+  transition: transform 0.3s;
+  transform: rotate(-180deg);
+}
+
+.ActiveCard {
+  border: 1px solid #673ab7;
+}
+
 .CardContent {
   max-height: 0;
   overflow: hidden;
@@ -32,18 +46,4 @@
 
 .CardContent > :first-child {
   margin-top: 8px;
-}
-
-.cardClosedIcon {
-  transition: transform 0.3s;
-  transform: rotate(-180deg);
-}
-
-.cardOpenIcon {
-  transition: transform 0.3s;
-  transform: rotate(0deg);
-}
-
-.ActiveCard {
-  border: 1px solid #673ab7;
 }
