@@ -10,18 +10,19 @@
   /* A transparent border is needed because there is no fixed height/width, so border-box doesn't work*/
 }
 
+.Card:hover h4 {
+  color: #673ab7;
+}
+
 .Card > h4 {
   margin-bottom: 0px;
+  /* for chapter cards */
 }
 
 .CardHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.CardHeader:hover {
-  color: #673ab7;
 }
 
 .CardClosedIcon {

@@ -12,6 +12,7 @@
 .disabled {
   background-color: #e5e5e5;
 }
+
 .disabled > div {
   line-height: 10px;
   font-size: 14px;
@@ -20,32 +21,25 @@
   padding: 8px 0;
 }
 
-.ql-container {
+.ql-editor {
   font-family: "Mulish", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
 }
 
-.ql-editor {
-  padding: 0;
+.WrapperRightContent {
+  padding: 32px;
+  padding-bottom: 0;
+  height: calc(100vh - (40px + 38px));
+  overflow-y: auto;
+}
+
+.WrapperRightContent .ql-editor {
+  /* padding: 0; */
   /* overflow-y: auto; */
   min-height: 85vh;
   /* height: calc(100vh - (32px + 40px + 38px)); */
-}
-
-/* Removes placeholder whitespace  */
-.ql-editor.ql-blank::before {
-  left: 0;
-}
-
-.ql-container.ql-snow {
-  border: none;
-}
-
-#toolbar {
-  border: none;
-  background-color: #e5e5e5;
 }
 
 .ql-editor h1 {

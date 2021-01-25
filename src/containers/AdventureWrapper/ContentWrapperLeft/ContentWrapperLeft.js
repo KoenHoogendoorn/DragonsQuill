@@ -12,6 +12,7 @@ import Button from "../../../components/Button/Button";
 import Chapter from "../../../components/Chapter/Chapter";
 import NPC from "../../../components/NPC/NPC";
 import Monster from "../../../components/Monster/Monster";
+import NewNPC from "../../../components/NPC/NewNPC/NewNPC";
 
 import * as actions from "../../../store/actions/actionsIndex";
 
@@ -145,6 +146,7 @@ const ContentWrapperLeft = (props) => {
         </Button>
       </section>
       <section className={classes.CardsContainer}>
+        <NewNPC />
         {activeContentHandler()}
       </section>
     </div>

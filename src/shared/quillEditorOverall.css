@@ -1,0 +1,67 @@
+/* QUILL EDITOR OVERALL CSS */
+.ql-editor {
+  padding: 0;
+}
+
+/* Removes placeholder whitespace  */
+.ql-editor.ql-blank::before {
+  left: 0;
+}
+
+.ql-container.ql-snow {
+  border: none;
+}
+
+.ql-snow.ql-toolbar button:hover i,
+.ql-snow .ql-toolbar button:hover i,
+.ql-snow.ql-toolbar button:focus i,
+.ql-snow .ql-toolbar button:focus i,
+.ql-snow.ql-toolbar button.ql-active i,
+.ql-snow .ql-toolbar button.ql-active i,
+.ql-snow.ql-toolbar button:hover i,
+.ql-snow .ql-toolbar button:hover i,
+.ql-snow.ql-toolbar button:focus i,
+.ql-snow .ql-toolbar button:focus i,
+.ql-snow.ql-toolbar button.ql-active i,
+.ql-snow .ql-toolbar button.ql-active i,
+.ql-snow.ql-toolbar button.ql-active,
+#h1-button.ql-active path,
+#h2-button.ql-active path {
+  fill: #673ab7;
+  color: #673ab7;
+}
+
+.ql-snow.ql-toolbar button,
+.ql-snow .ql-toolbar button:focus,
+.ql-snow .ql-toolbar button {
+  padding: 0;
+}
+
+.ql-snow .ql-editor blockquote {
+  border-left: 4px solid #673ab7;
+}
+
+.toolbar {
+  border: none;
+  background-color: #e5e5e5;
+}
+
+.toolbar button {
+  color: #777777;
+}
+
+#h1-button,
+#h2-button {
+  padding: 2.5px 5px;
+}
+#h1-button path,
+#h2-button path {
+  fill: #777777;
+}
+
+/* 
+.ql-snow.ql-toolbar button,
+.ql-snow .ql-toolbar button {
+  width: 28px;
+  color: #777777;
+} */

@@ -1,0 +1,9 @@
+#toolbarNPC {
+  margin: 0 -17px -17px -17px;
+  border-radius: 0 0 4px 4px;
+}
+
+.ql-snow.ql-toolbar button,
+.ql-snow .ql-toolbar button {
+  font-size: 14px;
+}

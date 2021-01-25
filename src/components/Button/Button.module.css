@@ -22,8 +22,10 @@
 }
 
 .Big {
-  padding: 16px;
+  padding: 12px 16px;
 }
+
+/* Maybe only have big or medium */
 
 .Medium {
   padding: 8px 16px;

@@ -1,0 +1,50 @@
+.NewNPC input {
+  border: none;
+  border-bottom: 2px solid #e5e5e5;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.NewNPC input:focus {
+  outline: none;
+  border-bottom: 2px solid #777777;
+}
+
+.NewNPCName {
+  font-weight: bold;
+  font-family: "Merriweather", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.NewNPCDescription {
+  font-style: italic;
+}
+
+.NewNPCDescription::-webkit-input-placeholder {
+  font-style: italic;
+}
+
+.NewNPCDescription:-moz-placeholder {
+  /* Firefox 18- */
+  font-style: italic;
+}
+
+.NewNPCDescription::-moz-placeholder {
+  /* Firefox 19+ */
+  font-style: italic;
+}
+
+.NewNPCDescription:-ms-input-placeholder {
+  font-style: italic;
+}
+
+.NewNPC .ql-editor {
+  /* padding: 0; */
+  margin-bottom: 16px;
+}
+
+.ql-snow .ql-editor img {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}

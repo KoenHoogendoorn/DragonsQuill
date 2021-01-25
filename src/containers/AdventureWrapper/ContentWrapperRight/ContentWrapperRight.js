@@ -1,21 +1,33 @@
 import React, { Component } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import { connect } from "react-redux";
-import "react-quill/dist/quill.snow.css";
 import "quill-mention";
-import "quill-mention/dist/quill.mention.css";
 
-// import "../../../blots/dndmention";
+import "react-quill/dist/quill.snow.css";
+import "quill-mention/dist/quill.mention.css";
+import classes from "../AdventureWrapper.module.css";
+import "./ContentWrapperRight.css";
+import "../../../shared/quillEditorOverall.css";
+
 import EditorToolbar from "./EditorToolbar/EditorToolbar";
 import EditorHeader from "./EditorHeader/EditorHeader";
 
-import classes from "../AdventureWrapper.module.css";
-import "./ContentWrapperRight.css";
-
 import * as actions from "../../../store/actions/actionsIndex";
 
+var icons = Quill.import("ui/icons");
+icons["bold"] = '<i class="fas fa-bold" aria-hidden="true"></i>';
+icons["italic"] = '<i class="fas fa-italic" aria-hidden="true"></i>';
+icons["underline"] = '<i class="fas fa-underline" aria-hidden="true"></i>';
+icons["link"] = '<i class="fas fa-link" aria-hidden="true"></i>';
+icons["image"] = '<i class="far fa-image" aria-hidden="true"></i>';
+icons["ul-list"] = '<i class="fas fa-list-ul" aria-hidden="true"></i>';
+icons["ol-list"] = '<i class="fas fa-list-ol" aria-hidden="true"></i>';
+icons["divider"] = '<i class="fas fa-grip-lines" aria-hidden="true"></i>';
+icons["blockquote"] = '<i class="fas fa-quote-right" aria-hidden="true"></i>';
+icons["h1-icon"] = "H1";
+icons["h2-icon"] = "H2";
+
 let BlockEmbed = Quill.import("blots/block/embed");
-// ---------
 
 class DividerBlot extends BlockEmbed {}
 DividerBlot.blotName = "divider";
@@ -151,10 +163,10 @@ class ContentWrapperRight extends Component {
 
   modules = {
     toolbar: {
-      container: "#toolbar",
+      container: ".toolbarChapter",
       handlers: {
         insertStar: insertStar,
-        addDivider: addDivider
+        divider: addDivider
       }
     },
     mention: {
@@ -218,7 +230,7 @@ class ContentWrapperRight extends Component {
       <div className={`${classes.ContentWrapper} ${classes.WrapperRightBlock}`}>
         <EditorHeader />
         <EditorToolbar />
-        <div className={classes.WrapperRightContent}>
+        <div className="WrapperRightContent">
           <ReactQuill
             theme="snow"
             onChange={(event) => this.handleChange(event)}
