@@ -20,27 +20,27 @@ const initialState = {
       disabled: true
     },
     {
-      id: "np5",
+      id: "np1",
       value: "Syka Twocreek",
       description: "Human female, Chaotic good",
       content:
         "Young girl that helps them at the start. She is the daughter of the village elder and good friends with the tortles. Didn’t eat fish because her mother the village elder doesn’t like it."
     },
     {
-      id: "np6",
+      id: "np2",
       value: "Lura Twocreek",
       description: "Human female, Neutral good",
       content:
         "Village elder, human woman in her 50s. She is concerned with the villagers. She doesn’t like fish so she isn’t affected by the addiction. Lived in the town since her childhood."
     },
     {
-      id: "np7",
+      id: "np3",
       value: "Kilki",
       description: "Tortle Male, Neutral good",
       content: "Retired old monk Tortle."
     },
     {
-      id: "np8",
+      id: "np4",
       value: "Falmo",
       description: "Tortle Male, Neutral Neutral",
       content:
@@ -54,14 +54,14 @@ const initialState = {
       disabled: true
     },
     {
-      id: "mo9",
+      id: "mo1",
       value: "Giant Scorpion",
       description: "Large beast, unaligned",
       content:
         "Multiattack: The scorpion makes three attacks: two with its claws and one with its sting."
     },
     {
-      id: "mo10",
+      id: "mo2",
       value: "Giant Crab",
       description: "Large beast, unaligned",
       content:
@@ -199,6 +199,14 @@ const reducer = (state = initialState, action) => {
         monsters: monsters3
       };
       return updateObject(state, updatedState3);
+
+    case "ADD_NPC":
+      let npcs4 = state.npcs.slice();
+      npcs4.push(action.newNPC);
+      const updatedState4 = {
+        npcs: npcs4
+      };
+      return updateObject(state, updatedState4);
     default:
       return state;
   }

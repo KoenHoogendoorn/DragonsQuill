@@ -17,3 +17,10 @@ export const toggleCard = (id) => {
     id: id
   };
 };
+
+export const addNPC = (newNPC) => {
+  return {
+    type: "ADD_NPC",
+    newNPC: newNPC
+  };
+};

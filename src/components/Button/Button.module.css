@@ -1,25 +1,53 @@
 .Button {
-  background-color: #673ab7;
   border-radius: 4px;
   font-weight: 600;
-  color: #ffffff;
+
   border: none;
   outline: none;
   white-space: nowrap;
 }
 
 .Button:hover {
-  background-color: #4f2c8e;
   cursor: pointer;
+}
+
+.Button > i {
+  margin-right: 8px;
+}
+
+/* PRIMARY */
+
+.Primary {
+  background-color: #673ab7;
+  color: #ffffff;
+}
+
+.Primary:hover {
+  background-color: #4f2c8e;
 }
 
 .Button:active {
   background-color: #351e61;
 }
 
-.Button > i {
-  margin-right: 8px;
+/* -------- */
+
+/* SECONDARY */
+
+.Secondary {
+  background-color: #ccc;
+  color: #777;
 }
+
+.Secondary:hover {
+  background-color: #b7b7b7;
+}
+
+.Secondary:active {
+  background-color: #a3a3a3;
+}
+
+/* -------- */
 
 .Big {
   padding: 12px 16px;

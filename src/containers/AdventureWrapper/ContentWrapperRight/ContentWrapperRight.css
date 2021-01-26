@@ -36,10 +36,7 @@
 }
 
 .WrapperRightContent .ql-editor {
-  /* padding: 0; */
-  /* overflow-y: auto; */
   min-height: 85vh;
-  /* height: calc(100vh - (32px + 40px + 38px)); */
 }
 
 .ql-editor h1 {

@@ -20,6 +20,7 @@ const classes = { ...classes1, ...classes2 };
 
 const ContentWrapperLeft = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [addingNPC, setAddingNPC] = useState(false);
 
   useEffect(() => {
     props.sortContentHandler();
@@ -140,13 +141,19 @@ const ContentWrapperLeft = (props) => {
           val={searchTerm}
           changed={editSearchTerm}
         />
-        <Button size={"big"}>
+        <Button
+          size="big"
+          priority="primary"
+          clicked={() => setAddingNPC(true)}
+        >
           <i className="fas fa-plus"></i>
           {buttonText}
         </Button>
       </section>
+      {addingNPC ? (
+        <NewNPC removeNewNNPCCard={() => setAddingNPC(false)} />
+      ) : null}
       <section className={classes.CardsContainer}>
-        <NewNPC />
         {activeContentHandler()}
       </section>
     </div>

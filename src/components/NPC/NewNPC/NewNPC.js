@@ -13,13 +13,55 @@ import Card from "../../Card/Card";
 import NewNPCEditorToolbar from "./NewNPCEditorToolbar/NewNPCEditorToolbar";
 
 class NewNPC extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { editorHtml: "" };
+  constructor() {
+    super();
+    this.state = { id: "", key: "", value: "", description: "", content: null };
+    this.quillRef = null; // Quill instance
+    this.reactQuillRef = null; // ReactQuill component
   }
 
-  handleChange = (html) => {
-    this.setState({ editorHtml: html });
+  componentDidMount() {
+    //Creates and sets new id and key
+    const NPCs = this.props.npcs;
+    const generatedId = `np${NPCs.length}`;
+    this.setState({
+      id: generatedId,
+      key: generatedId
+    });
+
+    this.attachQuillRefs();
+  }
+
+  componentDidUpdate() {
+    this.attachQuillRefs();
+  }
+
+  attachQuillRefs = () => {
+    if (typeof this.reactQuillRef.getEditor !== "function") return;
+    this.quillRef = this.reactQuillRef.getEditor();
+  };
+
+  handleNameChange = (name) => {
+    this.setState({ value: name.target.value });
+  };
+
+  handleDescriptionChange = (desc) => {
+    this.setState({ description: desc.target.value });
+  };
+
+  handleContentChange = (html) => {
+    const htmll = this.quillRef.root.innerHTML;
+    this.setState({ content: htmll });
+  };
+
+  handleDelete = () => {
+    this.setState({ id: "", value: "", description: "", content: null });
+    this.props.removeNewNNPCCard();
+  };
+
+  handleSave = () => {
+    this.props.addNPCHandler(this.state);
+    this.handleDelete();
   };
 
   modules = {
@@ -50,22 +92,33 @@ class NewNPC extends Component {
             <div>
               <input
                 className="NewNPCName"
+                value={this.state.value}
+                onChange={this.handleNameChange}
                 placeholder="Character name..."
               ></input>
               <input
                 className="NewNPCDescription"
+                value={this.state.description}
+                onChange={this.handleDescriptionChange}
                 placeholder="Species &amp; gender, Alignment......"
               ></input>
             </div>
           </section>
           <ReactQuill
             theme="snow"
-            onChange={this.handleChange}
+            value={this.state.content}
+            onChange={this.handleContentChange}
             placeholder={this.props.placeholder}
             modules={this.modules}
             placeholder="Character description..."
+            ref={(el) => {
+              this.reactQuillRef = el;
+            }}
           />
-          <NewNPCEditorToolbar />
+          <NewNPCEditorToolbar
+            onDelete={() => this.handleDelete()}
+            onSave={() => this.handleSave()}
+          />
         </div>
       </Card>
     );
@@ -74,13 +127,13 @@ class NewNPC extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // npcs: state.contentData.npcs
+    npcs: state.contentData.npcs
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // sortContentHandler: () => dispatch(actions.sortContent())
+    addNPCHandler: (newNPC) => dispatch(actions.addNPC(newNPC))
   };
 };
 

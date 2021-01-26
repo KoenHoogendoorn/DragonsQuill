@@ -14,8 +14,8 @@ const EditorToolbar = (props) => {
         <option value="2"></option>
         <option value=""></option>
       </select> */}
-      <button id="h1-button" class="ql-header" value="1"></button>
-      <button id="h2-button" class="ql-header" value="2"></button>
+      <button id="h1-button" className="ql-header" value="1"></button>
+      <button id="h2-button" className="ql-header" value="2"></button>
       <button className="ql-bold"></button>
       <button className="ql-italic"></button>
       <button className="ql-blockquote"></button>

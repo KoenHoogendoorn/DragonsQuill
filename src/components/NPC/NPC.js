@@ -48,7 +48,10 @@ const NPC = (props) => {
           onClick={() => clickCardHandler(props.id)}
           className={classes.CardContent}
         >
-          <p onClick={() => clickCardHandler(props.id)}>{props.content}</p>
+          <div
+            onClick={() => clickCardHandler(props.id)}
+            dangerouslySetInnerHTML={{ __html: props.content }}
+          ></div>
         </section>
       </div>
     </Card>

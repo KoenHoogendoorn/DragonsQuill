@@ -41,9 +41,12 @@
   border-left: 4px solid #673ab7;
 }
 
-.toolbar {
-  border: none;
+.toolbarChapter {
   background-color: #e5e5e5;
+}
+
+.ql-toolbar.ql-snow {
+  border: none;
 }
 
 .toolbar button {

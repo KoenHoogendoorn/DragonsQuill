@@ -1,9 +1,18 @@
-#toolbarNPC {
-  margin: 0 -17px -17px -17px;
-  border-radius: 0 0 4px 4px;
-}
-
 .ql-snow.ql-toolbar button,
 .ql-snow .ql-toolbar button {
   font-size: 14px;
+}
+
+.toolbarNPCContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 -17px -17px -17px;
+  border-radius: 0 0 4px 4px;
+  background-color: #e5e5e5;
+  padding-right: 4px;
+}
+
+.ButtonsContainer button:last-child {
+  margin-left: 4px;
 }

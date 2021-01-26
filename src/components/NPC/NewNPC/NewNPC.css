@@ -40,8 +40,13 @@
 }
 
 .NewNPC .ql-editor {
-  /* padding: 0; */
   margin-bottom: 16px;
+  border-bottom: 2px solid #e5e5e5;
+  width: 100%;
+}
+
+.NewNPC .ql-editor:focus {
+  border-bottom: 2px solid #777777;
 }
 
 .ql-snow .ql-editor img {

@@ -193,7 +193,7 @@ class ContentWrapperRight extends Component {
       // renderItem controls how item in dropdown looks
       renderItem: (item, searchTerm) => {
         return `
-          <div class="cql-list-item-inner">
+          <div className="cql-list-item-inner">
           ${item.value}
           </div>`;
       },
