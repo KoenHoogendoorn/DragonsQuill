@@ -26,7 +26,7 @@
   background-color: #4f2c8e;
 }
 
-.Button:active {
+.Primary:active {
   background-color: #351e61;
 }
 
@@ -45,6 +45,24 @@
 
 .Secondary:active {
   background-color: #a3a3a3;
+}
+
+/* -------- */
+
+/* TERTIARY (NO BG) */
+
+.Tertiary {
+  background: none;
+  color: #9b9b9b;
+  font-size: 12px;
+}
+
+.Tertiary:hover {
+  color: #777;
+}
+
+.Tertiary:active {
+  color: #222;
 }
 
 /* -------- */

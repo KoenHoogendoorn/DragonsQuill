@@ -24,27 +24,31 @@ const initialState = {
       value: "Syka Twocreek",
       description: "Human female, Chaotic good",
       content:
-        "Young girl that helps them at the start. She is the daughter of the village elder and good friends with the tortles. Didn’t eat fish because her mother the village elder doesn’t like it."
+        "Young girl that helps them at the start. She is the daughter of the village elder and good friends with the tortles. Didn’t eat fish because her mother the village elder doesn’t like it.",
+      open: false
     },
     {
       id: "np2",
       value: "Lura Twocreek",
       description: "Human female, Neutral good",
       content:
-        "Village elder, human woman in her 50s. She is concerned with the villagers. She doesn’t like fish so she isn’t affected by the addiction. Lived in the town since her childhood."
+        "Village elder, human woman in her 50s. She is concerned with the villagers. She doesn’t like fish so she isn’t affected by the addiction. Lived in the town since her childhood.",
+      open: false
     },
     {
       id: "np3",
       value: "Kilki",
       description: "Tortle Male, Neutral good",
-      content: "Retired old monk Tortle."
+      content: "Retired old monk Tortle.",
+      open: false
     },
     {
       id: "np4",
       value: "Falmo",
       description: "Tortle Male, Neutral Neutral",
       content:
-        "A surfing dude Tortle with a floral headband. Loves to surf the waves on his belly and shield. Didn’t eat fishes because he doesn’t like to eat creatures. Wears a necklace with a bear tooth on it."
+        "A surfing dude Tortle with a floral headband. Loves to surf the waves on his belly and shield. Didn’t eat fishes because he doesn’t like to eat creatures. Wears a necklace with a bear tooth on it.",
+      open: false
     }
   ],
   monsters: [
@@ -95,10 +99,6 @@ const reducer = (state = initialState, action) => {
       pushHeadersFirst(npcs);
       pushHeadersFirst(monsters);
 
-      // npcs.forEach((element) => {
-      //   element.open = false;
-      //   element.highlighted = false;
-      // });
       // monsters.forEach((element) => {
       //   element.open = false;
       //   element.highlighted = false;
@@ -112,7 +112,7 @@ const reducer = (state = initialState, action) => {
 
     case "TOGGLE_CARD":
       const selectedItemHtml = document.getElementById(action.id);
-      const content = selectedItemHtml.lastChild;
+      const content = selectedItemHtml.lastChild; //content = CardBody component
       //----
       const clickedId = action.id;
       let npcs2 = state.npcs.slice();
@@ -124,13 +124,15 @@ const reducer = (state = initialState, action) => {
         );
 
         clickedItem.open = !clickedItem.open;
+        if (!clickedItem.open) {
+          clickedItem.highlighted = false;
+        }
 
         //show and open clicked html card content
         if (clickedItem.open) {
-          content.style.maxHeight = content.scrollHeight + "px";
+          content.style.maxHeight = content.scrollHeight + 17 + "px"; //+17 because the cardtoolbar has a margin-bottom of -17
         } else {
           content.style.maxHeight = null;
-          clickedItem.highlighted = false;
         }
       };
 

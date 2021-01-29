@@ -20,7 +20,9 @@ const classes = { ...classes1, ...classes2 };
 
 const ContentWrapperLeft = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [addingChapter, setAddingChapter] = useState(false);
   const [addingNPC, setAddingNPC] = useState(false);
+  const [addingMonster, setAddingMonster] = useState(false);
 
   useEffect(() => {
     props.sortContentHandler();
@@ -31,22 +33,6 @@ const ContentWrapperLeft = (props) => {
   };
 
   const activeContentHandler = () => {
-    // const chaptersList = props.chapters.map((chapter) => (
-    //   <Chapter key={chapter.id} id={chapter.id} name={chapter.name} />
-    // ));
-
-    // const npcsList = props.npcs.map((npc) => {
-    //   return !npc.disabled ? (
-    //     <NPC
-    //       key={npc.id}
-    //       id={npc.id}
-    //       name={npc.value}
-    //       description={npc.description}
-    //       content={npc.content}
-    //     />
-    //   ) : null;
-    // });
-
     const chaptersList = () => {
       return props.chapters
         .filter((chapter) =>
@@ -60,6 +46,13 @@ const ContentWrapperLeft = (props) => {
     };
 
     const npcsList = () => {
+      //if an item is open, but dissapears because of another search term,
+      //the open property is set to false
+      props.npcs.filter((npc) => {
+        if (!npc.value.toLowerCase().startsWith(searchTerm.toLowerCase())) {
+          npc.open = false;
+        }
+      });
       return props.npcs
         .filter((npc) =>
           npc.value.toLowerCase().startsWith(searchTerm.toLowerCase())
@@ -72,6 +65,7 @@ const ContentWrapperLeft = (props) => {
               name={npc.value}
               description={npc.description}
               content={npc.content}
+              open={npc.open}
             />
           ) : null;
         });
@@ -104,6 +98,27 @@ const ContentWrapperLeft = (props) => {
         return monstersList();
       default:
         return chaptersList();
+    }
+  };
+
+  const newContentButtonHandler = () => {
+    switch (props.activeTab) {
+      case "Chapters":
+        return setAddingChapter(true);
+      case "NPCs":
+        return setAddingNPC(true);
+      case "Monsters":
+        return setAddingMonster(true);
+      default:
+        break;
+    }
+  };
+
+  const activeNewContentCardHandler = () => {
+    if (addingNPC) {
+      return <NewNPC removeNewNNPCCard={() => setAddingNPC(false)} />;
+    } else {
+      return null;
     }
   };
 
@@ -144,15 +159,13 @@ const ContentWrapperLeft = (props) => {
         <Button
           size="big"
           priority="primary"
-          clicked={() => setAddingNPC(true)}
+          clicked={() => newContentButtonHandler()}
         >
           <i className="fas fa-plus"></i>
           {buttonText}
         </Button>
       </section>
-      {addingNPC ? (
-        <NewNPC removeNewNNPCCard={() => setAddingNPC(false)} />
-      ) : null}
+      {activeNewContentCardHandler()}
       <section className={classes.CardsContainer}>
         {activeContentHandler()}
       </section>

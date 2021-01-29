@@ -15,7 +15,14 @@ import NewNPCEditorToolbar from "./NewNPCEditorToolbar/NewNPCEditorToolbar";
 class NewNPC extends Component {
   constructor() {
     super();
-    this.state = { id: "", key: "", value: "", description: "", content: null };
+    this.state = {
+      id: "",
+      key: "",
+      value: "",
+      description: "",
+      content: null,
+      open: false
+    };
     this.quillRef = null; // Quill instance
     this.reactQuillRef = null; // ReactQuill component
   }
@@ -62,6 +69,7 @@ class NewNPC extends Component {
   handleSave = () => {
     this.props.addNPCHandler(this.state);
     this.handleDelete();
+    this.props.sortContentHandler();
   };
 
   modules = {
@@ -86,7 +94,7 @@ class NewNPC extends Component {
 
   render() {
     return (
-      <Card>
+      <Card id={"newCard"}>
         <div className="NewNPC">
           <section className={classes.CardHeader}>
             <div>
@@ -108,7 +116,6 @@ class NewNPC extends Component {
             theme="snow"
             value={this.state.content}
             onChange={this.handleContentChange}
-            placeholder={this.props.placeholder}
             modules={this.modules}
             placeholder="Character description..."
             ref={(el) => {
@@ -133,7 +140,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addNPCHandler: (newNPC) => dispatch(actions.addNPC(newNPC))
+    addNPCHandler: (newNPC) => dispatch(actions.addNPC(newNPC)),
+    sortContentHandler: (id) => dispatch(actions.sortContent(id))
   };
 };
 

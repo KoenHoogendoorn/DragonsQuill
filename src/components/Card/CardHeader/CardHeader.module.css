@@ -1,0 +1,11 @@
+.CardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.CardHeader:hover h4,
+.CardHeader:hover i {
+  color: #673ab7;
+}

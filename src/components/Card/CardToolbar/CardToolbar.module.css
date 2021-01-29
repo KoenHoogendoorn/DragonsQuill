@@ -1,0 +1,7 @@
+.CardToolbar {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #e1d8f1;
+  margin: 16px -17px -17px -17px;
+  padding: 8px;
+}

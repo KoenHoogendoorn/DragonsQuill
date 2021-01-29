@@ -16,7 +16,7 @@ const Button = (props) => {
       ButtonClasses += `${classes.Small} `;
       break;
     default:
-      ButtonClasses = ButtonClasses;
+      ButtonClasses = `${classes.Button} `;
       break;
   }
 
@@ -27,8 +27,11 @@ const Button = (props) => {
     case "secondary":
       ButtonClasses += `${classes.Secondary}`;
       break;
+    case "tertiary":
+      ButtonClasses += `${classes.Tertiary}`;
+      break;
     default:
-      ButtonClasses = ButtonClasses;
+      ButtonClasses = `${classes.Button} `;
       break;
   }
 
