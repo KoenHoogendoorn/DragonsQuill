@@ -10,7 +10,7 @@ import classes from "../../Card/CardBackground/CardBackground.module.css";
 import "../../../shared/quillEditorOverall.css";
 
 import CardBackground from "../../Card/CardBackground/CardBackground";
-import NPCEditorEditorToolbar from "./NPCEditorEditorToolbar/NPCEditorEditorToolbar";
+import NPCEditorToolbar from "./NPCEditorToolbar/NPCEditorToolbar";
 
 class NPCEditor extends Component {
   constructor() {
@@ -29,12 +29,14 @@ class NPCEditor extends Component {
 
   componentDidMount() {
     //Creates and sets new id and key
-    const NPCs = this.props.npcs;
-    const generatedId = `np${NPCs.length}`;
-    this.setState({
-      id: generatedId,
-      key: generatedId
-    });
+    if (this.state.id === "") {
+      const NPCs = this.props.npcs;
+      const generatedId = `np${NPCs.length}`;
+      this.setState({
+        id: generatedId,
+        key: generatedId
+      });
+    }
 
     this.attachQuillRefs();
   }
@@ -122,7 +124,7 @@ class NPCEditor extends Component {
               this.reactQuillRef = el;
             }}
           />
-          <NPCEditorEditorToolbar
+          <NPCEditorToolbar
             onDelete={() => this.handleDelete()}
             onSave={() => this.handleSave()}
           />

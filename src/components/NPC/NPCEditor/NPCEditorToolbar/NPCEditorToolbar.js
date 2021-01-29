@@ -2,10 +2,10 @@ import React from "react";
 
 import Button from "../../../Button/Button";
 
-import "./NPCEditorEditorToolbar.css";
+import "./NPCEditorToolbar.css";
 import "../../../../shared/quillEditorOverall.css";
 
-const NPCEditorEditorToolbar = (props) => (
+const NPCEditorToolbar = (props) => (
   <div className="toolbarNPCContainer">
     <div id="toolbarNPC" className="toolbarNPC toolbar">
       <button className="ql-bold"></button>
@@ -27,4 +27,4 @@ const NPCEditorEditorToolbar = (props) => (
   </div>
 );
 
-export default NPCEditorEditorToolbar;
+export default NPCEditorToolbar;

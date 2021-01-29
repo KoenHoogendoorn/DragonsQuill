@@ -17,9 +17,9 @@ const classes = { ...classes1, ...classes2 };
 
 const ContentWrapperLeft = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [addingChapter, setAddingChapter] = useState(false);
+  // const [addingChapter, setAddingChapter] = useState(false);
   const [addingNPC, setAddingNPC] = useState(false);
-  const [addingMonster, setAddingMonster] = useState(false);
+  // const [addingMonster, setAddingMonster] = useState(false);
 
   useEffect(() => {
     props.sortContentHandler();
@@ -45,7 +45,7 @@ const ContentWrapperLeft = (props) => {
     const npcsList = () => {
       //if an item is open, but dissapears because of another search term,
       //the open property is set to false
-      props.npcs.filter((npc) => {
+      props.npcs.forEach((npc) => {
         if (!npc.value.toLowerCase().startsWith(searchTerm.toLowerCase())) {
           npc.open = false;
         }
@@ -69,7 +69,7 @@ const ContentWrapperLeft = (props) => {
     };
 
     const monstersList = () => {
-      props.monsters.filter((monster) => {
+      props.monsters.forEach((monster) => {
         if (!monster.value.toLowerCase().startsWith(searchTerm.toLowerCase())) {
           monster.open = false;
         }
@@ -106,12 +106,12 @@ const ContentWrapperLeft = (props) => {
 
   const newContentButtonHandler = () => {
     switch (props.activeTab) {
-      case "Chapters":
-        return setAddingChapter(true);
+      // case "Chapters":
+      //   return setAddingChapter(true);
       case "NPCs":
         return setAddingNPC(true);
-      case "Monsters":
-        return setAddingMonster(true);
+      // case "Monsters":
+      //   return setAddingMonster(true);
       default:
         break;
     }
