@@ -44,7 +44,10 @@ const NPC = (props) => {
         </CardHeader>
         <CardBody id={props.id}>
           <div dangerouslySetInnerHTML={{ __html: props.content }}></div>
-          <CardToolbar />
+          <CardToolbar
+          // onDelete={() => handleDelete()}
+          // onEdit={() => handleEdit(thisItem)}
+          />
         </CardBody>
       </div>
     </CardBackground>

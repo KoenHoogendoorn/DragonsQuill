@@ -15,7 +15,7 @@ const initialState = {
   ],
   npcs: [
     {
-      id: "npcs-header",
+      id: "np0",
       value: "NPC's",
       disabled: true
     },
@@ -53,7 +53,7 @@ const initialState = {
   ],
   monsters: [
     {
-      id: "monsters-header",
+      id: "mo0",
       value: "Monsters",
       disabled: true
     },

@@ -31,13 +31,18 @@ class NPCEditor extends Component {
     //Creates and sets new id and key
     if (this.state.id === "") {
       const NPCs = this.props.npcs;
-      const generatedId = `np${NPCs.length}`;
+      const idNumbers = NPCs.map((npc) => npc.id).map((id) => {
+        return Number(id.substring(2));
+      });
+      const currentIdPrefix = "np";
+      const generatedIdNumber = Math.max(...idNumbers) + 1; //gets Id with highest number at the end and add 1
+      const generatedId = currentIdPrefix.concat(generatedIdNumber.toString());
+
       this.setState({
         id: generatedId,
         key: generatedId
       });
     }
-
     this.attachQuillRefs();
   }
 
