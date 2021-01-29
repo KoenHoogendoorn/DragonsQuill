@@ -1,13 +1,16 @@
 import React from "react";
-import Card from "../Card/Card";
+import CardBackground from "../Card/CardBackground/CardBackground";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/actionsIndex";
 
 const Chapter = (props) => {
   return (
-    <Card id={props.id} clicked={() => props.activeChapterHandler(props.id)}>
+    <CardBackground
+      id={props.id}
+      clicked={() => props.activeChapterHandler(props.id)}
+    >
       <h4>{props.name}</h4>
-    </Card>
+    </CardBackground>
   );
 };
 

@@ -62,14 +62,16 @@ const initialState = {
       value: "Giant Scorpion",
       description: "Large beast, unaligned",
       content:
-        "Multiattack: The scorpion makes three attacks: two with its claws and one with its sting."
+        "Multiattack: The scorpion makes three attacks: two with its claws and one with its sting.",
+      open: false
     },
     {
       id: "mo2",
       value: "Giant Crab",
       description: "Large beast, unaligned",
       content:
-        "Multiattack: The scorpion makes two attacks: two with its claws."
+        "Multiattack: The scorpion makes two attacks: two with its claws.",
+      open: false
     }
   ]
 };
@@ -204,7 +206,7 @@ const reducer = (state = initialState, action) => {
 
     case "ADD_NPC":
       let npcs4 = state.npcs.slice();
-      npcs4.push(action.newNPC);
+      npcs4.push(action.NPCEditor);
       const updatedState4 = {
         npcs: npcs4
       };

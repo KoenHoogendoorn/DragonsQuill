@@ -4,15 +4,12 @@ import { connect } from "react-redux";
 import classes1 from "../AdventureWrapper.module.css";
 import classes2 from "./ContentWrapperLeft.module.css";
 
-// import SearchResults from "./SearchResults/SearchResults";
-
 import Tab from "../../../components/Tab/Tab";
 import Inputbar from "../../../components/Inputbar/Inputbar";
 import Button from "../../../components/Button/Button";
 import Chapter from "../../../components/Chapter/Chapter";
 import NPC from "../../../components/NPC/NPC";
-import Monster from "../../../components/Monster/Monster";
-import NewNPC from "../../../components/NPC/NewNPC/NewNPC";
+import NPCEditor from "../../../components/NPC/NPCEditor/NPCEditor";
 
 import * as actions from "../../../store/actions/actionsIndex";
 
@@ -72,18 +69,24 @@ const ContentWrapperLeft = (props) => {
     };
 
     const monstersList = () => {
+      props.monsters.filter((monster) => {
+        if (!monster.value.toLowerCase().startsWith(searchTerm.toLowerCase())) {
+          monster.open = false;
+        }
+      });
       return props.monsters
         .filter((monster) =>
           monster.value.toLowerCase().startsWith(searchTerm.toLowerCase())
         )
         .map((monster) => {
           return !monster.disabled ? (
-            <Monster
+            <NPC
               key={monster.id}
               id={monster.id}
               name={monster.value}
               description={monster.description}
               content={monster.content}
+              open={monster.open}
             />
           ) : null;
         });
@@ -116,7 +119,7 @@ const ContentWrapperLeft = (props) => {
 
   const activeNewContentCardHandler = () => {
     if (addingNPC) {
-      return <NewNPC removeNewNNPCCard={() => setAddingNPC(false)} />;
+      return <NPCEditor removeNewNNPCCard={() => setAddingNPC(false)} />;
     } else {
       return null;
     }

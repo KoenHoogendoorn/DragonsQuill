@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as actions from "../../store/actions/actionsIndex";
+import * as actions from "../../../store/actions/actionsIndex";
 
-import classes from "./Card.module.css";
+import classes from "./CardBackground.module.css";
 
-const Card = (props) => {
+const CardBackground = (props) => {
   let cardClasses = classes.Card;
 
   if (props.id === props.activeChapter) {
@@ -31,4 +31,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+export default connect(mapStateToProps, mapDispatchToProps)(CardBackground);

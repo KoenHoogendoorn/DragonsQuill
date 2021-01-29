@@ -44,7 +44,8 @@ const CardHeader = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    npcs: state.contentData.npcs
+    npcs: state.contentData.npcs,
+    monsters: state.contentData.monsters
   };
 };
 

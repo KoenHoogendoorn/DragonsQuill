@@ -18,9 +18,9 @@ export const toggleCard = (id) => {
   };
 };
 
-export const addNPC = (newNPC) => {
+export const addNPC = (NPCEditor) => {
   return {
     type: "ADD_NPC",
-    newNPC: newNPC
+    NPCEditor: NPCEditor
   };
 };

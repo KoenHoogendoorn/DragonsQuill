@@ -4,18 +4,25 @@ import { connect } from "react-redux";
 import classes from "./CardBody.module.css";
 
 const CardBody = (props) => {
-  const thisItem = props.npcs.find((item) => item.id === props.id);
-  // const selectedItemHtml = document.getElementById(thisItem.id);
-  // const content = selectedItemHtml.lastChild; //content = CardBody component
+  let thisItem = null;
+
+  switch (props.id.substring(0, 2)) {
+    case "np":
+      thisItem = props.npcs.find((npc) => npc.id === props.id);
+      break;
+    case "mo":
+      thisItem = props.monsters.find((monster) => monster.id === props.id);
+      break;
+    default:
+      return;
+  }
+
   let CardBodyClasses = classes.CardBody;
-  // let CardScrollHeight = null;
 
   if (thisItem.open) {
     CardBodyClasses = `${classes.CardBody} ${classes.CardBodyOpen}`;
-    // CardScrollHeight = `${content.scrollHeight + 17}px`;
   } else {
     CardBodyClasses = classes.CardBody;
-    // CardScrollHeight = null;
   }
 
   return (
@@ -30,7 +37,8 @@ const CardBody = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    npcs: state.contentData.npcs
+    npcs: state.contentData.npcs,
+    monsters: state.contentData.monsters
   };
 };
 

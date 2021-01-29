@@ -5,14 +5,14 @@ import ReactQuill from "react-quill";
 import * as actions from "../../../store/actions/actionsIndex";
 
 import "react-quill/dist/quill.snow.css";
-import "./NewNPC.css";
-import classes from "../../Card/Card.module.css";
+import "./NPCEditor.css";
+import classes from "../../Card/CardBackground/CardBackground.module.css";
 import "../../../shared/quillEditorOverall.css";
 
-import Card from "../../Card/Card";
-import NewNPCEditorToolbar from "./NewNPCEditorToolbar/NewNPCEditorToolbar";
+import CardBackground from "../../Card/CardBackground/CardBackground";
+import NPCEditorEditorToolbar from "./NPCEditorEditorToolbar/NPCEditorEditorToolbar";
 
-class NewNPC extends Component {
+class NPCEditor extends Component {
   constructor() {
     super();
     this.state = {
@@ -94,18 +94,18 @@ class NewNPC extends Component {
 
   render() {
     return (
-      <Card id={"newCard"}>
-        <div className="NewNPC">
+      <CardBackground id={"newCard"}>
+        <div className="NPCEditor">
           <section className={classes.CardHeader}>
             <div>
               <input
-                className="NewNPCName"
+                className="NPCEditorName"
                 value={this.state.value}
                 onChange={this.handleNameChange}
                 placeholder="Character name..."
               ></input>
               <input
-                className="NewNPCDescription"
+                className="NPCEditorDescription"
                 value={this.state.description}
                 onChange={this.handleDescriptionChange}
                 placeholder="Species &amp; gender, Alignment......"
@@ -122,12 +122,12 @@ class NewNPC extends Component {
               this.reactQuillRef = el;
             }}
           />
-          <NewNPCEditorToolbar
+          <NPCEditorEditorToolbar
             onDelete={() => this.handleDelete()}
             onSave={() => this.handleSave()}
           />
         </div>
-      </Card>
+      </CardBackground>
     );
   }
 }
@@ -140,9 +140,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addNPCHandler: (newNPC) => dispatch(actions.addNPC(newNPC)),
+    addNPCHandler: (NPCEditor) => dispatch(actions.addNPC(NPCEditor)),
     sortContentHandler: (id) => dispatch(actions.sortContent(id))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewNPC);
+export default connect(mapStateToProps, mapDispatchToProps)(NPCEditor);

@@ -1,51 +1,51 @@
-.NewNPC input {
+.NPCEditor input {
   border: none;
   border-bottom: 2px solid #e5e5e5;
   width: 100%;
   margin-bottom: 16px;
 }
 
-.NewNPC input:focus {
+.NPCEditor input:focus {
   outline: none;
   border-bottom: 2px solid #777777;
 }
 
-.NewNPCName {
+.NPCEditorName {
   font-weight: bold;
   font-family: "Merriweather", serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.NewNPCDescription {
+.NPCEditorDescription {
   font-style: italic;
 }
 
-.NewNPCDescription::-webkit-input-placeholder {
+.NPCEditorDescription::-webkit-input-placeholder {
   font-style: italic;
 }
 
-.NewNPCDescription:-moz-placeholder {
+.NPCEditorDescription:-moz-placeholder {
   /* Firefox 18- */
   font-style: italic;
 }
 
-.NewNPCDescription::-moz-placeholder {
+.NPCEditorDescription::-moz-placeholder {
   /* Firefox 19+ */
   font-style: italic;
 }
 
-.NewNPCDescription:-ms-input-placeholder {
+.NPCEditorDescription:-ms-input-placeholder {
   font-style: italic;
 }
 
-.NewNPC .ql-editor {
+.NPCEditor .ql-editor {
   margin-bottom: 16px;
   border-bottom: 2px solid #e5e5e5;
   width: 100%;
 }
 
-.NewNPC .ql-editor:focus {
+.NPCEditor .ql-editor:focus {
   border-bottom: 2px solid #777777;
 }
 
