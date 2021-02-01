@@ -26,10 +26,10 @@ const ContentWrapperLeft = (props) => {
   };
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentItem, setCurrentItem] = useState(initialItemState);
   // const [addingChapter, setAddingChapter] = useState(false);
   const [addingNPC, setAddingNPC] = useState(false);
-  const [currentItem, setCurrentItem] = useState(initialItemState);
-  // const [addingMonster, setAddingMonster] = useState(false);
+  const [addingMonster, setAddingMonster] = useState(false);
 
   useEffect(() => {
     props.sortContentHandler();
@@ -45,8 +45,8 @@ const ContentWrapperLeft = (props) => {
       //   return setAddingChapter(true);
       case "NPCs":
         return setAddingNPC(true);
-      // case "Monsters":
-      //   return setAddingMonster(true);
+      case "Monsters":
+        return setAddingMonster(true);
       default:
         break;
     }
@@ -54,13 +54,25 @@ const ContentWrapperLeft = (props) => {
 
   const cancelEditingExistingCard = () => {
     setCurrentItem(initialItemState);
-    setAddingNPC(false);
+    switch (props.activeTab) {
+      case "NPCs":
+        return setAddingNPC(false);
+      case "Monsters":
+        return setAddingMonster(false);
+      default:
+        break;
+    }
   };
 
   const activeNewContentCardHandler = () => {
-    if (addingNPC && currentItem === null) {
-      return <NPCEditor removeNewNNPCCard={() => setAddingNPC(false)} />;
-    } else if (addingNPC && typeof currentItem === "object") {
+    if ((addingNPC || addingMonster) && currentItem === null) {
+      return (
+        <NPCEditor removeNewNNPCCard={() => cancelEditingExistingCard()} />
+      );
+    } else if (
+      (addingNPC || addingMonster) &&
+      typeof currentItem === "object"
+    ) {
       return (
         <NPCEditor
           id={currentItem.id}
@@ -81,10 +93,18 @@ const ContentWrapperLeft = (props) => {
     // newContentButtonHandler();
     item.open = false;
     setCurrentItem(item);
-    setAddingNPC(true);
+    switch (props.activeTab) {
+      case "NPCs":
+        return setAddingNPC(true);
+      case "Monsters":
+        return setAddingMonster(true);
+      default:
+        break;
+    }
   };
 
   const clickTabHandler = (type) => {
+    cancelEditingExistingCard();
     props.closeCardsHandler(type);
     props.activeTabHandler(type);
   };
@@ -132,14 +152,18 @@ const ContentWrapperLeft = (props) => {
     };
 
     const monstersList = () => {
+      //if an item is open, but dissapears because of another search term,
+      //the open property is set to false
       props.monsters.forEach((monster) => {
         if (!monster.value.toLowerCase().startsWith(searchTerm.toLowerCase())) {
           monster.open = false;
         }
       });
       return props.monsters
-        .filter((monster) =>
-          monster.value.toLowerCase().startsWith(searchTerm.toLowerCase())
+        .filter(
+          (monster) =>
+            monster.value.toLowerCase().startsWith(searchTerm.toLowerCase()) &&
+            monster.id !== currentItem.id
         )
         .map((monster) => {
           return !monster.disabled ? (
@@ -150,6 +174,7 @@ const ContentWrapperLeft = (props) => {
               description={monster.description}
               content={monster.content}
               open={monster.open}
+              onEditClick={() => editItemHandler(monster)}
             />
           ) : null;
         });

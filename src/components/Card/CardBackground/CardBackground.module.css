@@ -24,6 +24,14 @@
   transform: rotate(-180deg);
 }
 
+.Chapter {
+  cursor: pointer;
+}
+
+.Chapter:hover h4 {
+  color: #673ab7;
+}
+
 .ActiveCard {
   border: 1px solid #673ab7;
 }

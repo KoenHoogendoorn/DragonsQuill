@@ -218,9 +218,20 @@ const reducer = (state = initialState, action) => {
 
     case "ADD_NPC":
       let npcs4 = state.npcs.slice();
-      npcs4.push(action.npc);
+      let monsters4 = state.monsters.slice();
+      switch (action.npc.id.substring(0, 2)) {
+        case "np":
+          npcs4.push(action.npc);
+          break;
+        case "mo":
+          monsters4.push(action.npc);
+          break;
+        default:
+          break;
+      }
       const updatedState4 = {
-        npcs: npcs4
+        npcs: npcs4,
+        monsters: monsters4
       };
       return updateObject(state, updatedState4);
 

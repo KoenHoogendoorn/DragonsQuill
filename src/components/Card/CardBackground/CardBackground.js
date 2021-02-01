@@ -5,20 +5,27 @@ import * as actions from "../../../store/actions/actionsIndex";
 import classes from "./CardBackground.module.css";
 
 const CardBackground = (props) => {
-  let cardClasses = classes.Card;
+  let cardClasses = `${classes.Card} `;
 
   if (props.id === props.activeChapter) {
-    cardClasses = `${classes.Card} ${classes.ActiveCard}`;
-  } else {
-    cardClasses = classes.Card;
+    cardClasses += `${classes.ActiveCard} `;
   }
 
-  return <div className={cardClasses}>{props.children}</div>;
+  if (props.activeTab === "Chapters") {
+    cardClasses += `${classes.Chapter} `;
+  }
+
+  return (
+    <div onClick={props.clicked} className={cardClasses}>
+      {props.children}
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => {
   return {
     activeChapter: state.activeChapter.activeChapter,
+    activeTab: state.activeTab.activeTab,
     npcs: state.contentData.npcs,
     monsters: state.contentData.monsters
   };

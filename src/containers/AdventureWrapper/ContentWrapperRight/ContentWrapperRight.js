@@ -58,7 +58,6 @@ class ContentWrapperRight extends Component {
       ch2Html: `<h1>${this.props.chapters[1].name}</h1>`,
       width: window.innerWidth
     };
-    const icon = <i className="fab fa-500px"></i>;
   }
 
   updateDimensions = () => {

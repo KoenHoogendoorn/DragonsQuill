@@ -1,4 +1,4 @@
-- monster cards (restructuring for general cards)
+- restructuring NPCs to general cards
 - location cards
 - icons in chapters based on mentions
 
@@ -22,3 +22,4 @@ X - icons in tabs
 X - fixed editor -> set width
 X - long names in mention dropdown
 X - mention dropdown style
+X - monster cards 

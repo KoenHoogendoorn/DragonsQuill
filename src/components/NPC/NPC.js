@@ -22,16 +22,18 @@ const NPC = (props) => {
   switch (props.id.substring(0, 2)) {
     case "np":
       thisItem = props.npcs.find((npc) => npc.id === props.id);
+      if (props.activeTab !== "NPCs") {
+        thisItem.open = false;
+      }
       break;
     case "mo":
       thisItem = props.monsters.find((monster) => monster.id === props.id);
+      if (props.activeTab !== "Monsters") {
+        thisItem.open = false;
+      }
       break;
     default:
       break;
-  }
-
-  if (props.activeTab !== "NPCs") {
-    thisItem.open = false;
   }
 
   if (thisItem.open) {

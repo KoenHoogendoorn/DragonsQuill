@@ -28,6 +28,7 @@ class NPCEditor extends Component {
   }
 
   componentDidMount() {
+    //Fill state with clicked item props
     if (this.props.id !== "") {
       this.setState((state, props) => ({
         id: props.id,
@@ -39,19 +40,34 @@ class NPCEditor extends Component {
         editingExistingNPC: true
       }));
     }
-
     //Creates and sets new id and key
     if (!this.state.editingExistingNPC) {
       const NPCs = this.props.npcs;
-      const idNumbers = NPCs.map((npc) => npc.id).map((id) => {
-        return Number(id.substring(2));
-      });
-      const currentIdPrefix = "np";
+      const Monsters = this.props.npcs;
+      let idNumbers = null;
+      let currentIdPrefix = null;
+      switch (this.props.activeTab) {
+        case "NPCs":
+          idNumbers = NPCs.map((npc) => npc.id).map((id) => {
+            return Number(id.substring(2));
+          });
+          currentIdPrefix = "np";
+          break;
+        case "Monsters":
+          idNumbers = Monsters.map((monster) => monster.id).map((id) => {
+            return Number(id.substring(2));
+          });
+          currentIdPrefix = "mo";
+        default:
+          break;
+      }
+
       const generatedIdNumber = Math.max(...idNumbers) + 1; //gets Id with highest number at the end and add 1
       const generatedId = currentIdPrefix.concat(generatedIdNumber.toString());
 
       this.setState({ id: generatedId, key: generatedId });
     }
+
     this.attachQuillRefs();
   }
 
@@ -172,7 +188,9 @@ class NPCEditor extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    npcs: state.contentData.npcs
+    npcs: state.contentData.npcs,
+    monsters: state.contentData.monsters,
+    activeTab: state.activeTab.activeTab
   };
 };
 
