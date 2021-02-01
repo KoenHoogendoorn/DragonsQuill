@@ -16,9 +16,19 @@ import * as actions from "../../../store/actions/actionsIndex";
 const classes = { ...classes1, ...classes2 };
 
 const ContentWrapperLeft = (props) => {
+  const initialItemState = {
+    id: "",
+    key: "",
+    value: "",
+    description: "",
+    content: null,
+    open: false
+  };
+
   const [searchTerm, setSearchTerm] = useState("");
   // const [addingChapter, setAddingChapter] = useState(false);
   const [addingNPC, setAddingNPC] = useState(false);
+  const [currentItem, setCurrentItem] = useState(initialItemState);
   // const [addingMonster, setAddingMonster] = useState(false);
 
   useEffect(() => {
@@ -27,6 +37,56 @@ const ContentWrapperLeft = (props) => {
 
   const editSearchTerm = (input) => {
     setSearchTerm(input.target.value);
+  };
+
+  const newContentButtonHandler = () => {
+    switch (props.activeTab) {
+      // case "Chapters":
+      //   return setAddingChapter(true);
+      case "NPCs":
+        return setAddingNPC(true);
+      // case "Monsters":
+      //   return setAddingMonster(true);
+      default:
+        break;
+    }
+  };
+
+  const cancelEditingExistingCard = () => {
+    setCurrentItem(initialItemState);
+    setAddingNPC(false);
+  };
+
+  const activeNewContentCardHandler = () => {
+    if (addingNPC && currentItem === null) {
+      return <NPCEditor removeNewNNPCCard={() => setAddingNPC(false)} />;
+    } else if (addingNPC && typeof currentItem === "object") {
+      return (
+        <NPCEditor
+          id={currentItem.id}
+          key={currentItem.id}
+          value={currentItem.value}
+          description={currentItem.description}
+          content={currentItem.content}
+          open={currentItem.open}
+          removeNewNNPCCard={() => cancelEditingExistingCard()}
+        />
+      );
+    } else {
+      return null;
+    }
+  };
+
+  const editItemHandler = (item) => {
+    // newContentButtonHandler();
+    item.open = false;
+    setCurrentItem(item);
+    setAddingNPC(true);
+  };
+
+  const clickTabHandler = (type) => {
+    props.closeCardsHandler(type);
+    props.activeTabHandler(type);
   };
 
   const activeContentHandler = () => {
@@ -51,18 +111,21 @@ const ContentWrapperLeft = (props) => {
         }
       });
       return props.npcs
-        .filter((npc) =>
-          npc.value.toLowerCase().startsWith(searchTerm.toLowerCase())
+        .filter(
+          (npc) =>
+            npc.value.toLowerCase().startsWith(searchTerm.toLowerCase()) &&
+            npc.id !== currentItem.id
         )
         .map((npc) => {
           return !npc.disabled ? (
             <NPC
               key={npc.id}
               id={npc.id}
-              name={npc.value}
+              value={npc.value}
               description={npc.description}
               content={npc.content}
               open={npc.open}
+              onEditClick={() => editItemHandler(npc)}
             />
           ) : null;
         });
@@ -83,7 +146,7 @@ const ContentWrapperLeft = (props) => {
             <NPC
               key={monster.id}
               id={monster.id}
-              name={monster.value}
+              value={monster.value}
               description={monster.description}
               content={monster.content}
               open={monster.open}
@@ -104,27 +167,6 @@ const ContentWrapperLeft = (props) => {
     }
   };
 
-  const newContentButtonHandler = () => {
-    switch (props.activeTab) {
-      // case "Chapters":
-      //   return setAddingChapter(true);
-      case "NPCs":
-        return setAddingNPC(true);
-      // case "Monsters":
-      //   return setAddingMonster(true);
-      default:
-        break;
-    }
-  };
-
-  const activeNewContentCardHandler = () => {
-    if (addingNPC) {
-      return <NPCEditor removeNewNNPCCard={() => setAddingNPC(false)} />;
-    } else {
-      return null;
-    }
-  };
-
   let buttonText = "Add " + props.activeTab.slice(0, -1);
 
   return (
@@ -135,21 +177,24 @@ const ContentWrapperLeft = (props) => {
           contentType={"Chapters"}
           clicked={() => props.activeTabHandler("Chapters")}
         >
+          <i className="fas fa-bookmark"></i>
           Chapters
         </Tab>
-        <Tab
-          contentType={"NPCs"}
-          clicked={() => props.activeTabHandler("NPCs")}
-        >
+        <Tab contentType={"NPCs"} clicked={() => clickTabHandler("NPCs")}>
+          <i className="fas fa-user"></i>
           NPC's
         </Tab>
         <Tab
           contentType={"Monsters"}
-          clicked={() => props.activeTabHandler("Monsters")}
+          clicked={() => clickTabHandler("Monsters")}
         >
+          <i className="fas fa-dragon"></i>
           Monsters
         </Tab>
-        <Tab>Locations</Tab>
+        <Tab>
+          <i className="fas fa-map-marked-alt"></i>
+          Locations
+        </Tab>
       </section>
       <hr className={classes.TabDivider} />
       <section className={classes.CardToolbar}>
@@ -188,7 +233,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     activeTabHandler: (contentType) => dispatch(actions.activeTab(contentType)),
-    sortContentHandler: () => dispatch(actions.sortContent())
+    sortContentHandler: () => dispatch(actions.sortContent()),
+    closeCardsHandler: (newActiveTab) =>
+      dispatch(actions.closeCards(newActiveTab))
   };
 };
 

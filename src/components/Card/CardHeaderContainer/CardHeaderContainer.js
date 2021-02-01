@@ -2,9 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions/actionsIndex";
 
-import classes from "./CardHeader.module.css";
+import classes from "./CardHeaderContainer.module.css";
 
-const CardHeader = (props) => {
+const CardHeaderContainer = (props) => {
   let clickedCard = null;
 
   const clickedCardHandler = (id) => {
@@ -34,7 +34,7 @@ const CardHeader = (props) => {
 
   return (
     <section
-      className={classes.CardHeader}
+      className={classes.CardHeaderContainer}
       onClick={() => clickedCardHandler(props.id)}
     >
       {props.children}
@@ -56,4 +56,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardHeader);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CardHeaderContainer);

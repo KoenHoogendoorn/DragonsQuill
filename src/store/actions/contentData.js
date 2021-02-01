@@ -18,9 +18,23 @@ export const toggleCard = (id) => {
   };
 };
 
-export const addNPC = (NPCEditor) => {
+export const removeNPC = (id) => {
+  return {
+    type: "REMOVE_NPC",
+    id: id
+  };
+};
+
+export const addNPC = (npc) => {
   return {
     type: "ADD_NPC",
-    NPCEditor: NPCEditor
+    npc: npc
+  };
+};
+
+export const closeCards = (newActiveTab) => {
+  return {
+    type: "CLOSE_CARDS",
+    newActiveTab: newActiveTab
   };
 };

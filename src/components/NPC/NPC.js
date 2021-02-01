@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { connect } from "react-redux";
 
-import classes from "../Card/CardBackground/CardBackground.module.css";
+import * as actions from "../../store/actions/actionsIndex";
+
+import cardBackgroundClasses from "../Card/CardBackground/CardBackground.module.css";
+import NPCclasses from "./NPC.module.css";
 
 import CardBackground from "../Card/CardBackground/CardBackground";
 import CardBody from "../Card/CardBody/CardBody";
-import CardHeader from "../Card/CardHeader/CardHeader";
+import CardHeaderContainer from "../Card/CardHeaderContainer/CardHeaderContainer";
 import CardToolbar from "../Card/CardToolbar/CardToolbar";
 import Chevron from "../Card/Chevron/Chevron";
 
 const NPC = (props) => {
-  let chevronClass = classes.CardClosedIcon;
+  const classes = { ...cardBackgroundClasses, ...NPCclasses };
 
+  let chevronClass = classes.CardClosedIcon;
   let thisItem = null;
 
   switch (props.id.substring(0, 2)) {
@@ -23,7 +27,11 @@ const NPC = (props) => {
       thisItem = props.monsters.find((monster) => monster.id === props.id);
       break;
     default:
-      return;
+      break;
+  }
+
+  if (props.activeTab !== "NPCs") {
+    thisItem.open = false;
   }
 
   if (thisItem.open) {
@@ -35,18 +43,18 @@ const NPC = (props) => {
   return (
     <CardBackground id={props.id}>
       <div id={props.id}>
-        <CardHeader id={props.id}>
-          <div>
-            <h4>{props.name}</h4>
-            <p className="CardSubtitle">{props.description}</p>
+        <CardHeaderContainer id={props.id}>
+          <div className={classes.CardHeader}>
+            <h4>{props.value}</h4>
+            <p className={classes.CardSubtitle}>{props.description}</p>
           </div>
           <Chevron class={chevronClass} />
-        </CardHeader>
+        </CardHeaderContainer>
         <CardBody id={props.id}>
           <div dangerouslySetInnerHTML={{ __html: props.content }}></div>
           <CardToolbar
-          // onDelete={() => handleDelete()}
-          // onEdit={() => handleEdit(thisItem)}
+            onDelete={() => props.removeNPCHandler(props.id)}
+            onEdit={props.onEditClick}
           />
         </CardBody>
       </div>
@@ -57,8 +65,15 @@ const NPC = (props) => {
 const mapStateToProps = (state) => {
   return {
     npcs: state.contentData.npcs,
-    monsters: state.contentData.monsters
+    monsters: state.contentData.monsters,
+    activeTab: state.activeTab.activeTab
   };
 };
 
-export default connect(mapStateToProps)(NPC);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeNPCHandler: (id) => dispatch(actions.removeNPC(id))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NPC);

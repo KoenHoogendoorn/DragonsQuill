@@ -1,17 +1,16 @@
 .Button {
   border-radius: 4px;
   font-weight: 600;
-
   border: none;
   outline: none;
   white-space: nowrap;
 }
 
-.Button:hover {
+button:hover {
   cursor: pointer;
 }
 
-.Button > i {
+button > i {
   margin-right: 8px;
 }
 

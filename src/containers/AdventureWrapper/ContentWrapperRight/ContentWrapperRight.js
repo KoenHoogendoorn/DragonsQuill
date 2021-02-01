@@ -55,11 +55,19 @@ class ContentWrapperRight extends Component {
     super(props);
     this.state = {
       ch1Html: `<h1>${this.props.chapters[0].name}</h1>`,
-      ch2Html: `<h1>${this.props.chapters[1].name}</h1>`
+      ch2Html: `<h1>${this.props.chapters[1].name}</h1>`,
+      width: window.innerWidth
     };
+    const icon = <i className="fab fa-500px"></i>;
   }
 
+  updateDimensions = () => {
+    this.setState({ width: window.innerWidth });
+  };
+
   componentDidMount() {
+    window.addEventListener("resize", this.updateDimensions);
+
     const Embed = Quill.import("blots/embed");
 
     class MentionBlot extends Embed {
@@ -116,11 +124,13 @@ class ContentWrapperRight extends Component {
 
       switch (id.substring(0, 2)) {
         case "np":
+          this.props.closeCardsHandler("NPCs");
           this.props.activeTabHandler("NPCs");
           clickedItem = this.props.npcs.find((npc) => npc.id === id);
           clickCardHandler(clickedItem);
           break;
         case "mo":
+          this.props.closeCardsHandler("Monsters");
           this.props.activeTabHandler("Monsters");
           clickedItem = this.props.monsters.find(
             (monster) => monster.id === id
@@ -135,6 +145,18 @@ class ContentWrapperRight extends Component {
     };
 
     Quill.register(MentionBlot);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    //set width to fixed item
+    const wrapperRightBlock = document.getElementById("WrapperRightBlock");
+    if (this.state.width <= 1480) {
+      wrapperRightBlock.style.width = (this.state.width * 0.9) / 2 + "px";
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions);
   }
 
   handleChange = (html) => {
@@ -192,15 +214,7 @@ class ContentWrapperRight extends Component {
       },
       // renderItem controls how item in dropdown looks
       renderItem: (item, searchTerm) => {
-        return `
-          <div className="cql-list-item-inner">
-          ${item.value}
-          </div>`;
-      },
-      onSelect: (item, insertItem) => {
-        //this.props.toggleCardHandler(item.id); //opens card on mentioncreation
-        // const itemAndThis = [item, this];
-        insertItem(item);
+        return `${item.value}`;
       }
     }
   };
@@ -227,7 +241,10 @@ class ContentWrapperRight extends Component {
 
   render() {
     return (
-      <div className={`${classes.ContentWrapper} ${classes.WrapperRightBlock}`}>
+      <div
+        id="WrapperRightBlock"
+        className={`${classes.ContentWrapper} ${classes.WrapperRightBlock}`}
+      >
         <EditorHeader />
         <EditorToolbar />
         <div className="WrapperRightContent">
@@ -261,7 +278,9 @@ const mapDispatchToProps = (dispatch) => {
     activeTabHandler: (contentType) => dispatch(actions.activeTab(contentType)),
     toggleCardHandler: (id) => dispatch(actions.toggleCard(id)),
     highlightCardHandler: (id) => dispatch(actions.highlightCard(id)),
-    sortContentHandler: (id) => dispatch(actions.sortContent(id))
+    sortContentHandler: (id) => dispatch(actions.sortContent(id)),
+    closeCardsHandler: (newActiveTab) =>
+      dispatch(actions.closeCards(newActiveTab))
   };
 };
 

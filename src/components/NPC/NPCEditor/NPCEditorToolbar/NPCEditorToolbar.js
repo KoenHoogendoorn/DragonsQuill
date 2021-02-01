@@ -18,7 +18,8 @@ const NPCEditorToolbar = (props) => (
     </div>
     <div className="ButtonsContainer">
       <Button size="small" priority="secondary" clicked={props.onDelete}>
-        <i className="far fa-trash-alt"></i>Delete
+        <i className="far fa-trash-alt"></i>
+        {props.editingExistingNPC ? "Cancel" : "Delete"}
       </Button>
       <Button size="small" priority="primary" clicked={props.onSave}>
         <i className="far fa-save"></i>Save

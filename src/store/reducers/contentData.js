@@ -21,8 +21,10 @@ const initialState = {
     },
     {
       id: "np1",
-      value: "Syka Twocreek",
-      description: "Human female, Chaotic good",
+      value:
+        "Syka Twocreek dit is een superlange naam, maar dan echt superlang he, kapotlang zeggen ze ook wel",
+      description:
+        "Human female, Chaotic goodafdswefwaefafdswefwaefafdswefwaefafdswefwaefafdswefwaefafdswefwaefafdswefwaefafdswefwaef",
       content:
         "Young girl that helps them at the start. She is the daughter of the village elder and good friends with the tortles. Didn’t eat fish because her mother the village elder doesn’t like it.",
       open: false
@@ -204,13 +206,48 @@ const reducer = (state = initialState, action) => {
       };
       return updateObject(state, updatedState3);
 
+    case "REMOVE_NPC":
+      // let npcs5 = state.npcs.slice();
+      let npcs5 = state.npcs.filter((npc) => {
+        return npc.id !== action.id;
+      });
+      const updatedState5 = {
+        npcs: npcs5
+      };
+      return updateObject(state, updatedState5);
+
     case "ADD_NPC":
       let npcs4 = state.npcs.slice();
-      npcs4.push(action.NPCEditor);
+      npcs4.push(action.npc);
       const updatedState4 = {
         npcs: npcs4
       };
       return updateObject(state, updatedState4);
+
+    case "CLOSE_CARDS":
+      let npcs6 = state.npcs.slice();
+      let monsters6 = state.monsters.slice();
+
+      switch (action.newActiveTab) {
+        case "NPCs":
+          monsters6.forEach((monster) => {
+            monster.open = false;
+          });
+          break;
+        case "Monsters":
+          npcs6.forEach((npc) => {
+            npc.open = false;
+          });
+          break;
+        default:
+          break;
+      }
+
+      const updatedState6 = {
+        npcs: npcs6
+      };
+      return updateObject(state, updatedState6);
+
     default:
       return state;
   }

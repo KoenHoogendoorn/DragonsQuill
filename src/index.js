@@ -4,11 +4,18 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import { createStore, combineReducers } from "redux";
+import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 import contentDataReducer from "./store/reducers/contentData";
 import activeTabReducer from "./store/reducers/activeTab";
 import activeChapterReducer from "./store/reducers/activeChapter";
+
+const composeEnhancers =
+  process.env.NODE_ENV === "development"
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    : null || compose;
+// process.env.NODE_ENV terniary expression makes redux devtools only available in development
 
 const rootReducer = combineReducers({
   contentData: contentDataReducer,
@@ -16,7 +23,10 @@ const rootReducer = combineReducers({
   activeChapter: activeChapterReducer
 });
 
-const store = createStore(rootReducer);
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunk))
+);
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,11 +1,12 @@
-.CardHeader {
+.CardHeaderContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  overflow-wrap: break-word;
 }
 
-.CardHeader:hover h4,
-.CardHeader:hover i {
+.CardHeaderContainer:hover h4,
+.CardHeaderContainer:hover i {
   color: #673ab7;
 }

@@ -1,0 +1,24 @@
+- monster cards (restructuring for general cards)
+- location cards
+- icons in chapters based on mentions
+
+- change css to scss
+
+- firebase setup
+- log in page
+
+- adventures overview
+
+DONE
+X - 1. hernoemen heeft de addNPCHandler argument aangepast, maar kan niet meer terugkijken in de timeline omdat de naam is aangepast.
+X - 4. support longer title + descriptions
+X - 5. check CardHeaderContainer class in NPCEditor
+X - 6. delete npc
+X - 7. handle change delete to cancel if editing and not creating in NPCEditor 
+X - 3. items worden gedupliceerd bij het opslaan na editen, de oude moet weg.
+X - 2. na het saven van bestaande npcs, blijft de open property op true. ook als ze open staan, en je switcht van tab
+X - 8. change delete button label to cancel if editing and not creating in NPCEditor 
+X - icons in tabs
+X - fixed editor -> set width
+X - long names in mention dropdown
+X - mention dropdown style

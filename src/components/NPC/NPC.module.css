@@ -1,0 +1,10 @@
+.CardSubtitle {
+  font-style: italic;
+  font-size: 14px;
+  line-height: 18px;
+  color: #777777;
+}
+
+.CardHeader {
+  width: calc(100% - 30px);
+}

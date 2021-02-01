@@ -51,3 +51,22 @@
   font-size: 1em;
   font-weight: bold;
 }
+
+.ql-mention-list-item {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+.ql-mention-list-item.selected {
+  background-color: #e1d8f1;
+}
+
+.ql-mention-list-item.disabled {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-weight: bold;
+  color: #777;
+  background-color: #e5e5e5;
+}
