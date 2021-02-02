@@ -52,6 +52,12 @@
   font-weight: bold;
 }
 
+.ql-mention-list {
+  /* disabled is 24px high, normal is 48px */
+  max-height: 400px;
+  overflow: auto;
+}
+
 .ql-mention-list-item {
   padding-top: 12px;
   padding-bottom: 12px;

@@ -51,6 +51,61 @@ const initialState = {
       content:
         "A surfing dude Tortle with a floral headband. Loves to surf the waves on his belly and shield. Didn’t eat fishes because he doesn’t like to eat creatures. Wears a necklace with a bear tooth on it.",
       open: false
+    },
+    {
+      id: "np5",
+      value: "Kekrarg Gat",
+      description:
+        "Human female, Chaotic goodafdswefwaefafdswefwaefafdswefwaefafdswefwaefafdswefwaefafdswefwaefafdswefwaefafdswefwaef",
+      content:
+        "Young girl that helps them at the start. She is the daughter of the village elder and good friends with the tortles. Didn’t eat fish because her mother the village elder doesn’t like it.",
+      open: false
+    },
+    {
+      id: "np6",
+      value: "Wumanok",
+      description: "Human female, Neutral good",
+      content:
+        "Village elder, human woman in her 50s. She is concerned with the villagers. She doesn’t like fish so she isn’t affected by the addiction. Lived in the town since her childhood.",
+      open: false
+    },
+    {
+      id: "np7",
+      value: "Kidan Steelbuster",
+      description: "Tortle Male, Neutral good",
+      content: "Retired old monk Tortle.",
+      open: false
+    },
+    {
+      id: "np8",
+      value: "Lokribera Greyrock",
+      description: "Tortle Male, Neutral Neutral",
+      content:
+        "A surfing dude Tortle with a floral headband. Loves to surf the waves on his belly and shield. Didn’t eat fishes because he doesn’t like to eat creatures. Wears a necklace with a bear tooth on it.",
+      open: false
+    },
+    {
+      id: "np9",
+      value: "Bave Underfoot",
+      description: "Human female, Neutral good",
+      content:
+        "Village elder, human woman in her 50s. She is concerned with the villagers. She doesn’t like fish so she isn’t affected by the addiction. Lived in the town since her childhood.",
+      open: false
+    },
+    {
+      id: "np10",
+      value: "Esmee Gluttonbelly",
+      description: "Tortle Male, Neutral good",
+      content: "Retired old monk Tortle.",
+      open: false
+    },
+    {
+      id: "np11",
+      value: "Goldilocks North-took",
+      description: "Tortle Male, Neutral Neutral",
+      content:
+        "A surfing dude Tortle with a floral headband. Loves to surf the waves on his belly and shield. Didn’t eat fishes because he doesn’t like to eat creatures. Wears a necklace with a bear tooth on it.",
+      open: false
     }
   ],
   monsters: [

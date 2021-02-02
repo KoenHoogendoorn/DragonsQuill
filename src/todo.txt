@@ -1,13 +1,26 @@
-- restructuring NPCs to general cards
+- change css to scss
+
 - location cards
 - icons in chapters based on mentions
 
-- change css to scss
+- Create are you sure modal
+- Implement are you sure modal
 
 - firebase setup
 - log in page
 
+- change contentdatabase to firebase
+- switch mention setup to async
+
 - adventures overview
+
+Not that important right now:
+- renaming NPCs to general cards
+- show headers after typing in mention
+
+Maybe:
+- content card groups
+- add/remove categories
 
 DONE
 X - 1. hernoemen heeft de addNPCHandler argument aangepast, maar kan niet meer terugkijken in de timeline omdat de naam is aangepast.
@@ -23,3 +36,7 @@ X - fixed editor -> set width
 X - long names in mention dropdown
 X - mention dropdown style
 X - monster cards 
+
+2-2-2021 (today)
+X - filtering in mention isn't working correctly, if @g, syka shows up
+X - check/give cap to mentions dropdown
