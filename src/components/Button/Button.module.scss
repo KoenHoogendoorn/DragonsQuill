@@ -1,3 +1,5 @@
+@import "../../shared/variables.scss";
+
 .Button {
   border-radius: 4px;
   font-weight: 600;
@@ -6,71 +8,56 @@
   white-space: nowrap;
 }
 
-button:hover {
-  cursor: pointer;
-}
+button {
+  > i {
+    margin-right: 8px;
+  }
 
-button > i {
-  margin-right: 8px;
+  &:hover {
+    cursor: pointer;
+  }
 }
-
-/* PRIMARY */
 
 .Primary {
-  background-color: #673ab7;
-  color: #ffffff;
+  background-color: $clr-primary;
+  color: white;
+
+  &:hover {
+    background-color: $clr-primary-hover;
+  }
+  &:active {
+    background-color: $clr-primary-active;
+  }
 }
-
-.Primary:hover {
-  background-color: #4f2c8e;
-}
-
-.Primary:active {
-  background-color: #351e61;
-}
-
-/* -------- */
-
-/* SECONDARY */
 
 .Secondary {
-  background-color: #ccc;
-  color: #777;
+  background-color: $clr-secondary-bg;
+  color: $clr-secondary-txt;
+
+  &:hover {
+    background-color: $clr-secondary-hover;
+  }
+  &:active {
+    background-color: $clr-secondary-active;
+  }
 }
-
-.Secondary:hover {
-  background-color: #b7b7b7;
-}
-
-.Secondary:active {
-  background-color: #a3a3a3;
-}
-
-/* -------- */
-
-/* TERTIARY (NO BG) */
 
 .Tertiary {
   background: none;
-  color: #9b9b9b;
+  color: $clr-dustyGray;
   font-size: 12px;
-}
 
-.Tertiary:hover {
-  color: #777;
+  &:hover {
+    color: $clr-boulder;
+  }
+  &:active {
+    color: $clr-mineShaft;
+  }
 }
-
-.Tertiary:active {
-  color: #222;
-}
-
-/* -------- */
 
 .Big {
   padding: 12px 16px;
 }
-
-/* Maybe only have big or medium */
 
 .Medium {
   padding: 8px 16px;

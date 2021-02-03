@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import classes from "./Tab.module.css";
+import classes from "./Tab.module.scss";
 
 const Tab = (props) => {
   let tabClasses = classes.Tab;

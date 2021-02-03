@@ -1,8 +1,10 @@
+@import "../../shared/variables.scss";
+
 .CardSubtitle {
   font-style: italic;
   font-size: 14px;
   line-height: 18px;
-  color: #777777;
+  color: $clr-boulder;
 }
 
 .CardHeader {

@@ -1,5 +1,7 @@
+@import "../../../../shared/variables.scss";
+
 .EditorHeaderContainer {
-  background-color: #e1d8f1;
+  background-color: $clr-snuff;
   padding: 4px;
   display: flex;
   justify-content: space-between;

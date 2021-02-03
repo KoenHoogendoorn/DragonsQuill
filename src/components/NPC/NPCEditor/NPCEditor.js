@@ -5,8 +5,8 @@ import ReactQuill from "react-quill";
 import * as actions from "../../../store/actions/actionsIndex";
 
 import "react-quill/dist/quill.snow.css";
-import "./NPCEditor.css";
-import "../../../shared/quillEditorOverall.css";
+import "./NPCEditor.scss";
+import "../../../shared/quillEditorOverall.scss";
 
 import CardBackground from "../../Card/CardBackground/CardBackground";
 import NPCEditorToolbar from "./NPCEditorToolbar/NPCEditorToolbar";

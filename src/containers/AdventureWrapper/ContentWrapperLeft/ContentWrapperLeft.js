@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
-import classes1 from "../AdventureWrapper.module.css";
-import classes2 from "./ContentWrapperLeft.module.css";
+import classes1 from "../AdventureWrapper.module.scss";
+import classes2 from "./ContentWrapperLeft.module.scss";
 
 import Tab from "../../../components/Tab/Tab";
 import Inputbar from "../../../components/Inputbar/Inputbar";

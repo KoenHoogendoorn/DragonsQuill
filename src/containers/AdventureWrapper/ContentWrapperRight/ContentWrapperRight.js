@@ -5,9 +5,9 @@ import "quill-mention";
 
 import "react-quill/dist/quill.snow.css";
 import "quill-mention/dist/quill.mention.css";
-import classes from "../AdventureWrapper.module.css";
-import "./ContentWrapperRight.css";
-import "../../../shared/quillEditorOverall.css";
+import classes from "../AdventureWrapper.module.scss";
+import "./ContentWrapperRight.scss";
+import "../../../shared/quillEditorOverall.scss";
 
 import EditorToolbar from "./EditorToolbar/EditorToolbar";
 import EditorHeader from "./EditorHeader/EditorHeader";

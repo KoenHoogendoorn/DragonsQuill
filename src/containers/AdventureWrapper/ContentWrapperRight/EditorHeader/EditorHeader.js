@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import classes from "./EditorHeader.module.css";
+import classes from "./EditorHeader.module.scss";
 
 import Button from "../../../../components/Button/Button";
 

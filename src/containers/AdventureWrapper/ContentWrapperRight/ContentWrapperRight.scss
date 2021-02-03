@@ -1,24 +1,26 @@
+@import "../../../shared/variables.scss";
+
 .dndmention {
   background-color: unset;
-  color: #673ab7;
+  color: $clr-primary;
   font-weight: bold;
   cursor: pointer;
-}
 
-.dndmention:hover {
-  color: #351e61;
+  &:hover {
+    color: $clr-primary-hover;
+  }
 }
 
 .disabled {
-  background-color: #e5e5e5;
-}
+  background-color: $clr-mercury;
 
-.disabled > div {
-  line-height: 10px;
-  font-size: 14px;
-  font-weight: bold;
-  margin: 0 -12px;
-  padding: 8px 0;
+  > div {
+    line-height: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 -12px;
+    padding: 8px 0;
+  }
 }
 
 .ql-editor {
@@ -26,6 +28,19 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 1em;
+    font-weight: bold;
+  }
 }
 
 .WrapperRightContent {
@@ -33,27 +48,13 @@
   padding-bottom: 0;
   height: calc(100vh - (40px + 38px));
   overflow-y: auto;
-}
 
-.WrapperRightContent .ql-editor {
-  min-height: 85vh;
-}
-
-.ql-editor h1 {
-  font-size: 2em;
-}
-
-.ql-editor h2 {
-  font-size: 1.5em;
-}
-
-.ql-editor h3 {
-  font-size: 1em;
-  font-weight: bold;
+  .ql-editor {
+    min-height: 85vh;
+  }
 }
 
 .ql-mention-list {
-  /* disabled is 24px high, normal is 48px */
   max-height: 400px;
   overflow: auto;
 }
@@ -66,13 +67,13 @@
 }
 
 .ql-mention-list-item.selected {
-  background-color: #e1d8f1;
+  background-color: $clr-snuff;
 }
 
 .ql-mention-list-item.disabled {
   padding-top: 4px;
   padding-bottom: 4px;
   font-weight: bold;
-  color: #777;
-  background-color: #e5e5e5;
+  color: $clr-secondary-txt;
+  background-color: $clr-mercury;
 }

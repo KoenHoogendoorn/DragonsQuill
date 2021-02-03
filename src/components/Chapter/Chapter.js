@@ -1,7 +1,8 @@
 import React from "react";
-import CardBackground from "../Card/CardBackground/CardBackground";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/actionsIndex";
+
+import CardBackground from "../Card/CardBackground/CardBackground";
 
 const Chapter = (props) => {
   return (
@@ -13,10 +14,6 @@ const Chapter = (props) => {
     </CardBackground>
   );
 };
-
-// const mapStateToProps = (state) => {
-//   return { activeChapter: state.activeChapter.activeChapter };
-// };
 
 const mapDispatchToProps = (dispatch) => {
   return {

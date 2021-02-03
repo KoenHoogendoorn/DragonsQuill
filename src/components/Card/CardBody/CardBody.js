@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import classes from "./CardBody.module.css";
+import classes from "./CardBody.module.scss";
 
 const CardBody = (props) => {
   let thisItem = null;

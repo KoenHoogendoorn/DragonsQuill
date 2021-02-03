@@ -1,13 +1,14 @@
 .CardBody {
   max-height: 0;
   overflow: hidden;
+
   /* transition: max-height 0.175s ease-out; */
   transition: 0.175s ease-out;
   opacity: 0;
-}
 
-.CardBody > :first-child {
-  margin-top: 8px;
+  > :first-child {
+    margin-top: 8px;
+  }
 }
 
 .CardBodyOpen {

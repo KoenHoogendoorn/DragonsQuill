@@ -1,4 +1,4 @@
-- change css to scss
+- add/remove chapter cards
 
 - location cards
 - icons in chapters based on mentions
@@ -37,6 +37,9 @@ X - long names in mention dropdown
 X - mention dropdown style
 X - monster cards 
 
-2-2-2021 (today)
+2-2-2021
 X - filtering in mention isn't working correctly, if @g, syka shows up
 X - check/give cap to mentions dropdown
+
+3-2-2021 (today)
+x - change css to scss

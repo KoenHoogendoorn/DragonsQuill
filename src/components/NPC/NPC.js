@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { connect } from "react-redux";
 
 import * as actions from "../../store/actions/actionsIndex";
 
-import cardBackgroundClasses from "../Card/CardBackground/CardBackground.module.css";
-import NPCclasses from "./NPC.module.css";
+import cardBackgroundClasses from "../Card/CardBackground/CardBackground.module.scss";
+import NPCclasses from "./NPC.module.scss";
 
 import CardBackground from "../Card/CardBackground/CardBackground";
 import CardBody from "../Card/CardBody/CardBody";

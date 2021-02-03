@@ -2,8 +2,8 @@ import React from "react";
 
 import Button from "../../../Button/Button";
 
-import "./NPCEditorToolbar.css";
-import "../../../../shared/quillEditorOverall.css";
+import "./NPCEditorToolbar.scss";
+import "../../../../shared/quillEditorOverall.scss";
 
 const NPCEditorToolbar = (props) => (
   <div className="toolbarNPCContainer">

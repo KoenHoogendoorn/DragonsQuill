@@ -1,3 +1,5 @@
+@import "./shared/variables.scss";
+
 *,
 html,
 body {
@@ -17,8 +19,8 @@ body {
   font-family: "Mulish", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #222222;
-  background-color: #f9f8ff;
+  color: $clr-mineShaft;
+  background-color: $clr-magnolia;
   height: 100%;
 }
 
@@ -62,7 +64,7 @@ h4 {
 hr {
   margin: 16px 0;
   border: none;
-  border-top: 1px #e1d8f1 solid;
+  border-top: 1px $clr-border solid;
   height: 1px;
 }
 

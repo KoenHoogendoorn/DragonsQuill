@@ -1,3 +1,5 @@
+@import "../../shared/variables.scss";
+
 .AdventureWrapper {
   width: 1440px;
   margin: 0 auto;
@@ -18,7 +20,7 @@
 
 .WrapperRightBlock {
   background-color: white;
-  border: 1px solid #e1d8f1;
+  border: 1px solid $clr-border;
   border-top: none;
   height: 100%;
   position: fixed;

@@ -1,3 +1,5 @@
+@import "../../../shared/variables.scss";
+
 .Card {
   padding: 16px;
   border-radius: 4px;
@@ -6,12 +8,10 @@
   background-color: white;
   position: relative;
   border: 1px solid transparent;
-  /* A transparent border is needed because there is no fixed height/width, so border-box doesn't work*/
-}
 
-.Card > h4 {
-  margin-bottom: 0px;
-  /* for chapter cards */
+  > h4 {
+    margin-bottom: 0px;
+  }
 }
 
 .CardClosedIcon {
@@ -26,12 +26,14 @@
 
 .Chapter {
   cursor: pointer;
-}
 
-.Chapter:hover h4 {
-  color: #673ab7;
+  &:hover {
+    h4 {
+      color: $clr-primary;
+    }
+  }
 }
 
 .ActiveCard {
-  border: 1px solid #673ab7;
+  border: 1px solid $clr-primary;
 }

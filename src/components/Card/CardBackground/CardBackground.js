@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions/actionsIndex";
 
-import classes from "./CardBackground.module.css";
+import classes from "./CardBackground.module.scss";
 
 const CardBackground = (props) => {
   let cardClasses = `${classes.Card} `;

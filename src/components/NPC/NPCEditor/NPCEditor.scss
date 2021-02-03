@@ -1,0 +1,57 @@
+@import "../../../shared/variables.scss";
+
+.NPCEditor input {
+  border: none;
+  border-bottom: 2px solid $clr-mercury;
+  width: 100%;
+  margin-bottom: 16px;
+
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid $clr-boulder;
+  }
+}
+
+.NPCEditorName {
+  font-weight: bold;
+  font-family: "Merriweather", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.NPCEditorDescription {
+  font-style: italic;
+
+  &::-webkit-input-placeholder {
+    font-style: italic;
+  }
+
+  &:-moz-placeholder {
+    /* Firefox 18- */
+    font-style: italic;
+  }
+
+  &::-moz-placeholder {
+    /* Firefox 19+ */
+    font-style: italic;
+  }
+
+  &:-ms-input-placeholder {
+    font-style: italic;
+  }
+}
+
+.NPCEditor .ql-editor {
+  margin-bottom: 16px;
+  border-bottom: 2px solid $clr-mercury;
+  width: 100%;
+
+  &:focus {
+    border-bottom: 2px solid $clr-boulder;
+  }
+}
+
+.ql-snow .ql-editor img {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}

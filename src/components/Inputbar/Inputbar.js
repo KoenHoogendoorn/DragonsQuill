@@ -1,6 +1,6 @@
 import React from "react";
 
-import classes from "./Inputbar.module.css";
+import classes from "./Inputbar.module.scss";
 
 const Inputbar = (props) => {
   return (

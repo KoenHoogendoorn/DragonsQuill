@@ -1,12 +1,19 @@
+@import "../../../shared/variables.scss";
+
 .CardHeaderContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
   overflow-wrap: break-word;
-}
 
-.CardHeaderContainer:hover h4,
-.CardHeaderContainer:hover i {
-  color: #673ab7;
+  &:hover {
+    h4 {
+      color: $clr-primary;
+    }
+
+    i {
+      color: $clr-primary;
+    }
+  }
 }

@@ -1,5 +1,4 @@
-import './App.css';
-import AdventureWrapper from './containers/AdventureWrapper/AdventureWrapper';
+import AdventureWrapper from "./containers/AdventureWrapper/AdventureWrapper";
 
 function App() {
   return (

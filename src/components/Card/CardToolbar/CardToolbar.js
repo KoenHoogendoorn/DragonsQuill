@@ -1,6 +1,6 @@
 import React from "react";
 
-import classes from "./CardToolbar.module.css";
+import classes from "./CardToolbar.module.scss";
 
 import Button from "../../Button/Button";
 

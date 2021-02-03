@@ -1,11 +1,13 @@
+@import "./variables.scss";
+
 /* QUILL EDITOR OVERALL CSS */
 .ql-editor {
   padding: 0;
-}
 
-/* Removes placeholder whitespace  */
-.ql-editor.ql-blank::before {
-  left: 0;
+  /* Removes placeholder whitespace  */
+  &.ql-blank::before {
+    left: 0;
+  }
 }
 
 .ql-container.ql-snow {
@@ -27,8 +29,8 @@
 .ql-snow.ql-toolbar button.ql-active,
 #h1-button.ql-active path,
 #h2-button.ql-active path {
-  fill: #673ab7;
-  color: #673ab7;
+  fill: $clr-primary;
+  color: $clr-primary;
 }
 
 .ql-snow.ql-toolbar button,
@@ -38,11 +40,11 @@
 }
 
 .ql-snow .ql-editor blockquote {
-  border-left: 4px solid #673ab7;
+  border-left: 4px solid $clr-primary;
 }
 
 .toolbarChapter {
-  background-color: #e5e5e5;
+  background-color: $clr-mercury;
 }
 
 .ql-toolbar.ql-snow {
@@ -50,7 +52,7 @@
 }
 
 .toolbar button {
-  color: #777777;
+  color: $clr-boulder;
 }
 
 #h1-button,
@@ -59,12 +61,5 @@
 }
 #h1-button path,
 #h2-button path {
-  fill: #777777;
+  fill: $clr-boulder;
 }
-
-/* 
-.ql-snow.ql-toolbar button,
-.ql-snow .ql-toolbar button {
-  width: 28px;
-  color: #777777;
-} */
