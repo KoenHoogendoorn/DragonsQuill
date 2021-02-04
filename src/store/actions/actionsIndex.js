@@ -1,5 +1,5 @@
 export { activeTab } from "./activeTab";
-export { activeChapter } from "./activeChapter";
+export { activeChapterId } from "./activeChapterId";
 export {
   sortContent,
   highlightCard,

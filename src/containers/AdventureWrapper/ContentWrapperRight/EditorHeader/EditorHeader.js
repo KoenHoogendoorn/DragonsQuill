@@ -8,8 +8,8 @@ const EditorHeader = (props) => {
   let editorHeader = null;
 
   props.chapters.forEach((chapter) => {
-    if (chapter.id === props.activeChapter) {
-      editorHeader = chapter.name;
+    if (chapter.id === props.activeChapterId) {
+      editorHeader = chapter.value;
     }
   });
 
@@ -26,7 +26,7 @@ const EditorHeader = (props) => {
 const mapStateToProps = (state) => {
   return {
     chapters: state.contentData.chapters,
-    activeChapter: state.activeChapter.activeChapter
+    activeChapterId: state.activeChapterId.activeChapterId
   };
 };
 

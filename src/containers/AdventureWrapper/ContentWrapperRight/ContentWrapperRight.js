@@ -50,13 +50,10 @@ function addDivider() {
 
 class ContentWrapperRight extends Component {
   constructor(props) {
-    // this.formats = formats;
-    // this.props = React.createRef();
     super(props);
     this.state = {
-      ch1Html: `<h1>${this.props.chapters[0].name}</h1>`,
-      ch2Html: `<h1>${this.props.chapters[1].name}</h1>`,
       width: window.innerWidth
+      // ch1: `<h1>${this.props.chapters[0].name}</h1>`
     };
   }
 
@@ -65,6 +62,8 @@ class ContentWrapperRight extends Component {
   };
 
   componentDidMount() {
+    this.props.chapters.map((chapter) => this.setState({ [chapter.id]: "" }));
+
     window.addEventListener("resize", this.updateDimensions);
 
     const Embed = Quill.import("blots/embed");
@@ -72,12 +71,6 @@ class ContentWrapperRight extends Component {
     class MentionBlot extends Embed {
       static create = (data) => {
         const node = super.create();
-        // let data = dataAndThis;
-        // let This = null;
-        // if (Array.isArray(dataAndThis)) {
-        //   data = dataAndThis[0];
-        //   This = dataAndThis[1];
-        // }
         const denotationChar = document.createElement("span");
         denotationChar.className = "ql-mention-denotation-char";
         denotationChar.innerHTML = data.denotationChar;
@@ -139,14 +132,12 @@ class ContentWrapperRight extends Component {
         default:
           break;
       }
-
-      // this.props.toggleCardHandler(id);
     };
 
     Quill.register(MentionBlot);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     //set width to fixed item
     const wrapperRightBlock = document.getElementById("WrapperRightBlock");
     if (this.state.width <= 1480) {
@@ -157,30 +148,6 @@ class ContentWrapperRight extends Component {
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateDimensions);
   }
-
-  handleChange = (html) => {
-    switch (this.props.activeChapter) {
-      case "ch1":
-        this.setState({ ch1Html: html });
-        break;
-      case "ch2":
-        this.setState({ ch2Html: html });
-        break;
-      default:
-        break;
-    }
-  };
-
-  handleValue = () => {
-    switch (this.props.activeChapter) {
-      case "ch1":
-        return this.state.ch1Html;
-      case "ch2":
-        return this.state.ch2Html;
-      default:
-        return this.state.ch1Html;
-    }
-  };
 
   modules = {
     toolbar: {
@@ -249,11 +216,14 @@ class ContentWrapperRight extends Component {
         <div className="WrapperRightContent">
           <ReactQuill
             theme="snow"
-            onChange={(event) => this.handleChange(event)}
+            // onChange={(event) => this.handleChange(event)}
+            onChange={(event) =>
+              this.setState({ [this.props.activeChapterId]: event })
+            }
             modules={this.modules}
             placeholder="Start writing here..."
             formats={this.formats}
-            value={this.handleValue()}
+            value={this.state[this.props.activeChapterId]}
           />
         </div>
       </div>
@@ -268,7 +238,7 @@ const mapStateToProps = (state) => {
     npcs: state.contentData.npcs,
     monsters: state.contentData.monsters,
     chapters: state.contentData.chapters,
-    activeChapter: state.activeChapter.activeChapter
+    activeChapterId: state.activeChapterId.activeChapterId
   };
 };
 

@@ -4,13 +4,16 @@ import * as actions from "../../store/actions/actionsIndex";
 
 import CardBackground from "../Card/CardBackground/CardBackground";
 
-const Chapter = (props) => {
+const ChapterEditor = (props) => {
   return (
-    <CardBackground
-      id={props.id}
-      clicked={() => props.activeChapterIdHandler(props.id)}
-    >
-      <h4>{props.value}</h4>
+    <CardBackground>
+      <input
+        className="NPCEditorName"
+        value={this.state.value}
+        onChange={this.handleNameChange}
+        placeholder="Character name..."
+      ></input>
+      {/* <h4>{props.name}</h4> */}
     </CardBackground>
   );
 };
@@ -22,4 +25,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Chapter);
+export default connect(null, mapDispatchToProps)(ChapterEditor);

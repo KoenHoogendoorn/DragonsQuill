@@ -7,7 +7,7 @@ import classes from "./CardBackground.module.scss";
 const CardBackground = (props) => {
   let cardClasses = `${classes.Card} `;
 
-  if (props.id === props.activeChapter) {
+  if (props.id === props.activeChapterId) {
     cardClasses += `${classes.ActiveCard} `;
   }
 
@@ -24,7 +24,7 @@ const CardBackground = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    activeChapter: state.activeChapter.activeChapter,
+    activeChapterId: state.activeChapterId.activeChapterId,
     activeTab: state.activeTab.activeTab,
     npcs: state.contentData.npcs,
     monsters: state.contentData.monsters

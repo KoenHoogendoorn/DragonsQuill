@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import contentDataReducer from "./store/reducers/contentData";
 import activeTabReducer from "./store/reducers/activeTab";
-import activeChapterReducer from "./store/reducers/activeChapter";
+import activeChapterIdReducer from "./store/reducers/activeChapterId";
 
 const composeEnhancers =
   process.env.NODE_ENV === "development"
@@ -20,7 +20,7 @@ const composeEnhancers =
 const rootReducer = combineReducers({
   contentData: contentDataReducer,
   activeTab: activeTabReducer,
-  activeChapter: activeChapterReducer
+  activeChapterId: activeChapterIdReducer
 });
 
 const store = createStore(

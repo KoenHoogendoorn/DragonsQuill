@@ -1,8 +1,10 @@
 @import "../../../../shared/variables.scss";
 
-.ql-snow.ql-toolbar button,
-.ql-snow .ql-toolbar button {
-  font-size: 14px;
+.ql-snow {
+  &.ql-toolbar button,
+  .ql-toolbar button {
+    font-size: 14px;
+  }
 }
 
 .toolbarNPCContainer {
@@ -17,4 +19,8 @@
 
 .ButtonsContainer button:last-child {
   margin-left: 4px;
+}
+
+.ChapterButtonContainer {
+  padding: 8px;
 }

@@ -1,4 +1,9 @@
-- add/remove chapter cards
+- search icon in search bar 
+
+- remove links but keep text of mentions if item is deleted
+- change Input component name to Searchbar
+
+- check udemy course on how to add props to useEffect dependency that only mounts on init
 
 - location cards
 - icons in chapters based on mentions
@@ -43,3 +48,4 @@ X - check/give cap to mentions dropdown
 
 3-2-2021 (today)
 x - change css to scss
+X - add/remove chapter cards

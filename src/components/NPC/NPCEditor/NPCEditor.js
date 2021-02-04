@@ -42,11 +42,18 @@ class NPCEditor extends Component {
     }
     //Creates and sets new id and key
     if (!this.state.editingExistingNPC) {
+      const Chapters = this.props.chapters;
       const NPCs = this.props.npcs;
       const Monsters = this.props.npcs;
       let idNumbers = null;
       let currentIdPrefix = null;
       switch (this.props.activeTab) {
+        case "Chapters":
+          idNumbers = Chapters.map((chapter) => chapter.id).map((id) => {
+            return Number(id.substring(2));
+          });
+          currentIdPrefix = "ch";
+          break;
         case "NPCs":
           idNumbers = NPCs.map((npc) => npc.id).map((id) => {
             return Number(id.substring(2));
@@ -58,6 +65,7 @@ class NPCEditor extends Component {
             return Number(id.substring(2));
           });
           currentIdPrefix = "mo";
+          break;
         default:
           break;
       }
@@ -68,11 +76,15 @@ class NPCEditor extends Component {
       this.setState({ id: generatedId, key: generatedId });
     }
 
-    this.attachQuillRefs();
+    if (this.props.activeTab !== "Chapters") {
+      this.attachQuillRefs();
+    }
   }
 
   componentDidUpdate() {
-    this.attachQuillRefs();
+    if (this.props.activeTab !== "Chapters") {
+      this.attachQuillRefs();
+    }
   }
 
   attachQuillRefs = () => {
@@ -111,14 +123,22 @@ class NPCEditor extends Component {
       //remove old copied item
       this.props.removeNPCHandler(this.props.id);
     }
-    this.props.addNPCHandler({
-      id: this.state.id,
-      key: this.state.id,
-      value: this.state.value,
-      description: this.state.description,
-      content: this.state.content,
-      open: false
-    });
+    if (this.props.activeTab === "Chapters") {
+      this.props.addNPCHandler({
+        id: this.state.id,
+        key: this.state.id,
+        value: this.state.value
+      });
+    } else {
+      this.props.addNPCHandler({
+        id: this.state.id,
+        key: this.state.id,
+        value: this.state.value,
+        description: this.state.description,
+        content: this.state.content,
+        open: false
+      });
+    }
 
     this.handleDelete();
     this.props.sortContentHandler();
@@ -145,26 +165,22 @@ class NPCEditor extends Component {
   ];
 
   render() {
-    return (
+    let NPCorMonster = (
       <CardBackground id="newCard">
         <div className="NPCEditor">
-          <section>
-            {/*className={classes.CardHeaderContainer} */}
-            <div>
-              <input
-                className="NPCEditorName"
-                value={this.state.value}
-                onChange={this.handleNameChange}
-                placeholder="Character name..."
-              ></input>
-              <input
-                className="NPCEditorDescription"
-                value={this.state.description}
-                onChange={this.handleDescriptionChange}
-                placeholder="Species &amp; gender, Alignment......"
-              ></input>
-            </div>
-          </section>
+          <input
+            className="NPCEditorName"
+            value={this.state.value}
+            onChange={this.handleNameChange}
+            placeholder="Character name..."
+          ></input>
+          <input
+            className="NPCEditorDescription"
+            value={this.state.description}
+            onChange={this.handleDescriptionChange}
+            placeholder="Species &amp; gender, Alignment......"
+          ></input>
+
           <ReactQuill
             theme="snow"
             value={this.state.content}
@@ -179,15 +195,46 @@ class NPCEditor extends Component {
             onDelete={() => this.handleDelete()}
             onSave={() => this.handleSave()}
             editingExistingNPC={this.state.editingExistingNPC}
+            hasEditor={true}
           />
         </div>
       </CardBackground>
     );
+
+    let chapterEditor = (
+      <CardBackground id="newCard">
+        <div className="NPCEditor">
+          <input
+            className="NPCEditorName"
+            value={this.state.value}
+            onChange={this.handleNameChange}
+            placeholder="Chapter name..."
+          ></input>
+          <NPCEditorToolbar
+            onDelete={() => this.handleDelete()}
+            onSave={() => this.handleSave()}
+            hasEditor={false}
+          />
+        </div>
+      </CardBackground>
+    );
+
+    let editorContent = () => {
+      //this.props.activeTab === "Chapters" ? chapterEditor : NPCorMonster;
+      if (this.props.activeTab === "Chapters") {
+        return chapterEditor;
+      } else {
+        return NPCorMonster;
+      }
+    };
+
+    return editorContent();
   }
 }
 
 const mapStateToProps = (state) => {
   return {
+    chapters: state.contentData.chapters,
     npcs: state.contentData.npcs,
     monsters: state.contentData.monsters,
     activeTab: state.activeTab.activeTab

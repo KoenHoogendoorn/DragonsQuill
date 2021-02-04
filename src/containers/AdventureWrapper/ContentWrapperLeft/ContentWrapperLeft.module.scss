@@ -1,3 +1,4 @@
+@import "../../../shared/variables.scss";
 .Tabs {
   width: 100%;
 }
@@ -9,21 +10,31 @@
 .CardToolbar {
   display: flex;
   margin-bottom: 16px;
+  position: relative;
 
-  > {
-    input,
-    button {
-      display: inline-block;
-    }
+  button {
+    flex-grow: 1;
+  }
 
-    input {
-      flex-grow: 2;
-      margin-right: 8px;
-    }
+  input,
+  button {
+    display: inline-block;
+  }
 
-    button {
-      flex-grow: 1;
+  input {
+    flex-grow: 2;
+    margin-right: 8px;
+    text-indent: 24px;
+    &:focus + .SearchIcon {
+      color: $clr-boulder;
     }
+  }
+
+  .SearchIcon {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    color: $clr-silverChalice;
   }
 }
 

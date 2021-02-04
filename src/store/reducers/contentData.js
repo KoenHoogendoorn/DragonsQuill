@@ -3,15 +3,17 @@ import { updateObject } from "../../shared/utility";
 const initialState = {
   chapters: [
     {
+      id: "ch0",
+      value: "Chapters"
+    },
+    {
       id: "ch1",
-      name: "The Beach"
+      value: "The Beach"
     },
     {
       id: "ch2",
-      name: "Entering Moonhaven"
-    },
-    { id: "ch3", name: "The dinner fight" },
-    { id: "ch4", name: "Ubal’s house" }
+      value: "Entering Moonhaven"
+    }
   ],
   npcs: [
     {
@@ -262,19 +264,37 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, updatedState3);
 
     case "REMOVE_NPC":
-      // let npcs5 = state.npcs.slice();
-      let npcs5 = state.npcs.filter((npc) => {
-        return npc.id !== action.id;
-      });
+      let npcs5 = state.npcs.slice();
+      let monsters5 = state.monsters.slice();
+      switch (action.id.substring(0, 2)) {
+        case "np":
+          npcs5 = npcs5.filter((npc) => {
+            return npc.id !== action.id;
+          });
+          break;
+        case "mo":
+          monsters5 = monsters5.filter((monster) => {
+            return monster.id !== action.id;
+          });
+          break;
+        default:
+          break;
+      }
       const updatedState5 = {
-        npcs: npcs5
+        npcs: npcs5,
+        monsters: monsters5
       };
       return updateObject(state, updatedState5);
 
     case "ADD_NPC":
       let npcs4 = state.npcs.slice();
       let monsters4 = state.monsters.slice();
+      let chapters4 = state.chapters.slice();
+
       switch (action.npc.id.substring(0, 2)) {
+        case "ch":
+          chapters4.push(action.npc);
+          break;
         case "np":
           npcs4.push(action.npc);
           break;
@@ -285,6 +305,7 @@ const reducer = (state = initialState, action) => {
           break;
       }
       const updatedState4 = {
+        chapters: chapters4,
         npcs: npcs4,
         monsters: monsters4
       };
@@ -310,7 +331,8 @@ const reducer = (state = initialState, action) => {
       }
 
       const updatedState6 = {
-        npcs: npcs6
+        npcs: npcs6,
+        monsters: monsters6
       };
       return updateObject(state, updatedState6);
 

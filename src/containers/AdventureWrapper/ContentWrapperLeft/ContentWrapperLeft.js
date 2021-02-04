@@ -27,7 +27,7 @@ const ContentWrapperLeft = (props) => {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [currentItem, setCurrentItem] = useState(initialItemState);
-  // const [addingChapter, setAddingChapter] = useState(false);
+  const [addingChapter, setAddingChapter] = useState(false);
   const [addingNPC, setAddingNPC] = useState(false);
   const [addingMonster, setAddingMonster] = useState(false);
 
@@ -41,8 +41,8 @@ const ContentWrapperLeft = (props) => {
 
   const newContentButtonHandler = () => {
     switch (props.activeTab) {
-      // case "Chapters":
-      //   return setAddingChapter(true);
+      case "Chapters":
+        return setAddingChapter(true);
       case "NPCs":
         return setAddingNPC(true);
       case "Monsters":
@@ -55,6 +55,8 @@ const ContentWrapperLeft = (props) => {
   const cancelEditingExistingCard = () => {
     setCurrentItem(initialItemState);
     switch (props.activeTab) {
+      case "Chapters":
+        return setAddingChapter(false);
       case "NPCs":
         return setAddingNPC(false);
       case "Monsters":
@@ -65,14 +67,16 @@ const ContentWrapperLeft = (props) => {
   };
 
   const activeNewContentCardHandler = () => {
-    if ((addingNPC || addingMonster) && currentItem === null) {
-      return (
-        <NPCEditor removeNewNNPCCard={() => cancelEditingExistingCard()} />
-      );
-    } else if (
-      (addingNPC || addingMonster) &&
-      typeof currentItem === "object"
-    ) {
+    // if ((addingChapter || addingNPC || addingMonster) && currentItem === null) {
+    //   return (
+    //     <NPCEditor removeNewNNPCCard={() => cancelEditingExistingCard()} />
+    //   );
+    // } else if (
+    //   (addingNPC || addingMonster) &&
+    //   typeof currentItem === "object"
+    // )
+
+    if (addingChapter || addingNPC || addingMonster) {
       return (
         <NPCEditor
           id={currentItem.id}
@@ -90,7 +94,6 @@ const ContentWrapperLeft = (props) => {
   };
 
   const editItemHandler = (item) => {
-    // newContentButtonHandler();
     item.open = false;
     setCurrentItem(item);
     switch (props.activeTab) {
@@ -113,12 +116,12 @@ const ContentWrapperLeft = (props) => {
     const chaptersList = () => {
       return props.chapters
         .filter((chapter) =>
-          chapter.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+          chapter.value.toLowerCase().startsWith(searchTerm.toLowerCase())
         )
         .map((chapter) => {
-          return (
-            <Chapter key={chapter.id} id={chapter.id} name={chapter.name} />
-          );
+          return chapter.value !== "Chapters" ? (
+            <Chapter key={chapter.id} id={chapter.id} value={chapter.value} />
+          ) : null;
         });
     };
 
@@ -200,7 +203,7 @@ const ContentWrapperLeft = (props) => {
       <section className={classes.Tabs}>
         <Tab
           contentType={"Chapters"}
-          clicked={() => props.activeTabHandler("Chapters")}
+          clicked={() => clickTabHandler("Chapters")}
         >
           <i className="fas fa-bookmark"></i>
           Chapters
@@ -229,6 +232,7 @@ const ContentWrapperLeft = (props) => {
           val={searchTerm}
           changed={editSearchTerm}
         />
+        <i className={`fas fa-search ${classes.SearchIcon}`}></i>
         <Button
           size="big"
           priority="primary"
@@ -248,9 +252,9 @@ const ContentWrapperLeft = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    chapters: state.contentData.chapters,
     npcs: state.contentData.npcs,
     monsters: state.contentData.monsters,
-    chapters: state.contentData.chapters,
     activeTab: state.activeTab.activeTab
   };
 };
