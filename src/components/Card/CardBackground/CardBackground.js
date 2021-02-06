@@ -25,17 +25,8 @@ const CardBackground = (props) => {
 const mapStateToProps = (state) => {
   return {
     activeChapterId: state.activeChapterId.activeChapterId,
-    activeTab: state.activeTab.activeTab,
-    npcs: state.contentData.npcs,
-    monsters: state.contentData.monsters
+    activeTab: state.activeTab.activeTab
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    toggleCardHandler: (id) => dispatch(actions.toggleCard(id)),
-    sortContentHandler: () => dispatch(actions.sortContent())
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CardBackground);
+export default connect(mapStateToProps)(CardBackground);

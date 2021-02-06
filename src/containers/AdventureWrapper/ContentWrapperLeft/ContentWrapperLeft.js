@@ -30,10 +30,14 @@ const ContentWrapperLeft = (props) => {
   const [addingChapter, setAddingChapter] = useState(false);
   const [addingNPC, setAddingNPC] = useState(false);
   const [addingMonster, setAddingMonster] = useState(false);
+  const [addingLocation, setAddingLocation] = useState(false);
+
+  //extract keys from props for dependencies
+  const { sortContentHandler } = props;
 
   useEffect(() => {
-    props.sortContentHandler();
-  }, []);
+    sortContentHandler();
+  }, [sortContentHandler]);
 
   const editSearchTerm = (input) => {
     setSearchTerm(input.target.value);
@@ -47,6 +51,8 @@ const ContentWrapperLeft = (props) => {
         return setAddingNPC(true);
       case "Monsters":
         return setAddingMonster(true);
+      case "Locations":
+        return setAddingLocation(true);
       default:
         break;
     }
@@ -61,22 +67,15 @@ const ContentWrapperLeft = (props) => {
         return setAddingNPC(false);
       case "Monsters":
         return setAddingMonster(false);
+      case "Locations":
+        return setAddingLocation(false);
       default:
         break;
     }
   };
 
   const activeNewContentCardHandler = () => {
-    // if ((addingChapter || addingNPC || addingMonster) && currentItem === null) {
-    //   return (
-    //     <NPCEditor removeNewNNPCCard={() => cancelEditingExistingCard()} />
-    //   );
-    // } else if (
-    //   (addingNPC || addingMonster) &&
-    //   typeof currentItem === "object"
-    // )
-
-    if (addingChapter || addingNPC || addingMonster) {
+    if (addingChapter || addingNPC || addingMonster || addingLocation) {
       return (
         <NPCEditor
           id={currentItem.id}
@@ -101,6 +100,8 @@ const ContentWrapperLeft = (props) => {
         return setAddingNPC(true);
       case "Monsters":
         return setAddingMonster(true);
+      case "Locations":
+        return setAddingLocation(true);
       default:
         break;
     }
@@ -183,6 +184,37 @@ const ContentWrapperLeft = (props) => {
         });
     };
 
+    const locationsList = () => {
+      //if an item is open, but dissapears because of another search term,
+      //the open property is set to false
+      props.locations.forEach((location) => {
+        if (
+          !location.value.toLowerCase().startsWith(searchTerm.toLowerCase())
+        ) {
+          location.open = false;
+        }
+      });
+      return props.locations
+        .filter(
+          (location) =>
+            location.value.toLowerCase().startsWith(searchTerm.toLowerCase()) &&
+            location.id !== currentItem.id
+        )
+        .map((location) => {
+          return !location.disabled ? (
+            <NPC
+              key={location.id}
+              id={location.id}
+              value={location.value}
+              description={location.description}
+              content={location.content}
+              open={location.open}
+              onEditClick={() => editItemHandler(location)}
+            />
+          ) : null;
+        });
+    };
+
     switch (props.activeTab) {
       case "Chapters":
         return chaptersList();
@@ -190,6 +222,8 @@ const ContentWrapperLeft = (props) => {
         return npcsList();
       case "Monsters":
         return monstersList();
+      case "Locations":
+        return locationsList();
       default:
         return chaptersList();
     }
@@ -219,7 +253,10 @@ const ContentWrapperLeft = (props) => {
           <i className="fas fa-dragon"></i>
           Monsters
         </Tab>
-        <Tab>
+        <Tab
+          contentType={"Locations"}
+          clicked={() => clickTabHandler("Locations")}
+        >
           <i className="fas fa-map-marked-alt"></i>
           Locations
         </Tab>
@@ -255,6 +292,7 @@ const mapStateToProps = (state) => {
     chapters: state.contentData.chapters,
     npcs: state.contentData.npcs,
     monsters: state.contentData.monsters,
+    locations: state.contentData.locations,
     activeTab: state.activeTab.activeTab
   };
 };

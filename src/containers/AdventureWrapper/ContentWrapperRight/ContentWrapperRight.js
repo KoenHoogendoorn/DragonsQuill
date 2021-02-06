@@ -128,6 +128,14 @@ class ContentWrapperRight extends Component {
           );
           clickCardHandler(clickedItem);
           break;
+        case "lo":
+          this.props.closeCardsHandler("Locations");
+          this.props.activeTabHandler("Locations");
+          clickedItem = this.props.locations.find(
+            (location) => location.id === id
+          );
+          clickCardHandler(clickedItem);
+          break;
         default:
           break;
       }
@@ -180,7 +188,7 @@ class ContentWrapperRight extends Component {
       wrapperRightBlock.style.width = (this.state.width * 0.9) / 2 + "px";
     }
     // if an npc gets deleted, copy the name and remove the mention. Place name where mention would be.
-    if (this.props.npcs.length !== prevProps.npcs.length) {
+    if (this.props.npcs.length < prevProps.npcs.length) {
       const deletedId = this.findDeletedValueType(
         prevProps.npcs,
         this.props.npcs,
@@ -196,7 +204,7 @@ class ContentWrapperRight extends Component {
       });
     }
     // if an monster gets deleted, copy the name and remove the mention. Place name where mention would be.
-    if (this.props.monsters.length !== prevProps.monsters.length) {
+    if (this.props.monsters.length < prevProps.monsters.length) {
       const deletedId = this.findDeletedValueType(
         prevProps.monsters,
         this.props.monsters,
@@ -205,6 +213,23 @@ class ContentWrapperRight extends Component {
       const deletedName = this.findDeletedValueType(
         prevProps.monsters,
         this.props.monsters,
+        "value"
+      );
+      this.props.chapters.forEach((chapter) => {
+        this.replaceMentionWithName(chapter.id, deletedId, deletedName);
+      });
+    }
+
+    // if a location gets deleted, copy the name and remove the mention. Place name where mention would be.
+    if (this.props.locations.length < prevProps.locations.length) {
+      const deletedId = this.findDeletedValueType(
+        prevProps.locations,
+        this.props.locations,
+        "id"
+      );
+      const deletedName = this.findDeletedValueType(
+        prevProps.locations,
+        this.props.locations,
         "value"
       );
       this.props.chapters.forEach((chapter) => {
@@ -232,7 +257,10 @@ class ContentWrapperRight extends Component {
       showDenotationChar: false,
       dataAttributes: ["id", "value", "denotationChar", "target"],
       source: (searchTerm, renderList, mentionChar) => {
-        let values = this.props.npcs.concat(this.props.monsters);
+        let values = this.props.npcs.concat(
+          this.props.monsters,
+          this.props.locations
+        );
 
         if (searchTerm.length === 0) {
           renderList(values, searchTerm);
@@ -306,6 +334,7 @@ const mapStateToProps = (state) => {
     npcs: state.contentData.npcs,
     monsters: state.contentData.monsters,
     chapters: state.contentData.chapters,
+    locations: state.contentData.locations,
     activeChapterId: state.activeChapterId.activeChapterId
   };
 };

@@ -45,6 +45,7 @@ class NPCEditor extends Component {
       const Chapters = this.props.chapters;
       const NPCs = this.props.npcs;
       const Monsters = this.props.npcs;
+      const Locations = this.props.locations;
       let idNumbers = null;
       let currentIdPrefix = null;
       switch (this.props.activeTab) {
@@ -65,6 +66,12 @@ class NPCEditor extends Component {
             return Number(id.substring(2));
           });
           currentIdPrefix = "mo";
+          break;
+        case "Locations":
+          idNumbers = Locations.map((location) => location.id).map((id) => {
+            return Number(id.substring(2));
+          });
+          currentIdPrefix = "lo";
           break;
         default:
           break;
@@ -96,13 +103,52 @@ class NPCEditor extends Component {
     this.setState({ value: event.target.value });
   };
 
+  handleNamePlaceholder = () => {
+    switch (this.props.activeTab) {
+      case "NPCs":
+        return "Character name...";
+      case "Monsters":
+        return "Monster name...";
+      case "Locations":
+        return "Location name...";
+      default:
+        break;
+    }
+  };
+
   handleDescriptionChange = (event) => {
     this.setState({ description: event.target.value });
+  };
+
+  handleDescriptionPlaceholder = () => {
+    switch (this.props.activeTab) {
+      case "NPCs":
+        return "Species & gender, Alignment...";
+      case "Monsters":
+        return "Size & species, Alignment...";
+      case "Locations":
+        return "Size & settlement type...";
+      default:
+        break;
+    }
   };
 
   handleContentChange = () => {
     const html = this.quillRef.root.innerHTML;
     this.setState({ content: html });
+  };
+
+  handleContentPlaceholder = () => {
+    switch (this.props.activeTab) {
+      case "NPCs":
+        return "Character description...";
+      case "Monsters":
+        return "Monster description...";
+      case "Locations":
+        return "Location description...";
+      default:
+        break;
+    }
   };
 
   handleDelete = () => {
@@ -172,13 +218,13 @@ class NPCEditor extends Component {
             className="NPCEditorName"
             value={this.state.value}
             onChange={this.handleNameChange}
-            placeholder="Character name..."
+            placeholder={this.handleNamePlaceholder()}
           ></input>
           <input
             className="NPCEditorDescription"
             value={this.state.description}
             onChange={this.handleDescriptionChange}
-            placeholder="Species &amp; gender, Alignment......"
+            placeholder={this.handleDescriptionPlaceholder()}
           ></input>
 
           <ReactQuill
@@ -186,7 +232,7 @@ class NPCEditor extends Component {
             value={this.state.content}
             onChange={this.handleContentChange || ""}
             modules={this.modules}
-            placeholder="Character description..."
+            placeholder={this.handleContentPlaceholder()}
             ref={(el) => {
               this.reactQuillRef = el;
             }}
@@ -237,6 +283,7 @@ const mapStateToProps = (state) => {
     chapters: state.contentData.chapters,
     npcs: state.contentData.npcs,
     monsters: state.contentData.monsters,
+    locations: state.contentData.locations,
     activeTab: state.activeTab.activeTab
   };
 };

@@ -132,6 +132,21 @@ const initialState = {
         "Multiattack: The scorpion makes two attacks: two with its claws.",
       open: false
     }
+  ],
+  locations: [
+    {
+      id: "lo0",
+      value: "Locations",
+      disabled: true
+    },
+    {
+      id: "lo1",
+      value: "Moonhaven",
+      description: "Small town",
+      content:
+        "Moonhaven is a town in the south of Gurntaur. It’s not a well known town, and that’s a good thing because they wouldn’t last long against raiders. It’s a small fishing town that keeps to itself. ‘Give a man a fish, and he eats for a day.’. The people are simple and they like it like that. They are great friends with the Tortles living on and around the islands in the opening of Dina Anto. Every full moon (around every 30 days) they hold a friendly match (surfing?) and feast together on the islands. Tortles are mainly hippies. Lately the humans from Moonhaven started to become more greedy. They are fishing more than they need. They even canceled the last moonparties! The humans are being influenced by new fish that they are suddenly catching. They haven’t seen the orange and purple fishes before, but they are delicious and they need to catch more and more. They are getting really fat and some people have eaten themselves to death. The Tortles aren’t eating the new fish because they don’t like new things.",
+      open: false
+    }
   ]
 };
 
@@ -147,6 +162,7 @@ const reducer = (state = initialState, action) => {
     case "SORT_CONTENT":
       let npcs = state.npcs.slice();
       let monsters = state.monsters.slice();
+      let locations = state.locations.slice();
 
       npcs.sort((a, b) =>
         a.value.toLowerCase() > b.value.toLowerCase() ? 1 : -1
@@ -154,21 +170,22 @@ const reducer = (state = initialState, action) => {
       monsters.sort((a, b) =>
         a.value.toLowerCase() > b.value.toLowerCase() ? 1 : -1
       );
+      locations.sort((a, b) =>
+        a.value.toLowerCase() > b.value.toLowerCase() ? 1 : -1
+      );
 
       // -- make sure the headers stay in front for the mention dropdown
 
       pushHeadersFirst(npcs);
       pushHeadersFirst(monsters);
-
-      // monsters.forEach((element) => {
-      //   element.open = false;
-      //   element.highlighted = false;
-      // });
+      pushHeadersFirst(locations);
 
       const updatedState = {
         npcs: npcs,
-        monsters: monsters
+        monsters: monsters,
+        locations: locations
       };
+
       return updateObject(state, updatedState);
 
     case "TOGGLE_CARD":
@@ -178,6 +195,7 @@ const reducer = (state = initialState, action) => {
       const clickedId = action.id;
       let npcs2 = state.npcs.slice();
       let monsters2 = state.monsters.slice();
+      let locations2 = state.locations.slice();
 
       const toggleCard = (contentTypeArray) => {
         const clickedItem = contentTypeArray.find(
@@ -205,12 +223,16 @@ const reducer = (state = initialState, action) => {
         case "mo":
           toggleCard(monsters2);
           break;
+        case "lo":
+          toggleCard(locations2);
+          break;
         default:
           break;
       }
       const updatedState2 = {
         npcs: npcs2,
-        monsters: monsters2
+        monsters: monsters2,
+        locations: locations2
       };
       return updateObject(state, updatedState2);
 
@@ -218,6 +240,7 @@ const reducer = (state = initialState, action) => {
       const highlightedId = action.id;
       let npcs3 = state.npcs.slice();
       let monsters3 = state.monsters.slice();
+      let locations3 = state.locations.slice();
 
       const pushCardFirst = (contentTypeArray) => {
         contentTypeArray.sort((a, b) => {
@@ -249,6 +272,10 @@ const reducer = (state = initialState, action) => {
           pushCardFirst(monsters3);
           setHighlighted(monsters3);
           break;
+        case "lo":
+          pushCardFirst(locations3);
+          setHighlighted(locations3);
+          break;
         default:
           break;
       }
@@ -256,16 +283,20 @@ const reducer = (state = initialState, action) => {
       // -- make sure the headers stay in front for the mention dropdown
       pushHeadersFirst(npcs3);
       pushHeadersFirst(monsters3);
+      pushHeadersFirst(locations3);
 
       const updatedState3 = {
         npcs: npcs3,
-        monsters: monsters3
+        monsters: monsters3,
+        locations: locations3
       };
       return updateObject(state, updatedState3);
 
     case "REMOVE_NPC":
       let npcs5 = state.npcs.slice();
       let monsters5 = state.monsters.slice();
+      let locations5 = state.locations.slice();
+
       switch (action.id.substring(0, 2)) {
         case "np":
           npcs5 = npcs5.filter((npc) => {
@@ -277,19 +308,26 @@ const reducer = (state = initialState, action) => {
             return monster.id !== action.id;
           });
           break;
+        case "lo":
+          locations5 = locations5.filter((location) => {
+            return location.id !== action.id;
+          });
+          break;
         default:
           break;
       }
       const updatedState5 = {
         npcs: npcs5,
-        monsters: monsters5
+        monsters: monsters5,
+        locations: locations5
       };
       return updateObject(state, updatedState5);
 
     case "ADD_NPC":
+      let chapters4 = state.chapters.slice();
       let npcs4 = state.npcs.slice();
       let monsters4 = state.monsters.slice();
-      let chapters4 = state.chapters.slice();
+      let locations4 = state.locations.slice();
 
       switch (action.npc.id.substring(0, 2)) {
         case "ch":
@@ -301,29 +339,48 @@ const reducer = (state = initialState, action) => {
         case "mo":
           monsters4.push(action.npc);
           break;
+        case "lo":
+          locations4.push(action.npc);
+          break;
         default:
           break;
       }
       const updatedState4 = {
         chapters: chapters4,
         npcs: npcs4,
-        monsters: monsters4
+        monsters: monsters4,
+        locations: locations4
       };
       return updateObject(state, updatedState4);
 
     case "CLOSE_CARDS":
       let npcs6 = state.npcs.slice();
       let monsters6 = state.monsters.slice();
+      let locations6 = state.locations.slice();
 
       switch (action.newActiveTab) {
         case "NPCs":
           monsters6.forEach((monster) => {
             monster.open = false;
           });
+          locations6.forEach((location) => {
+            location.open = false;
+          });
           break;
         case "Monsters":
           npcs6.forEach((npc) => {
             npc.open = false;
+          });
+          locations6.forEach((location) => {
+            location.open = false;
+          });
+          break;
+        case "Locations":
+          npcs6.forEach((npc) => {
+            npc.open = false;
+          });
+          monsters6.forEach((monster) => {
+            monster.open = false;
           });
           break;
         default:
@@ -332,7 +389,8 @@ const reducer = (state = initialState, action) => {
 
       const updatedState6 = {
         npcs: npcs6,
-        monsters: monsters6
+        monsters: monsters6,
+        locations: locations6
       };
       return updateObject(state, updatedState6);
 

@@ -32,6 +32,12 @@ const NPC = (props) => {
         thisItem.open = false;
       }
       break;
+    case "lo":
+      thisItem = props.locations.find((location) => location.id === props.id);
+      if (props.activeTab !== "Locations") {
+        thisItem.open = false;
+      }
+      break;
     default:
       break;
   }
@@ -68,6 +74,7 @@ const mapStateToProps = (state) => {
   return {
     npcs: state.contentData.npcs,
     monsters: state.contentData.monsters,
+    locations: state.contentData.locations,
     activeTab: state.activeTab.activeTab
   };
 };

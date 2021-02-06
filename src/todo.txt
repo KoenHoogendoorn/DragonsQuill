@@ -1,16 +1,16 @@
+- change all remove/add NPC functions to remove/add Card
 
-- change Input component name to Searchbar
-
-- check udemy course on how to add props to useEffect dependency that only mounts on init
-
-- location cards
 - icons in chapters based on mentions
+
+- check and optimize a bit
 
 - Create are you sure modal
 - Implement are you sure modal
 
 - firebase setup
 - log in page
+
+- change Input component name to Searchbar
 
 - change contentdatabase to firebase
 - switch mention setup to async
@@ -57,6 +57,10 @@ x - search icon in search bar
 X - Make sure the function runs through all chapters, not just ch1 -> remove links but keep text of mentions if item is deleted --> CHECK IF IT WORKS IF CHAPTER IS NOT ACTIVE
 
 6-2-2021
+X - check udemy course on how to add props to useEffect dependency that only mounts on init
+X - location cards
+X - write down what needs to be edited for adding a category
+X - change placeholder texts for different categories
 
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">
   <p>

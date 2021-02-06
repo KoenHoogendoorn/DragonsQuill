@@ -15,6 +15,11 @@ const CardHeaderContainer = (props) => {
       case "mo":
         clickedCard = props.monsters.find((monster) => monster.id === props.id);
         break;
+      case "lo":
+        clickedCard = props.locations.find(
+          (location) => location.id === props.id
+        );
+        break;
       default:
         return;
     }
@@ -45,7 +50,8 @@ const CardHeaderContainer = (props) => {
 const mapStateToProps = (state) => {
   return {
     npcs: state.contentData.npcs,
-    monsters: state.contentData.monsters
+    monsters: state.contentData.monsters,
+    locations: state.contentData.locations
   };
 };
 
