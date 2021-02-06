@@ -1,6 +1,4 @@
-- search icon in search bar 
 
-- remove links but keep text of mentions if item is deleted
 - change Input component name to Searchbar
 
 - check udemy course on how to add props to useEffect dependency that only mounts on init
@@ -16,6 +14,8 @@
 
 - change contentdatabase to firebase
 - switch mention setup to async
+
+- style external link and inputlightbox you get when you add a link in editor
 
 - adventures overview
 
@@ -46,6 +46,58 @@ X - monster cards
 X - filtering in mention isn't working correctly, if @g, syka shows up
 X - check/give cap to mentions dropdown
 
-3-2-2021 (today)
+3-2-2021
 x - change css to scss
 X - add/remove chapter cards
+
+4-2-2021
+x - search icon in search bar 
+
+5-2-2021
+X - Make sure the function runs through all chapters, not just ch1 -> remove links but keep text of mentions if item is deleted --> CHECK IF IT WORKS IF CHAPTER IS NOT ACTIVE
+
+6-2-2021
+
+<div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">
+  <p>
+    aiwejfoiaw
+    <span class="dndmention" data-index="2" data-denotation-char="" data-id="np10" data-value="Esmee Gluttonbelly">
+      &#65279;
+        <span contenteditable="false">
+          Esmee Gluttonbelly
+        </span>
+      &#65279;
+    </span> 
+    dsidjfoaiwefj 
+    <span class="dndmention" data-index="3" data-denotation-char="" data-id="np4" data-value="Falmo">
+      &#65279;
+        <span contenteditable="false">
+          Falmo
+        </span>
+      &#65279;
+    </span> 
+    zdfwef 
+    </p>
+  </div> 
+
+
+  old replacement of mentions:
+    replaceMentionWithNameDocument(contentArray, itemIdPrefix) {
+    let mentions = document.getElementsByClassName("dndmention");
+
+    for (const mention of mentions) {
+      const mentionId = mention.getAttribute("data-id");
+      //since let mentions gets all dndmentions, it needs to check if it actually is an npc/monster
+      if (mentionId.substring(0, 2) === itemIdPrefix) {
+        //get all ids to see which one got deleted
+        const contentIds = contentArray.map((el) => el.id);
+        if (!contentIds.includes(mentionId)) {
+          const span = document.createElement("span");
+          const content = mention.childNodes[1].textContent;
+          span.textContent = content;
+          mention.insertAdjacentElement("afterend", span);
+          mention.remove();
+        }
+      }
+    }
+  }

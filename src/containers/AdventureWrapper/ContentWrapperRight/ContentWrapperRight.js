@@ -53,7 +53,6 @@ class ContentWrapperRight extends Component {
     super(props);
     this.state = {
       width: window.innerWidth
-      // ch1: `<h1>${this.props.chapters[0].name}</h1>`
     };
   }
 
@@ -137,11 +136,80 @@ class ContentWrapperRight extends Component {
     Quill.register(MentionBlot);
   }
 
-  componentDidUpdate() {
-    //set width to fixed item
+  findDeletedValueType(prevContentArray, currentContentArray, valueType) {
+    const difference = prevContentArray.filter(
+      (element) => currentContentArray.indexOf(element) === -1
+    );
+    return difference[0][valueType];
+  }
+
+  replaceMentionWithName(chapterId, deletedId, deletedName) {
+    const chapterValueWithCommas = this.state[chapterId].replace(
+      /<span/g,
+      "8f523@gh4@mjg7<span"
+    );
+    const chapterValueWithCommas2 = chapterValueWithCommas.replace(
+      /<\/span>/g,
+      "8f523@gh4@mjg7</span>8f523@gh4@mjg7"
+    );
+    // Split the array at hashes
+    const chapterValueSplitted = chapterValueWithCommas2.split(
+      "8f523@gh4@mjg7"
+    );
+
+    while (
+      chapterValueSplitted.findIndex((el) => el.includes(deletedId)) > -1
+    ) {
+      // Find <span items with id that is being deleted
+      let indexOfDeletedSpan = chapterValueSplitted.findIndex((el) =>
+        el.includes(deletedId)
+      );
+      // Select and delete that item and the 4 items after it (span, span, /span, empty, /span), insert the item.value with the same id
+      chapterValueSplitted.splice(indexOfDeletedSpan, 5, deletedName);
+    }
+
+    // maak weer een string van de array
+    const spans = chapterValueSplitted.join("");
+    this.setState({ [chapterId]: spans });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // set width to fixed item (editor)
     const wrapperRightBlock = document.getElementById("WrapperRightBlock");
     if (this.state.width <= 1480) {
       wrapperRightBlock.style.width = (this.state.width * 0.9) / 2 + "px";
+    }
+    // if an npc gets deleted, copy the name and remove the mention. Place name where mention would be.
+    if (this.props.npcs.length !== prevProps.npcs.length) {
+      const deletedId = this.findDeletedValueType(
+        prevProps.npcs,
+        this.props.npcs,
+        "id"
+      );
+      const deletedName = this.findDeletedValueType(
+        prevProps.npcs,
+        this.props.npcs,
+        "value"
+      );
+      this.props.chapters.forEach((chapter) => {
+        this.replaceMentionWithName(chapter.id, deletedId, deletedName);
+      });
+    }
+    // if an monster gets deleted, copy the name and remove the mention. Place name where mention would be.
+    if (this.props.monsters.length !== prevProps.monsters.length) {
+      const deletedId = this.findDeletedValueType(
+        prevProps.monsters,
+        this.props.monsters,
+        "id"
+      );
+      const deletedName = this.findDeletedValueType(
+        prevProps.monsters,
+        this.props.monsters,
+        "value"
+      );
+      this.props.chapters.forEach((chapter) => {
+        this.replaceMentionWithName(chapter.id, deletedId, deletedName);
+      });
     }
   }
 
