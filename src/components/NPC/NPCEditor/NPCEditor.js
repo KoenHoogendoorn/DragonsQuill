@@ -167,16 +167,16 @@ class NPCEditor extends Component {
   handleSave = () => {
     if (this.state.editingExistingNPC) {
       //remove old copied item
-      this.props.removeNPCHandler(this.props.id);
+      this.props.removeCardHandler(this.props.id);
     }
     if (this.props.activeTab === "Chapters") {
-      this.props.addNPCHandler({
+      this.props.addCardHandler({
         id: this.state.id,
         key: this.state.id,
         value: this.state.value
       });
     } else {
-      this.props.addNPCHandler({
+      this.props.addCardHandler({
         id: this.state.id,
         key: this.state.id,
         value: this.state.value,
@@ -290,8 +290,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    removeNPCHandler: (id) => dispatch(actions.removeNPC(id)),
-    addNPCHandler: (npc) => dispatch(actions.addNPC(npc)),
+    removeCardHandler: (id) => dispatch(actions.removeCard(id)),
+    addCardHandler: (itemData) => dispatch(actions.addCard(itemData)),
     sortContentHandler: (id) => dispatch(actions.sortContent(id))
   };
 };

@@ -61,7 +61,7 @@ const NPC = (props) => {
         <CardBody id={props.id}>
           <div dangerouslySetInnerHTML={{ __html: props.content }}></div>
           <CardToolbar
-            onDelete={() => props.removeNPCHandler(props.id)}
+            onDelete={() => props.removeCardHandler(props.id)}
             onEdit={props.onEditClick}
           />
         </CardBody>
@@ -81,7 +81,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    removeNPCHandler: (id) => dispatch(actions.removeNPC(id))
+    removeCardHandler: (id) => dispatch(actions.removeCard(id))
   };
 };
 

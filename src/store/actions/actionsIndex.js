@@ -4,7 +4,7 @@ export {
   sortContent,
   highlightCard,
   toggleCard,
-  removeNPC,
-  addNPC,
+  removeCard,
+  addCard,
   closeCards
 } from "./contentData";

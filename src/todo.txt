@@ -1,11 +1,13 @@
 - change all remove/add NPC functions to remove/add Card
 
-- icons in chapters based on mentions
+- icons in chaptercards based on how many unique mentions are in them
 
 - check and optimize a bit
 
 - Create are you sure modal
 - Implement are you sure modal
+
+- empty state for search results
 
 - firebase setup
 - log in page
@@ -28,7 +30,7 @@ Maybe:
 - add/remove categories
 
 DONE
-X - 1. hernoemen heeft de addNPCHandler argument aangepast, maar kan niet meer terugkijken in de timeline omdat de naam is aangepast.
+X - 1. hernoemen heeft de addCardHandler argument aangepast, maar kan niet meer terugkijken in de timeline omdat de naam is aangepast.
 X - 4. support longer title + descriptions
 X - 5. check CardHeaderContainer class in NPCEditor
 X - 6. delete npc

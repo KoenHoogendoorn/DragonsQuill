@@ -292,7 +292,7 @@ const reducer = (state = initialState, action) => {
       };
       return updateObject(state, updatedState3);
 
-    case "REMOVE_NPC":
+    case "REMOVE_CARD":
       let npcs5 = state.npcs.slice();
       let monsters5 = state.monsters.slice();
       let locations5 = state.locations.slice();
@@ -323,24 +323,24 @@ const reducer = (state = initialState, action) => {
       };
       return updateObject(state, updatedState5);
 
-    case "ADD_NPC":
+    case "ADD_CARD":
       let chapters4 = state.chapters.slice();
       let npcs4 = state.npcs.slice();
       let monsters4 = state.monsters.slice();
       let locations4 = state.locations.slice();
 
-      switch (action.npc.id.substring(0, 2)) {
+      switch (action.itemData.id.substring(0, 2)) {
         case "ch":
-          chapters4.push(action.npc);
+          chapters4.push(action.itemData);
           break;
         case "np":
-          npcs4.push(action.npc);
+          npcs4.push(action.itemData);
           break;
         case "mo":
-          monsters4.push(action.npc);
+          monsters4.push(action.itemData);
           break;
         case "lo":
-          locations4.push(action.npc);
+          locations4.push(action.itemData);
           break;
         default:
           break;

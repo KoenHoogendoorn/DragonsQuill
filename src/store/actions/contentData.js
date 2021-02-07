@@ -18,17 +18,17 @@ export const toggleCard = (id) => {
   };
 };
 
-export const removeNPC = (id) => {
+export const removeCard = (id) => {
   return {
-    type: "REMOVE_NPC",
+    type: "REMOVE_CARD",
     id: id
   };
 };
 
-export const addNPC = (npc) => {
+export const addCard = (itemData) => {
   return {
-    type: "ADD_NPC",
-    npc: npc
+    type: "ADD_CARD",
+    itemData: itemData
   };
 };
 
