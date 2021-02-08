@@ -8,11 +8,21 @@ const initialState = {
     },
     {
       id: "ch1",
-      value: "The Beach"
+      value: "The Beach",
+      mentionIds: {
+        npc: [],
+        monster: [],
+        location: []
+      }
     },
     {
       id: "ch2",
-      value: "Entering Moonhaven"
+      value: "Entering Moonhaven",
+      mentionIds: {
+        npc: [],
+        monster: [],
+        location: []
+      }
     }
   ],
   npcs: [
@@ -393,6 +403,41 @@ const reducer = (state = initialState, action) => {
         locations: locations6
       };
       return updateObject(state, updatedState6);
+
+    case "ADD_TO_MENTION_COUNTERS":
+      let chapters7 = state.chapters.slice();
+      const editedChapter = chapters7.find(
+        (chapter) => chapter.id === action.activeChapterId
+      );
+
+      switch (action.mentionId.substring(0, 2)) {
+        case "np":
+          //add id to array if it isn't already in there
+          if (!editedChapter.mentionIds.npc.includes(action.mentionId)) {
+            editedChapter.mentionIds.npc.push(action.mentionId);
+            updateObject(chapters7, editedChapter);
+          }
+          break;
+        case "mo":
+          if (!editedChapter.mentionIds.monster.includes(action.mentionId)) {
+            editedChapter.mentionIds.monster.push(action.mentionId);
+            updateObject(chapters7, editedChapter);
+          }
+          break;
+        case "lo":
+          if (!editedChapter.mentionIds.location.includes(action.mentionId)) {
+            editedChapter.mentionIds.location.push(action.mentionId);
+            updateObject(chapters7, editedChapter);
+          }
+          break;
+        default:
+          break;
+      }
+
+      const updatedState7 = {
+        chapters: chapters7
+      };
+      return updateObject(state, updatedState7);
 
     default:
       return state;

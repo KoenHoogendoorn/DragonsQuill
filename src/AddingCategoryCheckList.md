@@ -49,6 +49,11 @@ disabled: true
 - switch with foreach
 - updatedState
 
+### Add to mention counters
+
+- switch with includes and push
+- updatedState
+
 ## 2. ContentWrapperRight
 
 ### MentionBlot
@@ -159,3 +164,24 @@ switch statement:
 ### mapStateToProps
 
 - category: state.contentData.category
+
+## 8. MentionToken
+
+### Switch
+
+- find and add iconclasses
+- Add find function for name in tooltip
+
+### SCSS
+
+- add colors for icons
+
+### mapStateToProps
+
+- category: state.contentData.category
+
+## 9. shared variables
+
+### colors
+
+- add main and bg color for icons

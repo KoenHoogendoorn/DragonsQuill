@@ -1,16 +1,15 @@
-- change all remove/add NPC functions to remove/add Card
-
-- icons in chaptercards based on how many unique mentions are in them
+- empty state for search results
 
 - check and optimize a bit
 
 - Create are you sure modal
 - Implement are you sure modal
 
-- empty state for search results
-
+- export/import data to start typing adventures in this
 - firebase setup
 - log in page
+
+- responsiveness
 
 - change Input component name to Searchbar
 
@@ -20,6 +19,8 @@
 - style external link and inputlightbox you get when you add a link in editor
 
 - adventures overview
+
+- mentiondropdown searching for 'monsters' will show only the label
 
 Not that important right now:
 - renaming NPCs to general cards
@@ -63,6 +64,15 @@ X - check udemy course on how to add props to useEffect dependency that only mou
 X - location cards
 X - write down what needs to be edited for adding a category
 X - change placeholder texts for different categories
+
+7-2-2021
+X - change all remove/add NPC functions to remove/add Card
+
+8-2-2021
+X - icons in chaptercards based on how many unique mentions are in them
+X - add things to AddingCategoryChecklist.md
+X - hover on mentiontokens
+
 
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">
   <p>

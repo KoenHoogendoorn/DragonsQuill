@@ -6,5 +6,6 @@ export {
   toggleCard,
   removeCard,
   addCard,
-  closeCards
+  closeCards,
+  addToMentionCounters
 } from "./contentData";

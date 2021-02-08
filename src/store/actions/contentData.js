@@ -38,3 +38,11 @@ export const closeCards = (newActiveTab) => {
     newActiveTab: newActiveTab
   };
 };
+
+export const addToMentionCounters = (mentionId, activeChapterId) => {
+  return {
+    type: "ADD_TO_MENTION_COUNTERS",
+    mentionId: mentionId,
+    activeChapterId: activeChapterId
+  };
+};

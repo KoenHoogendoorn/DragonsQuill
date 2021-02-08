@@ -35,12 +35,6 @@ DividerBlot.tagName = "hr";
 
 Quill.register(DividerBlot);
 
-function insertStar() {
-  const cursorPosition = this.quill.getSelection().index;
-  this.quill.insertText(cursorPosition, "★");
-  this.quill.setSelection(cursorPosition + 1);
-}
-
 function addDivider() {
   let range = this.quill.getSelection(true);
   this.quill.insertText(range.index, "\n", Quill.sources.USER);
@@ -75,6 +69,9 @@ class ContentWrapperRight extends Component {
         denotationChar.innerHTML = data.denotationChar;
         // node.appendChild(denotationChar);
         node.innerHTML += data.value;
+        //--
+
+        //--
         node.addEventListener("click", () => MentionBlot.onClick(data.id));
         return MentionBlot.setDataValues(node, data);
       };
@@ -98,6 +95,7 @@ class ContentWrapperRight extends Component {
     MentionBlot.onClick = (id) => {
       this.props.highlightCardHandler(id);
       let clickedItem = null;
+      // this.props.addToMentionCountersHandler(id, this.props.activeChapterId);
 
       const clickCardHandler = (clickedItem) => {
         if (clickedItem.open) {
@@ -246,11 +244,18 @@ class ContentWrapperRight extends Component {
     toolbar: {
       container: ".toolbarChapter",
       handlers: {
-        insertStar: insertStar,
         divider: addDivider
       }
     },
     mention: {
+      onSelect: (item, insertItem) => {
+        //this.props.toggleCardHandler(item.id); //opens card on mentioncreation
+        this.props.addToMentionCountersHandler(
+          item.id,
+          this.props.activeChapterId
+        );
+        insertItem(item);
+      },
       blotName: "dndmention",
       allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
       mentionDenotationChars: ["@"],
@@ -312,7 +317,6 @@ class ContentWrapperRight extends Component {
         <div className="WrapperRightContent">
           <ReactQuill
             theme="snow"
-            // onChange={(event) => this.handleChange(event)}
             onChange={(event) =>
               this.setState({ [this.props.activeChapterId]: event })
             }
@@ -346,7 +350,9 @@ const mapDispatchToProps = (dispatch) => {
     highlightCardHandler: (id) => dispatch(actions.highlightCard(id)),
     sortContentHandler: (id) => dispatch(actions.sortContent(id)),
     closeCardsHandler: (newActiveTab) =>
-      dispatch(actions.closeCards(newActiveTab))
+      dispatch(actions.closeCards(newActiveTab)),
+    addToMentionCountersHandler: (mentionId, activeChapterId) =>
+      dispatch(actions.addToMentionCounters(mentionId, activeChapterId))
   };
 };
 

@@ -1,0 +1,76 @@
+@import "../../../shared/variables.scss";
+
+.MentionCircle {
+  width: 28px;
+  height: 28px;
+  border-radius: 100%;
+  font-size: 12px;
+  line-height: 26px;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  position: relative;
+  cursor: default;
+
+  i {
+    line-height: inherit;
+  }
+
+  .ToolTip {
+    font-family: "Mulish", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.3em;
+    visibility: hidden;
+    width: 120px;
+    background-color: white;
+    color: $clr-mineShaft;
+    text-align: center;
+    border-radius: 4px;
+    padding: 8px 16px;
+    position: absolute;
+    z-index: 1;
+    bottom: 130%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    -webkit-box-shadow: 0px 2px 15px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 15px 1px rgba(0, 0, 0, 0.2);
+    overflow-wrap: break-word;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: white transparent transparent transparent;
+    }
+  }
+}
+
+.MentionCircle:hover .ToolTip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.NPCMentionToken {
+  color: $clr-npc;
+  border: 1px solid $clr-npc;
+  background-color: $clr-hawkesBlue;
+}
+
+.MonsterMentionToken {
+  color: $clr-monster;
+  border: 1px solid $clr-monster;
+  background-color: $clr-cinderella;
+}
+
+.LocationMentionToken {
+  color: $clr-location;
+  border: 1px solid $clr-location;
+  background-color: $clr-zanah;
+}
