@@ -1,15 +1,16 @@
 - empty state for search results
+- have different empty state if there are no items in the database,
 
 - check and optimize a bit
 
 - Create are you sure modal
 - Implement are you sure modal
 
-- export/import data to start typing adventures in this
 - firebase setup
 - log in page
+- export/import data to start typing adventures in this
 
-- responsiveness
+- basic responsiveness
 
 - change Input component name to Searchbar
 

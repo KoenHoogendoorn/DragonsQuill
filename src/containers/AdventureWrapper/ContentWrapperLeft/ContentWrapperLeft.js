@@ -4,12 +4,12 @@ import { connect } from "react-redux";
 import classes1 from "../AdventureWrapper.module.scss";
 import classes2 from "./ContentWrapperLeft.module.scss";
 
-import Tab from "../../../components/Tab/Tab";
 import Inputbar from "../../../components/Inputbar/Inputbar";
 import Button from "../../../components/Button/Button";
 import Chapter from "../../../components/Chapter/Chapter";
 import NPC from "../../../components/NPC/NPC";
 import NPCEditor from "../../../components/NPC/NPCEditor/NPCEditor";
+import TabsContainer from "./TabsContainer/TabsContainer";
 
 import * as actions from "../../../store/actions/actionsIndex";
 
@@ -105,12 +105,6 @@ const ContentWrapperLeft = (props) => {
       default:
         break;
     }
-  };
-
-  const clickTabHandler = (type) => {
-    cancelEditingExistingCard();
-    props.closeCardsHandler(type);
-    props.activeTabHandler(type);
   };
 
   const activeContentHandler = () => {
@@ -214,16 +208,35 @@ const ContentWrapperLeft = (props) => {
           ) : null;
         });
     };
+    const emptySearchResults = (
+      <h4>No {props.activeTab.toLowerCase()} found.</h4>
+    );
 
     switch (props.activeTab) {
       case "Chapters":
-        return chaptersList();
+        if (chaptersList().length > 0) {
+          return chaptersList();
+        } else {
+          return emptySearchResults;
+        }
       case "NPCs":
-        return npcsList();
+        if (npcsList().length > 0) {
+          return npcsList();
+        } else {
+          return emptySearchResults;
+        }
       case "Monsters":
-        return monstersList();
+        if (monstersList().length > 0) {
+          return monstersList();
+        } else {
+          return emptySearchResults;
+        }
       case "Locations":
-        return locationsList();
+        if (locationsList().length > 0) {
+          return locationsList();
+        } else {
+          return emptySearchResults;
+        }
       default:
         return chaptersList();
     }
@@ -234,33 +247,10 @@ const ContentWrapperLeft = (props) => {
   return (
     <div className={`${classes.ContentWrapper} ${classes.WrapperLeft}`}>
       <h1>Adventure Title</h1>
-      <section className={classes.Tabs}>
-        <Tab
-          contentType={"Chapters"}
-          clicked={() => clickTabHandler("Chapters")}
-        >
-          <i className="fas fa-bookmark"></i>
-          Chapters
-        </Tab>
-        <Tab contentType={"NPCs"} clicked={() => clickTabHandler("NPCs")}>
-          <i className="fas fa-user"></i>
-          NPC's
-        </Tab>
-        <Tab
-          contentType={"Monsters"}
-          clicked={() => clickTabHandler("Monsters")}
-        >
-          <i className="fas fa-dragon"></i>
-          Monsters
-        </Tab>
-        <Tab
-          contentType={"Locations"}
-          clicked={() => clickTabHandler("Locations")}
-        >
-          <i className="fas fa-map-marked-alt"></i>
-          Locations
-        </Tab>
-      </section>
+      <TabsContainer
+        tabsContainerClasses={classes.Tabs}
+        cancelEditingCard={cancelEditingExistingCard}
+      />
       <hr className={classes.TabDivider} />
       <section className={classes.CardToolbar}>
         <Inputbar
@@ -280,9 +270,7 @@ const ContentWrapperLeft = (props) => {
         </Button>
       </section>
       {activeNewContentCardHandler()}
-      <section className={classes.CardsContainer}>
-        {activeContentHandler()}
-      </section>
+      <section id="CardsContainer">{activeContentHandler()}</section>
     </div>
   );
 };
