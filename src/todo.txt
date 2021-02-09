@@ -1,7 +1,5 @@
 - empty state for search results
-- have different empty state if there are no items in the database,
-
-- check and optimize a bit
+- have different empty state if there are no items in the database -> "add some chapters"
 
 - Create are you sure modal
 - Implement are you sure modal
@@ -73,6 +71,10 @@ X - change all remove/add NPC functions to remove/add Card
 X - icons in chaptercards based on how many unique mentions are in them
 X - add things to AddingCategoryChecklist.md
 X - hover on mentiontokens
+
+9-2-2021
+X - tabs in seperate component
+X - check and optimize a bit
 
 
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">

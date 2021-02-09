@@ -208,35 +208,59 @@ const ContentWrapperLeft = (props) => {
           ) : null;
         });
     };
+
+    const noItemsYet = (
+      <h4>
+        Add some {props.activeTab.toLowerCase()} by clicking the purple button
+        above.
+      </h4>
+    );
+
     const emptySearchResults = (
       <h4>No {props.activeTab.toLowerCase()} found.</h4>
     );
 
     switch (props.activeTab) {
       case "Chapters":
+        if (props.chapters.length === 1 && addingChapter === false) {
+          return noItemsYet;
+        }
         if (chaptersList().length > 0) {
           return chaptersList();
-        } else {
+        } else if (addingChapter === false) {
           return emptySearchResults;
         }
+        break;
       case "NPCs":
+        if (props.npcs.length === 1 && addingNPC === false) {
+          return noItemsYet;
+        }
         if (npcsList().length > 0) {
           return npcsList();
-        } else {
+        } else if (addingNPC === false) {
           return emptySearchResults;
         }
+        break;
       case "Monsters":
+        if (props.monsters.length === 1 && addingMonster === false) {
+          return noItemsYet;
+        }
         if (monstersList().length > 0) {
           return monstersList();
-        } else {
+        } else if (addingMonster === false) {
           return emptySearchResults;
         }
+        break;
       case "Locations":
+        if (props.locations.length === 1 && addingLocation === false) {
+          return noItemsYet;
+        }
         if (locationsList().length > 0) {
           return locationsList();
-        } else {
+        } else if (addingLocation === false) {
           return emptySearchResults;
         }
+        break;
       default:
         return chaptersList();
     }
@@ -287,10 +311,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    activeTabHandler: (contentType) => dispatch(actions.activeTab(contentType)),
-    sortContentHandler: () => dispatch(actions.sortContent()),
-    closeCardsHandler: (newActiveTab) =>
-      dispatch(actions.closeCards(newActiveTab))
+    sortContentHandler: () => dispatch(actions.sortContent())
   };
 };
 

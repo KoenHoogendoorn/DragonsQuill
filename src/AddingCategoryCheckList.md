@@ -116,10 +116,6 @@ switch statement:
   - map through props.category with Card component
 - add the categoryList to switch statement at the bottom
 
-### Tab
-
-- add tab component with contentType and clickTabHandler
-
 ### mapStateToProps
 
 - category: state.contentData.category
@@ -185,3 +181,7 @@ switch statement:
 ### colors
 
 - add main and bg color for icons
+
+# 10. TabsContainer
+
+- add tab component with contentType and clickTabHandler
