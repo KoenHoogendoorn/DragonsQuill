@@ -61,7 +61,8 @@ const NPC = (props) => {
         <CardBody id={props.id}>
           <div dangerouslySetInnerHTML={{ __html: props.content }}></div>
           <CardToolbar
-            onDelete={() => props.removeCardHandler(props.id)}
+            // onDelete={() => props.removeCardHandler(props.id)}
+            onDelete={props.onDeleteClick}
             onEdit={props.onEditClick}
           />
         </CardBody>

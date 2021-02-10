@@ -1,8 +1,6 @@
-- empty state for search results
-- have different empty state if there are no items in the database -> "add some chapters"
 
-- Create are you sure modal
-- Implement are you sure modal
+
+- Delete chapters
 
 - firebase setup
 - log in page
@@ -24,6 +22,7 @@
 Not that important right now:
 - renaming NPCs to general cards
 - show headers after typing in mention
+- animation when card gets deleted
 
 Maybe:
 - content card groups
@@ -75,6 +74,12 @@ X - hover on mentiontokens
 9-2-2021
 X - tabs in seperate component
 X - check and optimize a bit
+X - empty state for search results
+X - have different empty state if there are no items in the database -> "add some chapters"
+
+10-2-2021
+X - Create delete this item modal
+X - Implement are you sure modal
 
 
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">

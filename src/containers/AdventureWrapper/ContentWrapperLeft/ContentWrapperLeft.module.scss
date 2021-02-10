@@ -37,6 +37,23 @@
     color: $clr-silverChalice;
   }
 }
+.DeleteItemModalContent {
+  h4 {
+    margin-top: 8px;
+  }
+
+  .DeleteItemModalButtons {
+    margin-top: 16px;
+
+    :first-child {
+      margin-right: 4px;
+    }
+
+    :last-child {
+      margin-left: 4px;
+    }
+  }
+}
 
 @media screen and (max-width: 960px) {
   .CardToolbar {

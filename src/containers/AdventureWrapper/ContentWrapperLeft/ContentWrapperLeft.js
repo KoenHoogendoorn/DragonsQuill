@@ -10,6 +10,9 @@ import Chapter from "../../../components/Chapter/Chapter";
 import NPC from "../../../components/NPC/NPC";
 import NPCEditor from "../../../components/NPC/NPCEditor/NPCEditor";
 import TabsContainer from "./TabsContainer/TabsContainer";
+import Modal from "../../../components/Modal/Modal";
+
+import DeleteItemIllustration from "../../../assets/illustrations/DeleteItemIllustration";
 
 import * as actions from "../../../store/actions/actionsIndex";
 
@@ -27,6 +30,12 @@ const ContentWrapperLeft = (props) => {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [currentItem, setCurrentItem] = useState(initialItemState);
+  const [deleting, setDeleting] = useState(false);
+  const [toBeDeletedItem, setToBeDeletedItem] = useState({
+    id: "",
+    name: ""
+  });
+
   const [addingChapter, setAddingChapter] = useState(false);
   const [addingNPC, setAddingNPC] = useState(false);
   const [addingMonster, setAddingMonster] = useState(false);
@@ -107,6 +116,31 @@ const ContentWrapperLeft = (props) => {
     }
   };
 
+  const openDeleteItemModal = (id, name) => {
+    setToBeDeletedItem({
+      id: id,
+      name: name
+    });
+    setDeleting(true);
+  };
+
+  const closeDeleteItemModal = (id, name) => {
+    setToBeDeletedItem({
+      id: "",
+      name: ""
+    });
+    setDeleting(false);
+  };
+
+  const deleteItemHandler = () => {
+    props.removeCardHandler(toBeDeletedItem.id);
+    setToBeDeletedItem({
+      id: "",
+      name: ""
+    });
+    setDeleting(false);
+  };
+
   const activeContentHandler = () => {
     const chaptersList = () => {
       return props.chapters
@@ -143,6 +177,7 @@ const ContentWrapperLeft = (props) => {
               description={npc.description}
               content={npc.content}
               open={npc.open}
+              onDeleteClick={() => openDeleteItemModal(npc.id, npc.value)}
               onEditClick={() => editItemHandler(npc)}
             />
           ) : null;
@@ -172,6 +207,9 @@ const ContentWrapperLeft = (props) => {
               description={monster.description}
               content={monster.content}
               open={monster.open}
+              onDeleteClick={() =>
+                openDeleteItemModal(monster.id, monster.value)
+              }
               onEditClick={() => editItemHandler(monster)}
             />
           ) : null;
@@ -203,6 +241,9 @@ const ContentWrapperLeft = (props) => {
               description={location.description}
               content={location.content}
               open={location.open}
+              onDeleteClick={() =>
+                openDeleteItemModal(location.id, location.value)
+              }
               onEditClick={() => editItemHandler(location)}
             />
           ) : null;
@@ -266,36 +307,67 @@ const ContentWrapperLeft = (props) => {
     }
   };
 
+  const deleteItemModalContent = (
+    <div className={classes.DeleteItemModalContent}>
+      <DeleteItemIllustration />
+      <h4>Delete '{toBeDeletedItem.name}'?</h4>
+      <p>It can't be recovered.</p>
+      <div className={classes.DeleteItemModalButtons}>
+        <Button
+          size="medium"
+          priority="secondary"
+          clicked={() => closeDeleteItemModal()}
+        >
+          <i className="fas fa-ban"></i>
+          Cancel
+        </Button>
+        <Button
+          size="medium"
+          priority="primary"
+          clicked={() => deleteItemHandler()}
+        >
+          <i className="far fa-trash-alt"></i>
+          Delete
+        </Button>
+      </div>
+    </div>
+  );
+
   let buttonText = "Add " + props.activeTab.slice(0, -1);
 
   return (
-    <div className={`${classes.ContentWrapper} ${classes.WrapperLeft}`}>
-      <h1>Adventure Title</h1>
-      <TabsContainer
-        tabsContainerClasses={classes.Tabs}
-        cancelEditingCard={cancelEditingExistingCard}
-      />
-      <hr className={classes.TabDivider} />
-      <section className={classes.CardToolbar}>
-        <Inputbar
-          type="search"
-          placeholder={`Search for ${props.activeTab}...`}
-          val={searchTerm}
-          changed={editSearchTerm}
+    <React.Fragment>
+      <Modal show={deleting} modalClosed={() => setDeleting(false)}>
+        {deleteItemModalContent}
+      </Modal>
+      <div className={`${classes.ContentWrapper} ${classes.WrapperLeft}`}>
+        <h1>Adventure Title</h1>
+        <TabsContainer
+          tabsContainerClasses={classes.Tabs}
+          cancelEditingCard={cancelEditingExistingCard}
         />
-        <i className={`fas fa-search ${classes.SearchIcon}`}></i>
-        <Button
-          size="big"
-          priority="primary"
-          clicked={() => newContentButtonHandler()}
-        >
-          <i className="fas fa-plus"></i>
-          {buttonText}
-        </Button>
-      </section>
-      {activeNewContentCardHandler()}
-      <section id="CardsContainer">{activeContentHandler()}</section>
-    </div>
+        <hr className={classes.TabDivider} />
+        <section className={classes.CardToolbar}>
+          <Inputbar
+            type="search"
+            placeholder={`Search for ${props.activeTab}...`}
+            val={searchTerm}
+            changed={editSearchTerm}
+          />
+          <i className={`fas fa-search ${classes.SearchIcon}`}></i>
+          <Button
+            size="big"
+            priority="primary"
+            clicked={() => newContentButtonHandler()}
+          >
+            <i className="fas fa-plus"></i>
+            {buttonText}
+          </Button>
+        </section>
+        {activeNewContentCardHandler()}
+        <section id="CardsContainer">{activeContentHandler()}</section>
+      </div>
+    </React.Fragment>
   );
 };
 
@@ -311,7 +383,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    sortContentHandler: () => dispatch(actions.sortContent())
+    sortContentHandler: () => dispatch(actions.sortContent()),
+    removeCardHandler: (id) => dispatch(actions.removeCard(id))
   };
 };
 
