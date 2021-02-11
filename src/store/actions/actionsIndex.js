@@ -7,5 +7,5 @@ export {
   removeCard,
   addCard,
   closeCards,
-  addToMentionCounters
+  changeMentionCounters
 } from "./contentData";

@@ -46,7 +46,9 @@ class ContentWrapperRight extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      width: window.innerWidth
+      width: window.innerWidth,
+      chapterTextUpdate: "",
+      mentionIdsArray: null
     };
   }
 
@@ -95,7 +97,6 @@ class ContentWrapperRight extends Component {
     MentionBlot.onClick = (id) => {
       this.props.highlightCardHandler(id);
       let clickedItem = null;
-      // this.props.addToMentionCountersHandler(id, this.props.activeChapterId);
 
       const clickCardHandler = (clickedItem) => {
         if (clickedItem.open) {
@@ -185,6 +186,31 @@ class ContentWrapperRight extends Component {
     if (this.state.width <= 1480) {
       wrapperRightBlock.style.width = (this.state.width * 0.9) / 2 + "px";
     }
+
+    // loop through value of activeChapter, find and extract ids and add them to redux state
+    if (
+      prevState[this.props.activeChapterId] !==
+      this.state[this.props.activeChapterId]
+    ) {
+      const chapterValueSplitted = this.state[this.props.activeChapterId].split(
+        " "
+      );
+      let dataMentionIds = chapterValueSplitted.filter(
+        (item) => item.substring(0, 8) === "data-id="
+      );
+      const mentionIds = dataMentionIds.map((item) =>
+        item.slice(9, item.length - 1)
+      );
+      this.setState({ mentionIdsArray: mentionIds });
+    }
+
+    if (prevState.mentionIdsArray !== this.state.mentionIdsArray) {
+      this.props.changeMentionCountersHandler(
+        this.state.mentionIdsArray,
+        this.props.activeChapterId
+      );
+    }
+
     // if an npc gets deleted, copy the name and remove the mention. Place name where mention would be.
     if (this.props.npcs.length < prevProps.npcs.length) {
       const deletedId = this.findDeletedValueType(
@@ -192,15 +218,18 @@ class ContentWrapperRight extends Component {
         this.props.npcs,
         "id"
       );
+
       const deletedName = this.findDeletedValueType(
         prevProps.npcs,
         this.props.npcs,
         "value"
       );
+
       this.props.chapters.forEach((chapter) => {
         this.replaceMentionWithName(chapter.id, deletedId, deletedName);
       });
     }
+
     // if an monster gets deleted, copy the name and remove the mention. Place name where mention would be.
     if (this.props.monsters.length < prevProps.monsters.length) {
       const deletedId = this.findDeletedValueType(
@@ -248,14 +277,6 @@ class ContentWrapperRight extends Component {
       }
     },
     mention: {
-      onSelect: (item, insertItem) => {
-        //this.props.toggleCardHandler(item.id); //opens card on mentioncreation
-        this.props.addToMentionCountersHandler(
-          item.id,
-          this.props.activeChapterId
-        );
-        insertItem(item);
-      },
       blotName: "dndmention",
       allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
       mentionDenotationChars: ["@"],
@@ -351,8 +372,8 @@ const mapDispatchToProps = (dispatch) => {
     sortContentHandler: (id) => dispatch(actions.sortContent(id)),
     closeCardsHandler: (newActiveTab) =>
       dispatch(actions.closeCards(newActiveTab)),
-    addToMentionCountersHandler: (mentionId, activeChapterId) =>
-      dispatch(actions.addToMentionCounters(mentionId, activeChapterId))
+    changeMentionCountersHandler: (mentionIds, activeChapterId) =>
+      dispatch(actions.changeMentionCounters(mentionIds, activeChapterId))
   };
 };
 

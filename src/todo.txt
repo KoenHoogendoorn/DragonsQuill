@@ -1,6 +1,8 @@
+- bug: create mention in text editor, change chapter, change back, you can't delete mention and cursor stays back 1 character
+- change all related mentions if character name is edited
+- make sure empty names can't be submitted
 
-
-- Delete chapters
+- Delete chapters/edit name -> elipses + dropdown
 
 - firebase setup
 - log in page
@@ -79,7 +81,11 @@ X - have different empty state if there are no items in the database -> "add som
 
 10-2-2021
 X - Create delete this item modal
-X - Implement are you sure modal
+X - Implement are you sure modal + illustration
+X - Dragons Quill logo design
+
+11-02-2021
+X - remove token if deleted from chapterEditor
 
 
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">

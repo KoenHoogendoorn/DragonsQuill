@@ -46,8 +46,8 @@ const DeleteItemIllustration = (props) => {
           y2="41.5816"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#673AB7" />
-          <stop offset="1" stop-color="#351E61" />
+          <stop stopColor="#673AB7" />
+          <stop offset="1" stopColor="#351E61" />
         </linearGradient>
         <linearGradient
           id="paint1_linear"
@@ -57,8 +57,9 @@ const DeleteItemIllustration = (props) => {
           y2="25.3456"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#6036AC" />
-          <stop offset="1" stop-color="#532F95" />
+          {/* <stop stop-color="#6036AC" /> */}
+          <stop stopColor="#6036AC" />
+          <stop offset="1" stopColor="#532F95" />
         </linearGradient>
       </defs>
     </svg>

@@ -404,35 +404,30 @@ const reducer = (state = initialState, action) => {
       };
       return updateObject(state, updatedState6);
 
-    case "ADD_TO_MENTION_COUNTERS":
+    case "CHANGE_MENTION_COUNTERS":
       let chapters7 = state.chapters.slice();
       const editedChapter = chapters7.find(
         (chapter) => chapter.id === action.activeChapterId
       );
 
-      switch (action.mentionId.substring(0, 2)) {
-        case "np":
-          //add id to array if it isn't already in there
-          if (!editedChapter.mentionIds.npc.includes(action.mentionId)) {
-            editedChapter.mentionIds.npc.push(action.mentionId);
-            updateObject(chapters7, editedChapter);
-          }
-          break;
-        case "mo":
-          if (!editedChapter.mentionIds.monster.includes(action.mentionId)) {
-            editedChapter.mentionIds.monster.push(action.mentionId);
-            updateObject(chapters7, editedChapter);
-          }
-          break;
-        case "lo":
-          if (!editedChapter.mentionIds.location.includes(action.mentionId)) {
-            editedChapter.mentionIds.location.push(action.mentionId);
-            updateObject(chapters7, editedChapter);
-          }
-          break;
-        default:
-          break;
-      }
+      const mentionIds = action.mentionIds;
+
+      const npcMentions = mentionIds.filter(
+        (id) => id.substring(0, 2) === "np"
+      );
+      editedChapter.mentionIds.npc = npcMentions;
+
+      const monsterMentions = mentionIds.filter(
+        (id) => id.substring(0, 2) === "mo"
+      );
+      editedChapter.mentionIds.monster = monsterMentions;
+
+      const locationMentions = mentionIds.filter(
+        (id) => id.substring(0, 2) === "lo"
+      );
+      editedChapter.mentionIds.location = locationMentions;
+
+      updateObject(chapters7, editedChapter);
 
       const updatedState7 = {
         chapters: chapters7

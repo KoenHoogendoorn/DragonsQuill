@@ -13,12 +13,7 @@ const Chapter = (props) => {
       props.id === chapter.id
         ? chapter.mentionIds[contentType].map((mentionId) => {
             return (
-              <MentionToken
-                key={mentionId}
-                id={mentionId}
-                type={contentType}
-                // hover={() => mentionTokenHover()}
-              />
+              <MentionToken key={mentionId} id={mentionId} type={contentType} />
             );
           })
         : null

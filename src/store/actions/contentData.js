@@ -39,10 +39,19 @@ export const closeCards = (newActiveTab) => {
   };
 };
 
-export const addToMentionCounters = (mentionId, activeChapterId) => {
+export const changeMentionCounters = (mentionIds, activeChapterId) => {
   return {
-    type: "ADD_TO_MENTION_COUNTERS",
-    mentionId: mentionId,
+    type: "CHANGE_MENTION_COUNTERS",
+    mentionIds: mentionIds,
     activeChapterId: activeChapterId
   };
 };
+
+// export const changeMentionCounters = (mentionId, activeChapterId, addition) => {
+//   return {
+//     type: "CHANGE_MENTION_COUNTERS",
+//     mentionId: mentionId,
+//     activeChapterId: activeChapterId,
+//     addition: addition
+//   };
+// };
