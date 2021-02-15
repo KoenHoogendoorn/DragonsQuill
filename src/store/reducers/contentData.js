@@ -433,7 +433,6 @@ const reducer = (state = initialState, action) => {
         chapters: chapters7
       };
       return updateObject(state, updatedState7);
-
     default:
       return state;
   }

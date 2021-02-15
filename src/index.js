@@ -10,6 +10,7 @@ import thunk from "redux-thunk";
 import contentDataReducer from "./store/reducers/contentData";
 import activeTabReducer from "./store/reducers/activeTab";
 import activeChapterIdReducer from "./store/reducers/activeChapterId";
+import editedNameReducer from "./store/reducers/editedName";
 
 const composeEnhancers =
   process.env.NODE_ENV === "development"
@@ -20,7 +21,8 @@ const composeEnhancers =
 const rootReducer = combineReducers({
   contentData: contentDataReducer,
   activeTab: activeTabReducer,
-  activeChapterId: activeChapterIdReducer
+  activeChapterId: activeChapterIdReducer,
+  editedName: editedNameReducer
 });
 
 const store = createStore(

@@ -48,7 +48,7 @@ class ContentWrapperRight extends Component {
     this.state = {
       width: window.innerWidth,
       chapterTextUpdate: "",
-      mentionIdsArray: null
+      mentionIdsArray: 0
     };
   }
 
@@ -180,7 +180,52 @@ class ContentWrapperRight extends Component {
     this.setState({ [chapterId]: spans });
   }
 
+  editMentionNameInEditor(activeChapterId) {
+    // let currState = this.state[activeChapterId].slice();
+    const oldName = this.props.editedName.oldName;
+    const newName = this.props.editedName.newName;
+    const toBeEditedId = this.props.editedName.id;
+    const oldString =
+      'data-id="' +
+      toBeEditedId +
+      '" data-value="' +
+      oldName +
+      '">\uFEFF<span contenteditable="false">' +
+      oldName +
+      "</span>";
+    const newString =
+      'data-id="' +
+      toBeEditedId +
+      '" data-value="' +
+      newName +
+      '">\uFEFF<span contenteditable="false">' +
+      newName +
+      "</span>";
+
+    //loop through all chapters
+    //find all instances of the html in the current state and
+    //replace the name in data-value and innerHtml
+    Object.keys(this.state).forEach((property) => {
+      if (property.substring(0, 2) === "ch") {
+        const updatedState = this.state[property].replace(
+          new RegExp(oldString, "g"),
+          newString
+        );
+        this.setState({ [property]: updatedState });
+      }
+    });
+  }
+
   componentDidUpdate(prevProps, prevState) {
+    const activeChapterId = this.props.activeChapterId;
+    if (
+      prevProps.editedName.id !== this.props.editedName.id &&
+      this.props.editedName.id !== ""
+    ) {
+      this.editMentionNameInEditor(activeChapterId);
+      this.props.editedNameHandler("", "", ""); //reset editedNameHandler so this function doesn't repeat
+    }
+
     // set width to fixed item (editor)
     const wrapperRightBlock = document.getElementById("WrapperRightBlock");
     if (this.state.width <= 1480) {
@@ -188,13 +233,8 @@ class ContentWrapperRight extends Component {
     }
 
     // loop through value of activeChapter, find and extract ids and add them to redux state
-    if (
-      prevState[this.props.activeChapterId] !==
-      this.state[this.props.activeChapterId]
-    ) {
-      const chapterValueSplitted = this.state[this.props.activeChapterId].split(
-        " "
-      );
+    if (prevState[activeChapterId] !== this.state[activeChapterId]) {
+      const chapterValueSplitted = this.state[activeChapterId].split(" ");
       let dataMentionIds = chapterValueSplitted.filter(
         (item) => item.substring(0, 8) === "data-id="
       );
@@ -203,11 +243,10 @@ class ContentWrapperRight extends Component {
       );
       this.setState({ mentionIdsArray: mentionIds });
     }
-
     if (prevState.mentionIdsArray !== this.state.mentionIdsArray) {
       this.props.changeMentionCountersHandler(
         this.state.mentionIdsArray,
-        this.props.activeChapterId
+        activeChapterId
       );
     }
 
@@ -345,6 +384,7 @@ class ContentWrapperRight extends Component {
             placeholder="Start writing here..."
             formats={this.formats}
             value={this.state[this.props.activeChapterId]}
+            preserveWhitespace={true}
           />
         </div>
       </div>
@@ -360,7 +400,8 @@ const mapStateToProps = (state) => {
     monsters: state.contentData.monsters,
     chapters: state.contentData.chapters,
     locations: state.contentData.locations,
-    activeChapterId: state.activeChapterId.activeChapterId
+    activeChapterId: state.activeChapterId.activeChapterId,
+    editedName: state.editedName
   };
 };
 
@@ -373,7 +414,9 @@ const mapDispatchToProps = (dispatch) => {
     closeCardsHandler: (newActiveTab) =>
       dispatch(actions.closeCards(newActiveTab)),
     changeMentionCountersHandler: (mentionIds, activeChapterId) =>
-      dispatch(actions.changeMentionCounters(mentionIds, activeChapterId))
+      dispatch(actions.changeMentionCounters(mentionIds, activeChapterId)),
+    editedNameHandler: (oldName, newName, id) =>
+      dispatch(actions.editedName(oldName, newName, id))
   };
 };
 

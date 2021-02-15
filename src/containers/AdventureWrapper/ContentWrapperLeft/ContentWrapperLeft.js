@@ -67,7 +67,7 @@ const ContentWrapperLeft = (props) => {
     }
   };
 
-  const cancelEditingExistingCard = () => {
+  const cancelEditingCard = () => {
     setCurrentItem(initialItemState);
     switch (props.activeTab) {
       case "Chapters":
@@ -85,17 +85,33 @@ const ContentWrapperLeft = (props) => {
 
   const activeNewContentCardHandler = () => {
     if (addingChapter || addingNPC || addingMonster || addingLocation) {
-      return (
-        <NPCEditor
-          id={currentItem.id}
-          key={currentItem.id}
-          value={currentItem.value}
-          description={currentItem.description}
-          content={currentItem.content}
-          open={currentItem.open}
-          removeNewNNPCCard={() => cancelEditingExistingCard()}
-        />
-      );
+      if (currentItem.id !== initialItemState.id) {
+        return (
+          <NPCEditor
+            id={currentItem.id}
+            key={currentItem.id}
+            value={currentItem.value}
+            description={currentItem.description}
+            content={currentItem.content}
+            open={currentItem.open}
+            editingExistingNPC={true}
+            removeNewNNPCCard={() => cancelEditingCard()}
+          />
+        );
+      } else {
+        return (
+          <NPCEditor
+            id={currentItem.id}
+            key={currentItem.id}
+            value={currentItem.value}
+            description={currentItem.description}
+            content={currentItem.content}
+            open={currentItem.open}
+            editingExistingNPC={false}
+            removeNewNNPCCard={() => cancelEditingCard()}
+          />
+        );
+      }
     } else {
       return null;
     }
@@ -344,7 +360,7 @@ const ContentWrapperLeft = (props) => {
         <h1>Adventure Title</h1>
         <TabsContainer
           tabsContainerClasses={classes.Tabs}
-          cancelEditingCard={cancelEditingExistingCard}
+          cancelEditingCard={cancelEditingCard}
         />
         <hr className={classes.TabDivider} />
         <section className={classes.CardToolbar}>

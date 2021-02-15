@@ -20,75 +20,76 @@ class NPCEditor extends Component {
       value: "",
       description: "",
       content: null,
-      open: false,
-      editingExistingNPC: false
+      open: false
     };
+
     this.quillRef = null; // Quill instance
     this.reactQuillRef = null; // ReactQuill component
   }
 
   componentDidMount() {
-    //Fill state with clicked item props
-    if (this.props.id !== "") {
-      this.setState((state, props) => ({
-        id: props.id,
-        key: props.id,
-        value: props.value,
-        description: props.description,
-        content: props.content,
-        open: false,
-        editingExistingNPC: true
-      }));
-    }
-    //Creates and sets new id and key
-    if (!this.state.editingExistingNPC) {
-      const Chapters = this.props.chapters;
-      const NPCs = this.props.npcs;
-      const Monsters = this.props.npcs;
-      const Locations = this.props.locations;
-      let idNumbers = null;
-      let currentIdPrefix = null;
-      switch (this.props.activeTab) {
-        case "Chapters":
-          idNumbers = Chapters.map((chapter) => chapter.id).map((id) => {
-            return Number(id.substring(2));
-          });
-          currentIdPrefix = "ch";
-          break;
-        case "NPCs":
-          idNumbers = NPCs.map((npc) => npc.id).map((id) => {
-            return Number(id.substring(2));
-          });
-          currentIdPrefix = "np";
-          break;
-        case "Monsters":
-          idNumbers = Monsters.map((monster) => monster.id).map((id) => {
-            return Number(id.substring(2));
-          });
-          currentIdPrefix = "mo";
-          break;
-        case "Locations":
-          idNumbers = Locations.map((location) => location.id).map((id) => {
-            return Number(id.substring(2));
-          });
-          currentIdPrefix = "lo";
-          break;
-        default:
-          break;
-      }
-
-      const generatedIdNumber = Math.max(...idNumbers) + 1; //gets Id with highest number at the end and add 1
-      const generatedId = currentIdPrefix.concat(generatedIdNumber.toString());
-
-      this.setState({ id: generatedId, key: generatedId });
-    }
+    this.setState({
+      id: this.props.id,
+      key: this.props.key,
+      value: this.props.value,
+      description: this.props.description,
+      content: this.props.content,
+      open: this.props.open,
+      editingExistingNPC: this.props.editingExistingNPC
+    });
 
     if (this.props.activeTab !== "Chapters") {
       this.attachQuillRefs();
     }
   }
 
+  generateId = () => {
+    //Creates and sets new id and key
+    const Chapters = this.props.chapters;
+    const NPCs = this.props.npcs;
+    const Monsters = this.props.npcs;
+    const Locations = this.props.locations;
+    let idNumbers = null;
+    let currentIdPrefix = null;
+    switch (this.props.activeTab) {
+      case "Chapters":
+        idNumbers = Chapters.map((chapter) => chapter.id).map((id) => {
+          return Number(id.substring(2));
+        });
+        currentIdPrefix = "ch";
+        break;
+      case "NPCs":
+        idNumbers = NPCs.map((npc) => npc.id).map((id) => {
+          return Number(id.substring(2));
+        });
+        currentIdPrefix = "np";
+        break;
+      case "Monsters":
+        idNumbers = Monsters.map((monster) => monster.id).map((id) => {
+          return Number(id.substring(2));
+        });
+        currentIdPrefix = "mo";
+        break;
+      case "Locations":
+        idNumbers = Locations.map((location) => location.id).map((id) => {
+          return Number(id.substring(2));
+        });
+        currentIdPrefix = "lo";
+        break;
+      default:
+        break;
+    }
+
+    const generatedIdNumber = Math.max(...idNumbers) + 1; //gets Id with highest number at the end and add 1
+    const generatedId = currentIdPrefix.concat(generatedIdNumber.toString());
+
+    this.setState({ id: generatedId, key: generatedId });
+  };
+
   componentDidUpdate() {
+    if (this.state.id === "") {
+      this.generateId();
+    }
     if (this.props.activeTab !== "Chapters") {
       this.attachQuillRefs();
     }
@@ -167,7 +168,15 @@ class NPCEditor extends Component {
   handleSave = () => {
     if (this.state.editingExistingNPC) {
       //remove old copied item
-      this.props.removeCardHandler(this.props.id);
+      this.props.removeCardHandler(this.state.id);
+      //triggers editMentionNameInEditor() in ContentWrapperRight when name changes
+      if (this.props.value !== this.state.value) {
+        this.props.editedNameHandler(
+          this.props.value,
+          this.state.value,
+          this.state.id
+        );
+      }
     }
     if (this.props.activeTab === "Chapters") {
       this.props.addCardHandler({
@@ -292,7 +301,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     removeCardHandler: (id) => dispatch(actions.removeCard(id)),
     addCardHandler: (itemData) => dispatch(actions.addCard(itemData)),
-    sortContentHandler: (id) => dispatch(actions.sortContent(id))
+    sortContentHandler: (id) => dispatch(actions.sortContent(id)),
+    editedNameHandler: (oldName, newName, id) =>
+      dispatch(actions.editedName(oldName, newName, id))
   };
 };
 

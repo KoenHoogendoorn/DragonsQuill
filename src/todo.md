@@ -1,6 +1,7 @@
-- bug: create mention in text editor, change chapter, change back, you can't delete mention and cursor stays back 1 character
-- change all related mentions if character name is edited
-- make sure empty names can't be submitted
+# To do:
+
+- only show 1 mentiontoken per mentionId in chapter
+- make sure empty names can't be submitted or change value after they're submitted to 'untitled' or smt
 
 - Delete chapters/edit name -> elipses + dropdown
 
@@ -21,73 +22,99 @@
 
 - mentiondropdown searching for 'monsters' will show only the label
 
-Not that important right now:
+## Not that important right now:
+
 - renaming NPCs to general cards
 - show headers after typing in mention
 - animation when card gets deleted
 
-Maybe:
+## Maybe:
+
 - content card groups
 - add/remove categories
 
-DONE
+# DONE
+
+## past
+
 X - 1. hernoemen heeft de addCardHandler argument aangepast, maar kan niet meer terugkijken in de timeline omdat de naam is aangepast.
 X - 4. support longer title + descriptions
 X - 5. check CardHeaderContainer class in NPCEditor
 X - 6. delete npc
-X - 7. handle change delete to cancel if editing and not creating in NPCEditor 
+X - 7. handle change delete to cancel if editing and not creating in NPCEditor
 X - 3. items worden gedupliceerd bij het opslaan na editen, de oude moet weg.
 X - 2. na het saven van bestaande npcs, blijft de open property op true. ook als ze open staan, en je switcht van tab
-X - 8. change delete button label to cancel if editing and not creating in NPCEditor 
+X - 8. change delete button label to cancel if editing and not creating in NPCEditor
 X - icons in tabs
 X - fixed editor -> set width
 X - long names in mention dropdown
 X - mention dropdown style
-X - monster cards 
+X - monster cards
 
-2-2-2021
+## 2-2-2021
+
 X - filtering in mention isn't working correctly, if @g, syka shows up
 X - check/give cap to mentions dropdown
 
-3-2-2021
+## 3-2-2021
+
 x - change css to scss
 X - add/remove chapter cards
 
-4-2-2021
-x - search icon in search bar 
+## 4-2-2021
 
-5-2-2021
+x - search icon in search bar
+
+## 5-2-2021
+
 X - Make sure the function runs through all chapters, not just ch1 -> remove links but keep text of mentions if item is deleted --> CHECK IF IT WORKS IF CHAPTER IS NOT ACTIVE
 
-6-2-2021
+## 6-2-2021
+
 X - check udemy course on how to add props to useEffect dependency that only mounts on init
 X - location cards
 X - write down what needs to be edited for adding a category
 X - change placeholder texts for different categories
 
-7-2-2021
+## 7-2-2021
+
 X - change all remove/add NPC functions to remove/add Card
 
-8-2-2021
+## 8-2-2021
+
 X - icons in chaptercards based on how many unique mentions are in them
 X - add things to AddingCategoryChecklist.md
 X - hover on mentiontokens
 
-9-2-2021
+## 9-2-2021
+
 X - tabs in seperate component
 X - check and optimize a bit
 X - empty state for search results
 X - have different empty state if there are no items in the database -> "add some chapters"
 
-10-2-2021
+## 10-2-2021
+
 X - Create delete this item modal
 X - Implement are you sure modal + illustration
 X - Dragons Quill logo design
 
-11-02-2021
+## 11-02-2021
+
 X - remove token if deleted from chapterEditor
+X - bug: create mention in text editor, change chapter, change back, you can't delete mention and cursor stays back 1 character
 
+## 12-02-2021
 
+X - bug: when editing/saving an existing npc, the id isn't transfered, a new one is created
+
+## 13-02-2021
+
+X - change all related mentions if character name is edited
+(Op dit moment pas ik de edited property aan van het item wat ge edit is. Dit is niet praktisch omdat ik dan in ContentWrapperRight weer door alle data heen moet loopen, ipv dat ik direct de goede naam/id stuur naar de editMentionNameInEditor functie in ContentWrapperRight.)
+X - only change mention names if the name changed and loop through all chapters
+
+<!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">
   <p>
     aiwejfoiaw
@@ -97,18 +124,18 @@ X - remove token if deleted from chapterEditor
           Esmee Gluttonbelly
         </span>
       &#65279;
-    </span> 
-    dsidjfoaiwefj 
+    </span>
+    dsidjfoaiwefj
     <span class="dndmention" data-index="3" data-denotation-char="" data-id="np4" data-value="Falmo">
       &#65279;
         <span contenteditable="false">
           Falmo
         </span>
       &#65279;
-    </span> 
-    zdfwef 
+    </span>
+    zdfwef
     </p>
-  </div> 
+  </div>
 
 
   old replacement of mentions:
@@ -130,4 +157,4 @@ X - remove token if deleted from chapterEditor
         }
       }
     }
-  }
+  } -->
