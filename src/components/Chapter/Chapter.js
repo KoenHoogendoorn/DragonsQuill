@@ -9,15 +9,19 @@ import MentionToken from "./ChapterMentionTokens/MentionToken";
 
 const Chapter = (props) => {
   const MentionTokens = (contentType) => {
-    return props.chapters.map((chapter) =>
-      props.id === chapter.id
-        ? chapter.mentionIds[contentType].map((mentionId) => {
-            return (
-              <MentionToken key={mentionId} id={mentionId} type={contentType} />
-            );
-          })
-        : null
-    );
+    return props.chapters.map((chapter) => {
+      if (props.id === chapter.id) {
+        const currentMentionIdArray = chapter.mentionIds[contentType];
+        const distinctMentionIds = [...new Set(currentMentionIdArray)];
+        return distinctMentionIds.map((mentionId) => {
+          return (
+            <MentionToken key={mentionId} id={mentionId} type={contentType} />
+          );
+        });
+      } else {
+        return null;
+      }
+    });
   };
 
   return (
