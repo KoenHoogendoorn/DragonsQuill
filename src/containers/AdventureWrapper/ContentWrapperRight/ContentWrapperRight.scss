@@ -56,13 +56,14 @@
 
 .ql-mention-list {
   max-height: 400px;
-  overflow: auto;
+  overflow-y: scroll;
 }
 
 .ql-mention-list-item {
   padding-top: 12px;
   padding-bottom: 12px;
   line-height: 1.5;
+  white-space: pre-line;
   overflow-wrap: break-word;
 }
 
@@ -76,8 +77,4 @@
   font-weight: bold;
   color: $clr-secondary-txt;
   background-color: $clr-mercury;
-}
-
-.Deleted {
-  color: greenyellow;
 }
