@@ -1,8 +1,5 @@
 # To do:
 
-- only show 1 mentiontoken per mentionId in chapter
-- make sure empty names can't be submitted or change value after they're submitted to 'untitled' or smt
-
 - Delete chapters/edit name -> elipses + dropdown
 
 - firebase setup
@@ -113,6 +110,11 @@ X - bug: when editing/saving an existing npc, the id isn't transfered, a new one
 X - change all related mentions if character name is edited
 (Op dit moment pas ik de edited property aan van het item wat ge edit is. Dit is niet praktisch omdat ik dan in ContentWrapperRight weer door alle data heen moet loopen, ipv dat ik direct de goede naam/id stuur naar de editMentionNameInEditor functie in ContentWrapperRight.)
 X - only change mention names if the name changed and loop through all chapters
+
+## 15-02-2021
+
+X - only show 1 mentiontoken per mentionId in chapter
+X - make sure empty names can't be submitted or change value after they're submitted to 'untitled' or smt
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">

@@ -10,6 +10,7 @@ import "../../../shared/quillEditorOverall.scss";
 
 import CardBackground from "../../Card/CardBackground/CardBackground";
 import NPCEditorToolbar from "./NPCEditorToolbar/NPCEditorToolbar";
+import NPCEditorWarning from "./NPCEditorWarning/NPCEditorWarning";
 
 class NPCEditor extends Component {
   constructor() {
@@ -20,7 +21,9 @@ class NPCEditor extends Component {
       value: "",
       description: "",
       content: null,
-      open: false
+      open: false,
+      fadeout: false,
+      NPCEditorWarning: false
     };
 
     this.quillRef = null; // Quill instance
@@ -92,6 +95,19 @@ class NPCEditor extends Component {
     }
     if (this.props.activeTab !== "Chapters") {
       this.attachQuillRefs();
+    }
+
+    // remove warning when value is starting to be filled with a fadeout
+    if (
+      this.state.NPCEditorWarning &&
+      this.state.value.trim() !== "" &&
+      !this.state.fadeout
+    ) {
+      this.setState({ fadeout: true });
+      setTimeout(() => {
+        this.setState({ NPCEditorWarning: false });
+        this.setState({ fadeout: false });
+      }, 175);
     }
   }
 
@@ -166,6 +182,12 @@ class NPCEditor extends Component {
   };
 
   handleSave = () => {
+    const value = this.state.value;
+    if (value.trim() === "") {
+      this.setState({ NPCEditorWarning: true });
+      return;
+    }
+
     if (this.state.editingExistingNPC) {
       //remove old copied item
       this.props.removeCardHandler(this.state.id);
@@ -246,6 +268,12 @@ class NPCEditor extends Component {
               this.reactQuillRef = el;
             }}
           />
+          {this.state.NPCEditorWarning ? (
+            <NPCEditorWarning
+              fadeout={this.state.fadeout}
+              warning={this.state.NPCEditorWarning}
+            />
+          ) : null}
           <NPCEditorToolbar
             onDelete={() => this.handleDelete()}
             onSave={() => this.handleSave()}
@@ -265,6 +293,12 @@ class NPCEditor extends Component {
             onChange={this.handleNameChange}
             placeholder="Chapter name..."
           ></input>
+          {this.state.NPCEditorWarning ? (
+            <NPCEditorWarning
+              fadeout={this.state.fadeout}
+              warning={this.state.NPCEditorWarning}
+            />
+          ) : null}
           <NPCEditorToolbar
             onDelete={() => this.handleDelete()}
             onSave={() => this.handleSave()}
@@ -275,7 +309,6 @@ class NPCEditor extends Component {
     );
 
     let editorContent = () => {
-      //this.props.activeTab === "Chapters" ? chapterEditor : NPCorMonster;
       if (this.props.activeTab === "Chapters") {
         return chapterEditor;
       } else {

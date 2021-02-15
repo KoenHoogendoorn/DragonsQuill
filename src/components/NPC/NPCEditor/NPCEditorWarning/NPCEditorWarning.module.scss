@@ -1,0 +1,20 @@
+@import "../../../../shared/variables.scss";
+
+.NPCEditorWarningContainer {
+  background-color: $clr-warning;
+  color: white;
+  font-weight: bold;
+  margin: 0 -17px;
+  border-radius: 0 0 4px 4px;
+  padding: 4px 16px;
+  opacity: 1;
+  transition: opacity 0.1s ease-out;
+
+  i {
+    margin-right: 8px;
+  }
+}
+
+.Deleted {
+  opacity: 0;
+}
