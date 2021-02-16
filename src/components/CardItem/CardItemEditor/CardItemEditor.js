@@ -5,14 +5,14 @@ import ReactQuill from "react-quill";
 import * as actions from "../../../store/actions/actionsIndex";
 
 import "react-quill/dist/quill.snow.css";
-import "./NPCEditor.scss";
+import "./CardItemEditor.scss";
 import "../../../shared/quillEditorOverall.scss";
 
-import CardBackground from "../../Card/CardBackground/CardBackground";
-import NPCEditorToolbar from "./NPCEditorToolbar/NPCEditorToolbar";
-import NPCEditorWarning from "./NPCEditorWarning/NPCEditorWarning";
+import CardBackground from "../../CardParts/CardBackground/CardBackground";
+import CardItemEditorToolbar from "./CardItemEditorToolbar/CardItemEditorToolbar";
+import CardItemEditorWarning from "./CardItemEditorWarning/CardItemEditorWarning";
 
-class NPCEditor extends Component {
+class CardItemEditor extends Component {
   constructor() {
     super();
     this.state = {
@@ -23,12 +23,17 @@ class NPCEditor extends Component {
       content: null,
       open: false,
       fadeout: false,
-      NPCEditorWarning: false
+      CardItemEditorWarning: false
     };
 
     this.quillRef = null; // Quill instance
     this.reactQuillRef = null; // ReactQuill component
   }
+
+  attachQuillRefs = () => {
+    if (typeof this.reactQuillRef.getEditor !== "function") return;
+    this.quillRef = this.reactQuillRef.getEditor();
+  };
 
   componentDidMount() {
     this.setState({
@@ -38,7 +43,7 @@ class NPCEditor extends Component {
       description: this.props.description,
       content: this.props.content,
       open: this.props.open,
-      editingExistingNPC: this.props.editingExistingNPC
+      editingExistingCardItem: this.props.editingExistingCardItem
     });
 
     if (this.props.activeTab !== "Chapters") {
@@ -99,22 +104,17 @@ class NPCEditor extends Component {
 
     // remove warning when value is starting to be filled with a fadeout
     if (
-      this.state.NPCEditorWarning &&
+      this.state.CardItemEditorWarning &&
       this.state.value.trim() !== "" &&
       !this.state.fadeout
     ) {
       this.setState({ fadeout: true });
       setTimeout(() => {
-        this.setState({ NPCEditorWarning: false });
+        this.setState({ CardItemEditorWarning: false });
         this.setState({ fadeout: false });
       }, 175);
     }
   }
-
-  attachQuillRefs = () => {
-    if (typeof this.reactQuillRef.getEditor !== "function") return;
-    this.quillRef = this.reactQuillRef.getEditor();
-  };
 
   handleNameChange = (event) => {
     this.setState({ value: event.target.value });
@@ -176,19 +176,19 @@ class NPCEditor extends Component {
       description: "",
       content: null,
       open: false,
-      editingExistingNPC: false
+      editingExistingCardItem: false
     });
-    this.props.removeNewNNPCCard();
+    this.props.removeNewCardItemCard();
   };
 
   handleSave = () => {
     const value = this.state.value;
     if (value.trim() === "") {
-      this.setState({ NPCEditorWarning: true });
+      this.setState({ CardItemEditorWarning: true });
       return;
     }
 
-    if (this.state.editingExistingNPC) {
+    if (this.state.editingExistingCardItem) {
       //remove old copied item
       this.props.removeCardHandler(this.state.id);
       //triggers editMentionNameInEditor() in ContentWrapperRight when name changes
@@ -231,7 +231,7 @@ class NPCEditor extends Component {
 
   modules = {
     toolbar: {
-      container: ".toolbarNPC"
+      container: ".toolbarCardItem"
     }
   };
 
@@ -252,15 +252,15 @@ class NPCEditor extends Component {
   render() {
     let NPCorMonster = (
       <CardBackground id="newCard">
-        <div className="NPCEditor">
+        <div className="CardItemEditor">
           <input
-            className="NPCEditorName"
+            className="CardItemEditorName"
             value={this.state.value}
             onChange={this.handleNameChange}
             placeholder={this.handleNamePlaceholder()}
           ></input>
           <input
-            className="NPCEditorDescription"
+            className="CardItemEditorDescription"
             value={this.state.description}
             onChange={this.handleDescriptionChange}
             placeholder={this.handleDescriptionPlaceholder()}
@@ -276,16 +276,16 @@ class NPCEditor extends Component {
               this.reactQuillRef = el;
             }}
           />
-          {this.state.NPCEditorWarning ? (
-            <NPCEditorWarning
+          {this.state.CardItemEditorWarning ? (
+            <CardItemEditorWarning
               fadeout={this.state.fadeout}
-              warning={this.state.NPCEditorWarning}
+              warning={this.state.CardItemEditorWarning}
             />
           ) : null}
-          <NPCEditorToolbar
+          <CardItemEditorToolbar
             onDelete={() => this.handleDelete()}
             onSave={() => this.handleSave()}
-            editingExistingNPC={this.state.editingExistingNPC}
+            editingExistingCardItem={this.state.editingExistingCardItem}
             hasEditor={true}
           />
         </div>
@@ -294,20 +294,20 @@ class NPCEditor extends Component {
 
     let chapterEditor = (
       <CardBackground id="newCard">
-        <div className="NPCEditor">
+        <div className="CardItemEditor">
           <input
-            className="NPCEditorName"
+            className="CardItemEditorName"
             value={this.state.value}
             onChange={this.handleNameChange}
             placeholder="Chapter name..."
           ></input>
-          {this.state.NPCEditorWarning ? (
-            <NPCEditorWarning
+          {this.state.CardItemEditorWarning ? (
+            <CardItemEditorWarning
               fadeout={this.state.fadeout}
-              warning={this.state.NPCEditorWarning}
+              warning={this.state.CardItemEditorWarning}
             />
           ) : null}
-          <NPCEditorToolbar
+          <CardItemEditorToolbar
             onDelete={() => this.handleDelete()}
             onSave={() => this.handleSave()}
             hasEditor={false}
@@ -348,4 +348,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NPCEditor);
+export default connect(mapStateToProps, mapDispatchToProps)(CardItemEditor);

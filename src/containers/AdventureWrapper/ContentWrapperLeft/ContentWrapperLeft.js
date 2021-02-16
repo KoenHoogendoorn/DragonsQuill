@@ -7,8 +7,8 @@ import classes2 from "./ContentWrapperLeft.module.scss";
 import Inputbar from "../../../components/Inputbar/Inputbar";
 import Button from "../../../components/Button/Button";
 import Chapter from "../../../components/Chapter/Chapter";
-import NPC from "../../../components/NPC/NPC";
-import NPCEditor from "../../../components/NPC/NPCEditor/NPCEditor";
+import CardItem from "../../../components/CardItem/CardItem";
+import CardItemEditor from "../../../components/CardItem/CardItemEditor/CardItemEditor";
 import TabsContainer from "./TabsContainer/TabsContainer";
 import Modal from "../../../components/Modal/Modal";
 
@@ -87,28 +87,28 @@ const ContentWrapperLeft = (props) => {
     if (addingChapter || addingNPC || addingMonster || addingLocation) {
       if (currentItem.id !== initialItemState.id) {
         return (
-          <NPCEditor
+          <CardItemEditor
             id={currentItem.id}
             key={currentItem.id}
             value={currentItem.value}
             description={currentItem.description}
             content={currentItem.content}
             open={currentItem.open}
-            editingExistingNPC={true}
-            removeNewNNPCCard={() => cancelEditingCard()}
+            editingExistingCardItem={true}
+            removeNewCardItemCard={() => cancelEditingCard()}
           />
         );
       } else {
         return (
-          <NPCEditor
+          <CardItemEditor
             id={currentItem.id}
             key={currentItem.id}
             value={currentItem.value}
             description={currentItem.description}
             content={currentItem.content}
             open={currentItem.open}
-            editingExistingNPC={false}
-            removeNewNNPCCard={() => cancelEditingCard()}
+            editingExistingCardItem={false}
+            removeNewCardItemCard={() => cancelEditingCard()}
           />
         );
       }
@@ -198,7 +198,7 @@ const ContentWrapperLeft = (props) => {
         )
         .map((npc) => {
           return !npc.disabled ? (
-            <NPC
+            <CardItem
               key={npc.id}
               id={npc.id}
               value={npc.value}
@@ -228,7 +228,7 @@ const ContentWrapperLeft = (props) => {
         )
         .map((monster) => {
           return !monster.disabled ? (
-            <NPC
+            <CardItem
               key={monster.id}
               id={monster.id}
               value={monster.value}
@@ -262,7 +262,7 @@ const ContentWrapperLeft = (props) => {
         )
         .map((location) => {
           return !location.disabled ? (
-            <NPC
+            <CardItem
               key={location.id}
               id={location.id}
               value={location.value}

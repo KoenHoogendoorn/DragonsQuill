@@ -2,13 +2,13 @@ import React from "react";
 
 import Button from "../../../Button/Button";
 
-import "./NPCEditorToolbar.scss";
+import "./CardItemEditorToolbar.scss";
 import "../../../../shared/quillEditorOverall.scss";
 
-const NPCEditorToolbar = (props) => {
+const CardItemEditorToolbar = (props) => {
   const NPCorMonsterToolbar = (
-    <div className="toolbarNPCContainer">
-      <div id="toolbarNPC" className="toolbarNPC toolbar">
+    <div className="ToolbarCardItemContainer">
+      <div id="toolbarCardItem" className="toolbarCardItem toolbar">
         <button className="ql-bold"></button>
         <button className="ql-italic"></button>
         <button className="ql-blockquote"></button>
@@ -20,7 +20,7 @@ const NPCEditorToolbar = (props) => {
       <div className="ButtonsContainer">
         <Button size="small" priority="secondary" clicked={props.onDelete}>
           <i className="far fa-trash-alt"></i>
-          {props.editingExistingNPC ? "Cancel" : "Delete"}
+          {props.editingExistingCardItem ? "Cancel" : "Delete"}
         </Button>
         <Button size="small" priority="primary" clicked={props.onSave}>
           <i className="far fa-save"></i>Save
@@ -30,8 +30,8 @@ const NPCEditorToolbar = (props) => {
   );
 
   const ChapterToolbar = (
-    <div className="toolbarNPCContainer">
-      {/* <div id="toolbarNPC" className="toolbarNPC toolbar"></div> */}
+    <div className="ToolbarCardItemContainer">
+      {/* <div id="CardItem" className="CardItem toolbar"></div> */}
       <div></div>
       <div className="ButtonsContainer ChapterButtonContainer">
         <Button size="small" priority="secondary" clicked={props.onDelete}>
@@ -48,4 +48,4 @@ const NPCEditorToolbar = (props) => {
   return props.hasEditor ? NPCorMonsterToolbar : ChapterToolbar;
 };
 
-export default NPCEditorToolbar;
+export default CardItemEditorToolbar;

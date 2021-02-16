@@ -4,7 +4,7 @@ import * as actions from "../../store/actions/actionsIndex";
 
 import classes from "./Chapter.module.scss";
 
-import CardBackground from "../Card/CardBackground/CardBackground";
+import CardBackground from "../CardParts/CardBackground/CardBackground";
 import MentionToken from "./ChapterMentionTokens/MentionToken";
 import ClickableIcon from "../ClickableIcon/ClickableIcon";
 

@@ -2,6 +2,10 @@
 
 - NPCs en NPCeditor -> card en cardeditor
 
+- editing carditem !== chapter returns error
+
+- set delete button in chapter editor toolbar to cancel instead of delete
+
 - basic responsiveness
 
 - firebase setup

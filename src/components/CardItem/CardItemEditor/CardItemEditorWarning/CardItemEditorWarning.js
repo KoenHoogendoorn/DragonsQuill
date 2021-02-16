@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import classes from "./NPCEditorWarning.module.scss";
+import classes from "./CardItemEditorWarning.module.scss";
 
-const NPCEditorWarning = (props) => {
-  let warningClasses = `${classes.NPCEditorWarningContainer} `;
+const CardItemEditorWarning = (props) => {
+  let warningClasses = `${classes.CardItemEditorWarningContainer} `;
   if (props.fadeout) {
     warningClasses += `${classes.Deleted}`;
   }
@@ -23,4 +23,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(NPCEditorWarning);
+export default connect(mapStateToProps)(CardItemEditorWarning);

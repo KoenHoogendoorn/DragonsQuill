@@ -4,17 +4,17 @@ import { connect } from "react-redux";
 
 import * as actions from "../../store/actions/actionsIndex";
 
-import cardBackgroundClasses from "../Card/CardBackground/CardBackground.module.scss";
-import NPCclasses from "./NPC.module.scss";
+import cardBackgroundClasses from "../CardParts/CardBackground/CardBackground.module.scss";
+import CardItemclasses from "./CardItem.module.scss";
 
-import CardBackground from "../Card/CardBackground/CardBackground";
-import CardBody from "../Card/CardBody/CardBody";
-import CardHeaderContainer from "../Card/CardHeaderContainer/CardHeaderContainer";
-import CardToolbar from "../Card/CardToolbar/CardToolbar";
+import CardBackground from "../CardParts/CardBackground/CardBackground";
+import CardBody from "../CardParts/CardBody/CardBody";
+import CardHeaderContainer from "../CardParts/CardHeaderContainer/CardHeaderContainer";
+import CardToolbar from "../CardParts/CardToolbar/CardToolbar";
 import ClickableIcon from "../ClickableIcon/ClickableIcon";
 
-const NPC = (props) => {
-  const classes = { ...cardBackgroundClasses, ...NPCclasses };
+const CardItem = (props) => {
+  const classes = { ...cardBackgroundClasses, ...CardItemclasses };
 
   let chevronClass = classes.CardClosedIcon;
   let thisItem = null;
@@ -88,4 +88,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NPC);
+export default connect(mapStateToProps, mapDispatchToProps)(CardItem);

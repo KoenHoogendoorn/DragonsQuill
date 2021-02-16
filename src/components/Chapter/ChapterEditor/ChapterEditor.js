@@ -2,13 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/actionsIndex";
 
-import CardBackground from "../Card/CardBackground/CardBackground";
+import CardBackground from "../CardParts/CardBackground/CardBackground";
 
 const ChapterEditor = (props) => {
   return (
     <CardBackground>
       <input
-        className="NPCEditorName"
+        className="CardItemEditorName"
         value={this.state.value}
         onChange={this.handleNameChange}
         placeholder="Character name..."

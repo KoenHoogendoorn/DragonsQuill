@@ -7,7 +7,7 @@ const MentionToken = (props) => {
   let currentMention = null;
   switch (props.type) {
     case "npc":
-      classType = "fas fa-user MentionCircle NPCMentionToken";
+      classType = "fas fa-user MentionCircle CardItemMentionToken";
       currentMention = props.npcs.find((npc) => npc.id === props.id);
       break;
     case "monster":

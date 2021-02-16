@@ -1,6 +1,6 @@
 @import "../../../shared/variables.scss";
 
-.NPCEditor input {
+.CardItemEditor input {
   border: none;
   border-bottom: 2px solid $clr-mercury;
   width: 100%;
@@ -12,14 +12,14 @@
   }
 }
 
-.NPCEditorName {
+.CardItemEditorName {
   font-weight: bold;
   font-family: "Merriweather", serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.NPCEditorDescription {
+.CardItemEditorDescription {
   font-style: italic;
 
   &::-webkit-input-placeholder {
@@ -41,7 +41,7 @@
   }
 }
 
-.NPCEditor .ql-editor {
+.CardItemEditor .ql-editor {
   margin-bottom: 16px;
   border-bottom: 2px solid $clr-mercury;
   width: 100%;
