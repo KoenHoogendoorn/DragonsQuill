@@ -293,7 +293,7 @@ class CardItemEditor extends Component {
     );
 
     let chapterEditor = (
-      <CardBackground id="newCard">
+      <CardBackground id="newCard" chapterEditor={true}>
         <div className="CardItemEditor">
           <input
             className="CardItemEditorName"
@@ -310,6 +310,7 @@ class CardItemEditor extends Component {
           <CardItemEditorToolbar
             onDelete={() => this.handleDelete()}
             onSave={() => this.handleSave()}
+            editingExistingCardItem={this.state.editingExistingCardItem}
             hasEditor={false}
           />
         </div>

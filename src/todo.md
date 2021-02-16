@@ -1,11 +1,5 @@
 # To do:
 
-- NPCs en NPCeditor -> card en cardeditor
-
-- editing carditem !== chapter returns error
-
-- set delete button in chapter editor toolbar to cancel instead of delete
-
 - basic responsiveness
 
 - firebase setup
@@ -126,6 +120,11 @@ X - bug where mentionlist had sidescroll
 X - Delete chapters/edit name -> elipses + dropdown --> als edit>Save geklikt wordt, moeten mentiontokens properties ook goed overgezet worden. dit gebeurt nu alleen nog goed voor andere cards. er wordt alleen id,key en value overgezet
 
 X - zorg ervoor dat sort content de ids goed sort van chapter, nu lijkt het niet te werken
+X - NPCs en NPCeditor -> card en cardeditor
+
+X - editing carditem !== chapter returns error
+
+X - set delete button in chapter editor toolbar to cancel instead of delete + geen pointer op backgroundcard als je edit
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">

@@ -36,7 +36,7 @@ const CardItemEditorToolbar = (props) => {
       <div className="ButtonsContainer ChapterButtonContainer">
         <Button size="small" priority="secondary" clicked={props.onDelete}>
           <i className="far fa-trash-alt"></i>
-          Delete
+          {props.editingExistingCardItem ? "Cancel" : "Delete"}
         </Button>
         <Button size="small" priority="primary" clicked={props.onSave}>
           <i className="far fa-save"></i>Save

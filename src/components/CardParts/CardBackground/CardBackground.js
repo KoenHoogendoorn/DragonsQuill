@@ -14,6 +14,10 @@ const CardBackground = (props) => {
     cardClasses += `${classes.Chapter} `;
   }
 
+  if (props.chapterEditor) {
+    cardClasses += `${classes.NormalCursor} `;
+  }
+
   return (
     <div onClick={props.clicked} className={cardClasses}>
       {props.children}
