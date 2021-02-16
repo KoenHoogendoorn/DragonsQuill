@@ -11,7 +11,7 @@ import CardBackground from "../Card/CardBackground/CardBackground";
 import CardBody from "../Card/CardBody/CardBody";
 import CardHeaderContainer from "../Card/CardHeaderContainer/CardHeaderContainer";
 import CardToolbar from "../Card/CardToolbar/CardToolbar";
-import Chevron from "../Card/Chevron/Chevron";
+import ClickableIcon from "../ClickableIcon/ClickableIcon";
 
 const NPC = (props) => {
   const classes = { ...cardBackgroundClasses, ...NPCclasses };
@@ -56,7 +56,9 @@ const NPC = (props) => {
             <h4>{props.value}</h4>
             <p className={classes.CardSubtitle}>{props.description}</p>
           </div>
-          <Chevron class={chevronClass} />
+          <ClickableIcon>
+            <i className={`fas fa-chevron-down ${chevronClass}`}></i>
+          </ClickableIcon>
         </CardHeaderContainer>
         <CardBody id={props.id}>
           <div dangerouslySetInnerHTML={{ __html: props.content }}></div>

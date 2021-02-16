@@ -28,7 +28,7 @@ $clr-zanah: #dbefdc;
 //warning
 $clr-zest: #e67e22;
 
-// functional
+// Buttons
 $clr-primary: $clr-purpleHeart;
 $clr-primary-hover: $clr-minsk;
 $clr-primary-active: $clr-grape;
@@ -38,10 +38,15 @@ $clr-secondary-txt: $clr-boulder;
 $clr-secondary-hover: $clr-nobel;
 $clr-secondary-active: $clr-silverChalice;
 
-$clr-border: $clr-snuff;
+$clr-tertiary: $clr-dustyGray;
+$clr-tertiary-hover: $clr-boulder;
+$clr-tertiary-active: $clr-mineShaft;
 
+// Tokens
 $clr-npc: $clr-dodgerBlue;
 $clr-monster: $clr-pomegranate;
 $clr-location: $clr-fruitSalad;
 
+// functional
 $clr-warning: $clr-zest;
+$clr-border: $clr-snuff;

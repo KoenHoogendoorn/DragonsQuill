@@ -44,14 +44,14 @@ button {
 
 .Tertiary {
   background: none;
-  color: $clr-dustyGray;
+  color: $clr-tertiary;
   font-size: 12px;
 
   &:hover {
-    color: $clr-boulder;
+    color: $clr-tertiary-hover;
   }
   &:active {
-    color: $clr-mineShaft;
+    color: $clr-tertiary-active;
   }
 }
 

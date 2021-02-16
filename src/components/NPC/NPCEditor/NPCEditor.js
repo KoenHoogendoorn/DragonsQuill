@@ -192,7 +192,10 @@ class NPCEditor extends Component {
       //remove old copied item
       this.props.removeCardHandler(this.state.id);
       //triggers editMentionNameInEditor() in ContentWrapperRight when name changes
-      if (this.props.value !== this.state.value) {
+      if (
+        this.props.value !== this.state.value &&
+        this.props.activeTab !== "Chapters"
+      ) {
         this.props.editedNameHandler(
           this.props.value,
           this.state.value,
@@ -204,7 +207,12 @@ class NPCEditor extends Component {
       this.props.addCardHandler({
         id: this.state.id,
         key: this.state.id,
-        value: this.state.value
+        value: this.state.value,
+        mentionIds: {
+          npc: [],
+          monster: [],
+          location: []
+        }
       });
     } else {
       this.props.addCardHandler({

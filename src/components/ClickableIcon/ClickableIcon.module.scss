@@ -1,0 +1,17 @@
+@import "../../shared/variables.scss";
+
+.ClickableIconContainer {
+  color: $clr-tertiary;
+
+  &:hover {
+    color: $clr-tertiary-hover;
+  }
+
+  &:active {
+    color: $clr-tertiary-active;
+  }
+}
+
+.DropdownOut {
+  color: $clr-tertiary-active;
+}

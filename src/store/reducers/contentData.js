@@ -170,10 +170,18 @@ const pushHeadersFirst = (contentTypeArray) => {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "SORT_CONTENT":
+      let chapters = state.chapters.slice();
       let npcs = state.npcs.slice();
       let monsters = state.monsters.slice();
       let locations = state.locations.slice();
 
+      const sortIds = (a, b) => {
+        return (
+          Number(a.id.match(/(\d+)/g)[0]) - Number(b.id.match(/(\d+)/g)[0])
+        );
+      };
+      //chapters sort by the numbers in their ids
+      chapters.sort(sortIds);
       npcs.sort((a, b) =>
         a.value.toLowerCase() > b.value.toLowerCase() ? 1 : -1
       );
@@ -191,6 +199,7 @@ const reducer = (state = initialState, action) => {
       pushHeadersFirst(locations);
 
       const updatedState = {
+        chapters: chapters,
         npcs: npcs,
         monsters: monsters,
         locations: locations
@@ -303,11 +312,17 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, updatedState3);
 
     case "REMOVE_CARD":
+      let chapters5 = state.chapters.slice();
       let npcs5 = state.npcs.slice();
       let monsters5 = state.monsters.slice();
       let locations5 = state.locations.slice();
 
       switch (action.id.substring(0, 2)) {
+        case "ch":
+          chapters5 = chapters5.filter((chapter) => {
+            return chapter.id !== action.id;
+          });
+          break;
         case "np":
           npcs5 = npcs5.filter((npc) => {
             return npc.id !== action.id;
@@ -327,6 +342,7 @@ const reducer = (state = initialState, action) => {
           break;
       }
       const updatedState5 = {
+        chapters: chapters5,
         npcs: npcs5,
         monsters: monsters5,
         locations: locations5

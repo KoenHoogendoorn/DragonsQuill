@@ -1,12 +1,12 @@
 # To do:
 
-- Delete chapters/edit name -> elipses + dropdown
+- NPCs en NPCeditor -> card en cardeditor
+
+- basic responsiveness
 
 - firebase setup
 - log in page
 - export/import data to start typing adventures in this
-
-- basic responsiveness
 
 - change Input component name to Searchbar
 
@@ -115,6 +115,13 @@ X - only change mention names if the name changed and loop through all chapters
 
 X - only show 1 mentiontoken per mentionId in chapter
 X - make sure empty names can't be submitted or change value after they're submitted to 'untitled' or smt
+X - bug where mentionlist had sidescroll
+
+## 16-02-2021
+
+X - Delete chapters/edit name -> elipses + dropdown --> als edit>Save geklikt wordt, moeten mentiontokens properties ook goed overgezet worden. dit gebeurt nu alleen nog goed voor andere cards. er wordt alleen id,key en value overgezet
+
+X - zorg ervoor dat sort content de ids goed sort van chapter, nu lijkt het niet te werken
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">
