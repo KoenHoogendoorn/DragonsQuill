@@ -32,3 +32,53 @@
     width: 90%;
   }
 }
+
+.SetLeftOffscreen,
+.SetRightOffscreen,
+.SetRightOnscreen,
+.SetLeftOnscreen {
+  transform: initial;
+  transition: transform 0.175s ease-out;
+}
+
+@media screen and (max-width: 420px) {
+  .AdventureWrapper {
+    width: 100%;
+    height: 100vh;
+    padding-top: 43px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .ContentWrapper {
+    min-height: unset;
+  }
+
+  .WrapperLeft {
+    width: 100%;
+    position: absolute;
+    padding: 16px;
+    transform: translateX(0);
+    transition: transform 0.5s;
+  }
+
+  .WrapperRightBlock {
+    width: 100%;
+    height: unset;
+    position: absolute;
+    transform: translateX(100%);
+    transition: transform 0.5s;
+  }
+
+  .MoveLeft {
+    transform: translateX(-100%);
+  }
+
+  .MoveBack {
+    transform: translateX(0);
+  }
+
+  .MoveRight {
+    transform: translateX(100%);
+  }
+}

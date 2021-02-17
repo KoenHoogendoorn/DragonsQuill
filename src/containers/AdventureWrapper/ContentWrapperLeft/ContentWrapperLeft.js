@@ -344,6 +344,7 @@ const ContentWrapperLeft = (props) => {
         <Button
           size="medium"
           priority="secondary"
+          iconPlacement="left"
           clicked={() => closeDeleteItemModal()}
         >
           <i className="fas fa-ban"></i>
@@ -352,6 +353,7 @@ const ContentWrapperLeft = (props) => {
         <Button
           size="medium"
           priority="primary"
+          iconPlacement="left"
           clicked={() => deleteItemHandler()}
         >
           <i className="far fa-trash-alt"></i>
@@ -368,8 +370,10 @@ const ContentWrapperLeft = (props) => {
       <Modal show={deleting} modalClosed={() => setDeleting(false)}>
         {deleteItemModalContent}
       </Modal>
-      <div className={`${classes.ContentWrapper} ${classes.WrapperLeft}`}>
-        <h1>Adventure Title</h1>
+      <div
+        className={`${classes.ContentWrapper} ${classes.WrapperLeft} ${props.addedClassesLeft}`}
+      >
+        <h1>{props.adventure.value}</h1>
         <TabsContainer
           tabsContainerClasses={classes.Tabs}
           cancelEditingCard={cancelEditingCard}
@@ -386,6 +390,7 @@ const ContentWrapperLeft = (props) => {
           <Button
             size="big"
             priority="primary"
+            iconPlacement="left"
             clicked={() => newContentButtonHandler()}
           >
             <i className="fas fa-plus"></i>
@@ -401,6 +406,7 @@ const ContentWrapperLeft = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    adventure: state.contentData.adventure,
     chapters: state.contentData.chapters,
     npcs: state.contentData.npcs,
     monsters: state.contentData.monsters,

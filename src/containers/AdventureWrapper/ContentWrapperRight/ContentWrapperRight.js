@@ -95,12 +95,15 @@ class ContentWrapperRight extends Component {
     MentionBlot.tagName = "span";
     MentionBlot.className = "dndmention";
     MentionBlot.onClick = (id) => {
+      if (this.state.width < 420) {
+        this.props.setActiveContentWrapperLeft();
+      }
       this.props.highlightCardHandler(id);
       let clickedItem = null;
 
       const clickCardHandler = (clickedItem) => {
         if (clickedItem.open) {
-          //togglecardhandler (closes card and unhighlights item)
+          //close card and unhighlight item
           this.props.toggleCardHandler(id);
           setTimeout(() => {
             //sort cards to make them go back in alfabetical order
@@ -230,6 +233,10 @@ class ContentWrapperRight extends Component {
     const wrapperRightBlock = document.getElementById("WrapperRightBlock");
     if (this.state.width <= 1480) {
       wrapperRightBlock.style.width = (this.state.width * 0.9) / 2 + "px";
+    }
+
+    if (this.state.width < 500) {
+      wrapperRightBlock.style.width = "100%";
     }
 
     // loop through value of activeChapter, find and extract ids and add them to redux state
@@ -370,7 +377,7 @@ class ContentWrapperRight extends Component {
     return (
       <div
         id="WrapperRightBlock"
-        className={`${classes.ContentWrapper} ${classes.WrapperRightBlock}`}
+        className={`${classes.ContentWrapper} ${classes.WrapperRightBlock} ${this.props.addedClassesRight}`}
       >
         <EditorHeader />
         <EditorToolbar />

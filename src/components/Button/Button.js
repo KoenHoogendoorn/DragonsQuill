@@ -16,24 +16,35 @@ const Button = (props) => {
       ButtonClasses += `${classes.Small} `;
       break;
     default:
-      ButtonClasses = `${classes.Button} `;
       break;
   }
 
   switch (props.priority) {
     case "primary":
-      ButtonClasses += `${classes.Primary}`;
+      ButtonClasses += `${classes.Primary} `;
       break;
     case "secondary":
-      ButtonClasses += `${classes.Secondary}`;
+      ButtonClasses += `${classes.Secondary} `;
       break;
     case "tertiary":
-      ButtonClasses += `${classes.Tertiary}`;
+      ButtonClasses += `${classes.Tertiary} `;
       break;
     default:
-      ButtonClasses = `${classes.Button} `;
       break;
   }
+
+  switch (props.iconPlacement) {
+    case "right":
+      ButtonClasses += `${classes.IconRight} `;
+      break;
+    case "left":
+      ButtonClasses += `${classes.IconLeft} `;
+      break;
+    default:
+      break;
+  }
+
+  //sample button component: <Button size="small" priority="tertiary" iconPlacement="right">button</Button>
 
   return (
     <button type="button" className={ButtonClasses} onClick={props.clicked}>

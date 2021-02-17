@@ -18,11 +18,21 @@ const CardItemEditorToolbar = (props) => {
         <button className="ql-list ql-ol-list" value="ordered"></button>
       </div>
       <div className="ButtonsContainer">
-        <Button size="small" priority="secondary" clicked={props.onDelete}>
+        <Button
+          size="small"
+          priority="secondary"
+          iconPlacement="left"
+          clicked={props.onDelete}
+        >
           <i className="far fa-trash-alt"></i>
           {props.editingExistingCardItem ? "Cancel" : "Delete"}
         </Button>
-        <Button size="small" priority="primary" clicked={props.onSave}>
+        <Button
+          size="small"
+          priority="primary"
+          iconPlacement="left"
+          clicked={props.onSave}
+        >
           <i className="far fa-save"></i>Save
         </Button>
       </div>
@@ -34,11 +44,21 @@ const CardItemEditorToolbar = (props) => {
       {/* <div id="CardItem" className="CardItem toolbar"></div> */}
       <div></div>
       <div className="ButtonsContainer ChapterButtonContainer">
-        <Button size="small" priority="secondary" clicked={props.onDelete}>
+        <Button
+          size="small"
+          priority="secondary"
+          iconPlacement="left"
+          clicked={props.onDelete}
+        >
           <i className="far fa-trash-alt"></i>
           {props.editingExistingCardItem ? "Cancel" : "Delete"}
         </Button>
-        <Button size="small" priority="primary" clicked={props.onSave}>
+        <Button
+          size="small"
+          priority="primary"
+          iconPlacement="left"
+          clicked={props.onSave}
+        >
           <i className="far fa-save"></i>Save
         </Button>
       </div>

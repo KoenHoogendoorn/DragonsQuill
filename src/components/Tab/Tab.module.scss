@@ -2,7 +2,6 @@
 
 .Tab {
   background-color: $clr-mercury;
-  // color: #9b9b9b;
   color: $clr-secondary-txt;
   font-weight: 700;
   padding: 8px 16px;
@@ -13,27 +12,27 @@
   border: none;
   border-radius: 4px;
   box-sizing: border-box;
-}
-
-.Tab:hover {
-  background-color: $clr-dustyGray;
-  color: $clr-mercury;
-}
-
-.Tab:active {
-  background-color: $clr-boulder;
-  color: $clr-mercury;
+  &:hover {
+    background-color: $clr-dustyGray;
+    color: $clr-mercury;
+  }
+  &:active {
+    background-color: $clr-boulder;
+    color: $clr-mercury;
+  }
+  i {
+    margin-right: 12px;
+  }
 }
 
 .ActiveTab {
   background-color: $clr-snuff;
   border: 1px solid $clr-primary;
   color: $clr-primary;
-}
-
-.ActiveTab:hover,
-.ActiveTab:active {
-  background-color: $clr-bilobaFlower;
-  border: 1px solid $clr-primary-active;
-  color: $clr-primary-active;
+  &:hover,
+  &:active {
+    background-color: $clr-bilobaFlower;
+    border: 1px solid $clr-primary-active;
+    color: $clr-primary-active;
+  }
 }

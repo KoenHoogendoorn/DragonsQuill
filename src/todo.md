@@ -1,6 +1,6 @@
 # To do:
 
-- basic responsiveness
+- upload to domain
 
 - firebase setup
 - log in page
@@ -125,6 +125,16 @@ X - NPCs en NPCeditor -> card en cardeditor
 X - editing carditem !== chapter returns error
 
 X - set delete button in chapter editor toolbar to cancel instead of delete + geen pointer op backgroundcard als je edit
+
+## 17-02-2021
+
+X - basic responsiveness
+
+X - mobile header
+X - click to switch left/right side
+X - on mentionclick, switch sides then open mentioncard
+X - padding editor on mobile less
+X - fixed mobile header bar
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">

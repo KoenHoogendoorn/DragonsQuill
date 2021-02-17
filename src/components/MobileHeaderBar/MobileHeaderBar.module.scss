@@ -1,0 +1,18 @@
+@import "../../shared/variables.scss";
+
+.MobileHeaderBar {
+  display: none;
+}
+
+@media screen and (max-width: 420px) {
+  .MobileHeaderBar {
+    display: flex;
+    justify-content: space-between;
+    background: $clr-magnolia;
+    border-bottom: 1px solid $clr-border;
+    padding: 12px 16px;
+    z-index: 1;
+    position: fixed;
+    width: 100vw;
+  }
+}

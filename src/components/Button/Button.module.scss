@@ -6,15 +6,20 @@
   border: none;
   outline: none;
   white-space: nowrap;
-}
-
-button {
-  > i {
-    margin-right: 8px;
-  }
-
   &:hover {
     cursor: pointer;
+  }
+}
+
+.IconLeft {
+  i {
+    margin-right: 8px;
+  }
+}
+
+.IconRight {
+  i {
+    margin-left: 8px;
   }
 }
 

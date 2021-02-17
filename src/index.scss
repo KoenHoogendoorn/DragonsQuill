@@ -73,3 +73,16 @@ input {
   font-size: 16px;
   line-height: 1.5;
 }
+
+@media screen and (max-width: 420px) {
+  html,
+  body,
+  #root,
+  .App {
+    min-height: unset;
+  }
+
+  body {
+    height: unset;
+  }
+}

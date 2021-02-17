@@ -16,7 +16,7 @@ const EditorHeader = (props) => {
   return (
     <div className={classes.EditorHeaderContainer}>
       <p className={classes.EditorHeader}>{editorHeader}</p>
-      <Button size="small" priority="primary">
+      <Button size="small" priority="primary" iconPlacement="left">
         <i className="far fa-save"></i>Save
       </Button>
     </div>

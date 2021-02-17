@@ -1,6 +1,10 @@
 import { updateObject } from "../../shared/utility";
 
 const initialState = {
+  adventure: {
+    id: "ad0",
+    value: "Moonhaven's curse"
+  },
   chapters: [
     {
       id: "ch0",
