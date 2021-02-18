@@ -1,10 +1,13 @@
 # To do:
 
-- upload to domain
+- editing newly created chapter error
+- tooltip dropdown in chapter cuts off on mobile
 
 - firebase setup
 - log in page
 - export/import data to start typing adventures in this
+
+- logo toevoegen
 
 - change Input component name to Searchbar
 
@@ -135,6 +138,10 @@ X - click to switch left/right side
 X - on mentionclick, switch sides then open mentioncard
 X - padding editor on mobile less
 X - fixed mobile header bar
+
+## 18-02-2021
+
+X - upload 1st version to domain
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">
