@@ -57,6 +57,7 @@ class ContentWrapperRight extends Component {
   };
 
   componentDidMount() {
+    //adds all chapters to state with empty values
     this.props.chapters.map((chapter) => this.setState({ [chapter.id]: "" }));
 
     window.addEventListener("resize", this.updateDimensions);
@@ -390,7 +391,7 @@ class ContentWrapperRight extends Component {
             modules={this.modules}
             placeholder="Start writing here..."
             formats={this.formats}
-            value={this.state[this.props.activeChapterId]}
+            value={this.state[this.props.activeChapterId] || ""}
             preserveWhitespace={true}
           />
         </div>

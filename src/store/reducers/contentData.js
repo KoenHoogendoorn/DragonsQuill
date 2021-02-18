@@ -27,6 +27,16 @@ const initialState = {
         monster: [],
         location: []
       }
+    },
+    {
+      id: "ch3",
+      key: "ch3",
+      value: "Moonhaven battle",
+      mentionIds: {
+        npc: [],
+        monster: [],
+        location: []
+      }
     }
   ],
   npcs: [
