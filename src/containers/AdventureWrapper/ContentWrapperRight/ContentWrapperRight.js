@@ -14,7 +14,7 @@ import EditorHeader from "./EditorHeader/EditorHeader";
 
 import * as actions from "../../../store/actions/actionsIndex";
 
-var icons = Quill.import("ui/icons");
+const icons = Quill.import("ui/icons");
 icons["bold"] = '<i class="fas fa-bold" aria-hidden="true"></i>';
 icons["italic"] = '<i class="fas fa-italic" aria-hidden="true"></i>';
 icons["underline"] = '<i class="fas fa-underline" aria-hidden="true"></i>';

@@ -26,7 +26,8 @@
 .ql-snow .ql-toolbar button:focus i,
 .ql-snow.ql-toolbar button.ql-active i,
 .ql-snow .ql-toolbar button.ql-active i,
-.ql-snow.ql-toolbar button.ql-active,
+#h1-button:hover path,
+#h2-button:hover path,
 #h1-button.ql-active path,
 #h2-button.ql-active path {
   fill: $clr-primary;
