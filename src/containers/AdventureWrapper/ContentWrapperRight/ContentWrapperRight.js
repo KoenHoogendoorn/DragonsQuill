@@ -22,7 +22,7 @@ icons["link"] = '<i class="fas fa-link" aria-hidden="true"></i>';
 icons["image"] = '<i class="far fa-image" aria-hidden="true"></i>';
 icons["ul-list"] = '<i class="fas fa-list-ul" aria-hidden="true"></i>';
 icons["ol-list"] = '<i class="fas fa-list-ol" aria-hidden="true"></i>';
-icons["divider"] = '<i class="fas fa-grip-lines" aria-hidden="true"></i>';
+icons["divider"] = '<i class="fas fa-minus" aria-hidden="true"></i>';
 icons["blockquote"] = '<i class="fas fa-quote-right" aria-hidden="true"></i>';
 icons["h1-icon"] = "H1";
 icons["h2-icon"] = "H2";
@@ -58,7 +58,19 @@ class ContentWrapperRight extends Component {
 
   componentDidMount() {
     //adds all chapters to state with empty values
-    this.props.chapters.map((chapter) => this.setState({ [chapter.id]: "" }));
+    // this.props.chapters.map((chapter) => this.setState({ [chapter.id]: "" }));
+
+    //demo placeholder content
+    this.props.chapters.map((chapter) => {
+      if (chapter.id === "ch1") {
+        return this.setState({
+          ch1:
+            "<h1><span style='color: rgb(0, 0, 0);'>The beach</span></h1><blockquote><em style='color: rgb(0, 0, 0);'>You continue south alongside the <span class='dndmention' data-index='0' data-denotation-char='' data-id='lo2' data-value='Gurntaur'>&#65279;<span contenteditable='false'>Gurntaur</span>&#65279;</span> hills on your left hand and green fields on your right. Spring is still in the air and you can smell the flowers around you. After three more relatively quiet days, the sun is shining bright on your heads when you come upon a dense forest. You try to stay on the same path as you were going but it gets harder as you get deeper into the forest. After walking for a couple of hours, you can hear the sea in the distance. But you also hear something else, a childrens scream for help.</em></blockquote><p><span style='color: rgb(0, 0, 0);'>In the forest, a tribe of </span><span class='dndmention' data-index='0' data-denotation-char='' data-id='mo3' data-value='Bjorlbelorg'>&#65279;<span contenteditable='false'>Bjorlbelorg</span>&#65279;</span> is living relatively peacefully. They are protective of their village and trade with pine cones.</p><p><br></p><p><strong style='color: rgb(0, 0, 0);'>After following the sound of the scream</strong></p><blockquote><em style='color: rgb(0, 0, 0);''>As you crest a small rise topped with tall grass, you see the <span class='dndmention' data-index='0' data-denotation-char='' data-id='lo3' data-value='Beach'>&#65279;<span contenteditable='false'>Beach</span>&#65279;</span> below you. The <span class='dndmention' data-index='0' data-denotation-char='' data-id='lo3' data-value='Beach'>&#65279;<span contenteditable='false'>Beach</span>&#65279;</span> is about 100 feet of sand with large rocks jutting up out of the sand. On one of the rocks in the middle of the beach is a child of about 10 years old screaming for help. In front of her, You see a Turtle like humanoid protecting her with a staff. Around the rock are several crab-looking monsters, each one easily the size of a mastiff. Seaweed and coral is sticking to them as if&nbsp; they haven’t seen the surface in a while (perception check for stingers). They have surrounded the rock and are snapping their claws up at their trapped prey.&nbsp;</em></blockquote><p><span class='dndmention' data-index='2' data-denotation-char='' data-id='np3' data-value='Kilki'>&#65279;<span contenteditable='false'>Kilki</span>&#65279;</span> is training <span class='dndmention' data-index='0' data-denotation-char='' data-id='np1' data-value='Syka Twocreek'>&#65279;<span contenteditable='false'>Syka Twocreek</span>&#65279;</span> secretly on the beach. They got surprised by 2 <span class='dndmention' data-index='0' data-denotation-char='' data-id='mo2' data-value='Giant Crab'>&#65279;<span contenteditable='false'>Giant Crab</span>&#65279;</span> and 1 <span class='dndmention' data-index='1' data-denotation-char='' data-id='mo1' data-value='Giant Scorpion'>&#65279;<span contenteditable='false'>Giant Scorpion</span>&#65279;</span>. If the party saves them, both will be very gratefull. <span class='dndmention' data-index='1' data-denotation-char='' data-id='np1' data-value='Syka Twocreek'>&#65279;<span contenteditable='false'>Syka Twocreek</span>&#65279;</span> is very enthousiastic and won't stop talking about all the cool things the the PC's did during the fight. </p>"
+        });
+      } else {
+        return this.setState({ [chapter.id]: "" });
+      }
+    });
 
     window.addEventListener("resize", this.updateDimensions);
 
@@ -194,7 +206,7 @@ class ContentWrapperRight extends Component {
       toBeEditedId +
       '" data-value="' +
       oldName +
-      '">\uFEFF<span contenteditable="false">' +
+      '">&#65279;<span contenteditable="false">' +
       oldName +
       "</span>";
     const newString =
@@ -202,7 +214,7 @@ class ContentWrapperRight extends Component {
       toBeEditedId +
       '" data-value="' +
       newName +
-      '">\uFEFF<span contenteditable="false">' +
+      '">&#65279;<span contenteditable="false">' +
       newName +
       "</span>";
 
@@ -389,7 +401,7 @@ class ContentWrapperRight extends Component {
               this.setState({ [this.props.activeChapterId]: event })
             }
             modules={this.modules}
-            placeholder="Start writing here..."
+            placeholder="Start writing here. Mention something by typing '@'..."
             formats={this.formats}
             value={this.state[this.props.activeChapterId] || ""}
             preserveWhitespace={true}

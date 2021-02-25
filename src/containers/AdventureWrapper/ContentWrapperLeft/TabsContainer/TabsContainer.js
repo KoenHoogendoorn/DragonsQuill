@@ -6,6 +6,7 @@ import Tab from "../../../../components/Tab/Tab";
 
 const TabsContainer = (props) => {
   const clickTabHandler = (type) => {
+    props.clearSearch();
     props.cancelEditingCard();
     props.closeCardsHandler(type);
     props.activeTabHandler(type);

@@ -1,7 +1,6 @@
 # To do:
 
-- editing newly created chapter error
-- tooltip dropdown in chapter cuts off on mobile
+- als je ‘edit’ klikt voor een stuk en dan ‘cancel’ dan sluit ie het hele ding, maar de cancel zou je eigenlijk terug moeten brengen naar de ‘reading mode’
 
 - firebase setup
 - log in page
@@ -22,6 +21,7 @@
 
 ## Not that important right now:
 
+- make sure dropdown from 'more icon' in chapter goes away when clicking outside it.
 - renaming NPCs to general cards
 - show headers after typing in mention
 - animation when card gets deleted
@@ -142,6 +142,10 @@ X - fixed mobile header bar
 ## 18-02-2021
 
 X - upload 1st version to domain
+X - editing newly created chapter error
+X - hover op header icons in editor toolbar
+X - zoekbalk query blijft staan tussen tabswitch
+X - tooltip dropdown in chapter cuts off on mobile
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">

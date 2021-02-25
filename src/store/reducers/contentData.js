@@ -1,4 +1,6 @@
 import { updateObject } from "../../shared/utility";
+import Norlbelorg from "../../assets/images/norlbelorg.png";
+import BeachBattleMap from "../../assets/images/BeachBattleMap.jpg";
 
 const initialState = {
   adventure: {
@@ -27,16 +29,6 @@ const initialState = {
         monster: [],
         location: []
       }
-    },
-    {
-      id: "ch3",
-      key: "ch3",
-      value: "Moonhaven battle",
-      mentionIds: {
-        npc: [],
-        monster: [],
-        location: []
-      }
     }
   ],
   npcs: [
@@ -47,10 +39,8 @@ const initialState = {
     },
     {
       id: "np1",
-      value:
-        "Syka Twocreek dit is een superlange naam, maar dan echt superlang he, kapotlang zeggen ze ook wel",
-      description:
-        "Human female, Chaotic goodafdswefwaefafdswefwaefafdswefwaefafdswefwaefafdswefwaefafdswefwaefafdswefwaefafdswefwaef",
+      value: "Syka Twocreek",
+      description: "Human female, Chaotic good",
       content:
         "Young girl that helps them at the start. She is the daughter of the village elder and good friends with the tortles. Didn’t eat fish because her mother the village elder doesn’t like it.",
       open: false
@@ -73,61 +63,6 @@ const initialState = {
     {
       id: "np4",
       value: "Falmo",
-      description: "Tortle Male, Neutral Neutral",
-      content:
-        "A surfing dude Tortle with a floral headband. Loves to surf the waves on his belly and shield. Didn’t eat fishes because he doesn’t like to eat creatures. Wears a necklace with a bear tooth on it.",
-      open: false
-    },
-    {
-      id: "np5",
-      value: "Kekrarg Gat",
-      description:
-        "Human female, Chaotic goodafdswefwaefafdswefwaefafdswefwaefafdswefwaefafdswefwaefafdswefwaefafdswefwaefafdswefwaef",
-      content:
-        "Young girl that helps them at the start. She is the daughter of the village elder and good friends with the tortles. Didn’t eat fish because her mother the village elder doesn’t like it.",
-      open: false
-    },
-    {
-      id: "np6",
-      value: "Wumanok",
-      description: "Human female, Neutral good",
-      content:
-        "Village elder, human woman in her 50s. She is concerned with the villagers. She doesn’t like fish so she isn’t affected by the addiction. Lived in the town since her childhood.",
-      open: false
-    },
-    {
-      id: "np7",
-      value: "Kidan Steelbuster",
-      description: "Tortle Male, Neutral good",
-      content: "Retired old monk Tortle.",
-      open: false
-    },
-    {
-      id: "np8",
-      value: "Lokribera Greyrock",
-      description: "Tortle Male, Neutral Neutral",
-      content:
-        "A surfing dude Tortle with a floral headband. Loves to surf the waves on his belly and shield. Didn’t eat fishes because he doesn’t like to eat creatures. Wears a necklace with a bear tooth on it.",
-      open: false
-    },
-    {
-      id: "np9",
-      value: "Bave Underfoot",
-      description: "Human female, Neutral good",
-      content:
-        "Village elder, human woman in her 50s. She is concerned with the villagers. She doesn’t like fish so she isn’t affected by the addiction. Lived in the town since her childhood.",
-      open: false
-    },
-    {
-      id: "np10",
-      value: "Esmee Gluttonbelly",
-      description: "Tortle Male, Neutral good",
-      content: "Retired old monk Tortle.",
-      open: false
-    },
-    {
-      id: "np11",
-      value: "Goldilocks North-took",
       description: "Tortle Male, Neutral Neutral",
       content:
         "A surfing dude Tortle with a floral headband. Loves to surf the waves on his belly and shield. Didn’t eat fishes because he doesn’t like to eat creatures. Wears a necklace with a bear tooth on it.",
@@ -155,6 +90,13 @@ const initialState = {
       content:
         "Multiattack: The scorpion makes two attacks: two with its claws.",
       open: false
+    },
+    {
+      id: "mo3",
+      value: "Bjorlbelorg",
+      description: "Small humanoid, neutral evil",
+      content: `Small creature with big dreams.. of stabbing you in the face. <img src="${Norlbelorg}">`,
+      open: false
     }
   ],
   locations: [
@@ -168,7 +110,22 @@ const initialState = {
       value: "Moonhaven",
       description: "Small town",
       content:
-        "Moonhaven is a town in the south of Gurntaur. It’s not a well known town, and that’s a good thing because they wouldn’t last long against raiders. It’s a small fishing town that keeps to itself. ‘Give a man a fish, and he eats for a day.’. The people are simple and they like it like that. They are great friends with the Tortles living on and around the islands in the opening of Dina Anto. Every full moon (around every 30 days) they hold a friendly match (surfing?) and feast together on the islands. Tortles are mainly hippies. Lately the humans from Moonhaven started to become more greedy. They are fishing more than they need. They even canceled the last moonparties! The humans are being influenced by new fish that they are suddenly catching. They haven’t seen the orange and purple fishes before, but they are delicious and they need to catch more and more. They are getting really fat and some people have eaten themselves to death. The Tortles aren’t eating the new fish because they don’t like new things.",
+        "Moonhaven is a town in the south of Gurntaur. It’s not a well known town, and that’s a good thing because they wouldn’t last long against raiders. It’s a small fishing town that keeps to itself. ‘Give a man a fish, and he eats for a day.’. The people are simple and they like it like that. They are great friends with the Tortles living on and around the islands in the opening of Dina Anto. Every full moon (around every 30 days) they hold a friendly surfing match and feast together on the islands. Tortles are mainly hippies. Lately the humans from Moonhaven started to become more greedy. They are fishing more than they need. They even canceled the last moonparties! The humans are being influenced by new fish that they are suddenly catching. They haven’t seen the orange and purple fishes before, but they are delicious and they need to catch more and more. They are getting really fat and some people have eaten themselves to death. The Tortles aren’t eating the new fish because they don’t like new things.",
+      open: false
+    },
+    {
+      id: "lo2",
+      value: "Gurntaur",
+      description: "Region",
+      content:
+        "Gurntaur is a quiet place. It’s not rich in a lot of special recources so it has never really been contested. There’s farmland, lakes and wood, and that’s enough for the people living there. It’s connected in the north to Vallahir through Khro Burakrin and it’s disconnected from Wellhaven by the mystic marshes to the west. In the centre there are rolling hills that are inhabited by a tribe of hill giants.",
+      open: false
+    },
+    {
+      id: "lo3",
+      value: "Beach",
+      description: "Battlegrounds",
+      content: `Inspiration for battlemap: <img src="${BeachBattleMap}">`,
       open: false
     }
   ]

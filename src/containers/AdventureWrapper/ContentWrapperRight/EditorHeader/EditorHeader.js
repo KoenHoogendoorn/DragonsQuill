@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import classes from "./EditorHeader.module.scss";
 
-import Button from "../../../../components/Button/Button";
+// import Button from "../../../../components/Button/Button";
 
 const EditorHeader = (props) => {
   let editorHeader = null;
@@ -16,9 +16,9 @@ const EditorHeader = (props) => {
   return (
     <div className={classes.EditorHeaderContainer}>
       <p className={classes.EditorHeader}>{editorHeader}</p>
-      <Button size="small" priority="primary" iconPlacement="left">
+      {/* <Button size="small" priority="primary" iconPlacement="left">
         <i className="far fa-save"></i>Save
-      </Button>
+      </Button> */}
     </div>
   );
 };

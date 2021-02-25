@@ -69,23 +69,33 @@ const ContentWrapperLeft = (props) => {
 
   const cancelEditingCard = () => {
     setCurrentItem(initialItemState);
+
     switch (props.activeTab) {
       case "Chapters":
-        return setAddingChapter(false);
+        setAddingChapter(false);
+        break;
       case "NPCs":
-        return setAddingNPC(false);
+        setAddingNPC(false);
+        break;
       case "Monsters":
-        return setAddingMonster(false);
+        setAddingMonster(false);
+        break;
       case "Locations":
-        return setAddingLocation(false);
+        setAddingLocation(false);
+        break;
       default:
         break;
     }
   };
 
+  const clearSearch = () => {
+    setSearchTerm("");
+  };
+
   const activeNewContentCardHandler = () => {
     if (addingChapter || addingNPC || addingMonster || addingLocation) {
       if (currentItem.id !== initialItemState.id) {
+        //editing existing card
         return (
           <CardItemEditor
             id={currentItem.id}
@@ -99,6 +109,7 @@ const ContentWrapperLeft = (props) => {
           />
         );
       } else {
+        //editing new card
         return (
           <CardItemEditor
             id={currentItem.id}
@@ -377,6 +388,7 @@ const ContentWrapperLeft = (props) => {
         <TabsContainer
           tabsContainerClasses={classes.Tabs}
           cancelEditingCard={cancelEditingCard}
+          clearSearch={clearSearch}
         />
         <hr className={classes.TabDivider} />
         <section className={classes.CardToolbar}>
@@ -418,7 +430,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     sortContentHandler: () => dispatch(actions.sortContent()),
-    removeCardHandler: (id) => dispatch(actions.removeCard(id))
+    removeCardHandler: (id) => dispatch(actions.removeCard(id)),
+    toggleCardHandler: (id) => dispatch(actions.toggleCard(id))
   };
 };
 
