@@ -1,4 +1,9 @@
 @import "../../../shared/variables.scss";
+
+.Logo {
+  margin-bottom: 48px;
+}
+
 .Tabs {
   width: 100%;
 }
@@ -63,5 +68,11 @@
       margin-bottom: 8px;
       width: 100%;
     }
+  }
+}
+
+@media screen and (max-width: 501px) {
+  .Logo {
+    display: none;
   }
 }

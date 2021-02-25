@@ -6,6 +6,7 @@ import ContentWrapperLeft from "./ContentWrapperLeft/ContentWrapperLeft";
 import ContentWrapperRight from "./ContentWrapperRight/ContentWrapperRight";
 import MobileHeaderBar from "../../components/MobileHeaderBar/MobileHeaderBar";
 import Button from "../../components/Button/Button";
+import Logo from "../../assets/logo/DragonsQuillLogo";
 
 const AdventureWrapper = () => {
   const [activeContentWrapper, setActiveContentWrapper] = useState("left");
@@ -24,7 +25,7 @@ const AdventureWrapper = () => {
 
   const mobileHeaderBarLeft = (
     <MobileHeaderBar>
-      <div></div>
+      <Logo classes={classes.Logo} />
       <Button
         priority="tertiary"
         iconPlacement="right"

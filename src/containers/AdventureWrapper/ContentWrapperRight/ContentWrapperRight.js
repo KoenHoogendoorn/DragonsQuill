@@ -108,7 +108,7 @@ class ContentWrapperRight extends Component {
     MentionBlot.tagName = "span";
     MentionBlot.className = "dndmention";
     MentionBlot.onClick = (id) => {
-      if (this.state.width < 420) {
+      if (this.state.width < 501) {
         this.props.setActiveContentWrapperLeft();
       }
       this.props.highlightCardHandler(id);
@@ -248,7 +248,7 @@ class ContentWrapperRight extends Component {
       wrapperRightBlock.style.width = (this.state.width * 0.9) / 2 + "px";
     }
 
-    if (this.state.width < 500) {
+    if (this.state.width < 501) {
       wrapperRightBlock.style.width = "100%";
     }
 

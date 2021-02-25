@@ -15,7 +15,7 @@
 
 .WrapperLeft {
   padding-right: 32px;
-  padding-top: 96px;
+  padding-top: 16px;
 }
 
 .WrapperRightBlock {
@@ -41,7 +41,7 @@
   transition: transform 0.175s ease-out;
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 501px) {
   .AdventureWrapper {
     width: 100%;
     height: 100vh;
@@ -80,5 +80,10 @@
 
   .MoveRight {
     transform: translateX(100%);
+  }
+
+  .Logo {
+    width: 111px;
+    height: 18px;
   }
 }
