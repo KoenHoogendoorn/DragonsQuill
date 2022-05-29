@@ -12,6 +12,7 @@ import CardItemEditor from "../../../components/CardItem/CardItemEditor/CardItem
 import TabsContainer from "./TabsContainer/TabsContainer";
 import Modal from "../../../components/Modal/Modal";
 import Logo from "../../../assets/logo/DragonsQuillLogo";
+import DownloadFilesButton from "../../../components/DownloadFilesButton/DownloadFilesButton";
 
 import DeleteItemIllustration from "../../../assets/illustrations/DeleteItemIllustration";
 
@@ -385,7 +386,11 @@ const ContentWrapperLeft = (props) => {
       <div
         className={`${classes.ContentWrapper} ${classes.WrapperLeft} ${props.addedClassesLeft}`}
       >
-        <Logo classes={classes.Logo} />
+        <div className={classes.HeaderBar}>
+          <Logo classes={classes.Logo} />
+          <DownloadFilesButton />
+        </div>
+
         <h1>{props.adventure.value}</h1>
         <TabsContainer
           tabsContainerClasses={classes.Tabs}

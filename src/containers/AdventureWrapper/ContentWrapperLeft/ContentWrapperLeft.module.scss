@@ -1,5 +1,10 @@
 @import "../../../shared/variables.scss";
 
+.HeaderBar {
+  display: flex;
+  justify-content: space-between;
+}
+
 .Logo {
   margin-bottom: 48px;
 }
