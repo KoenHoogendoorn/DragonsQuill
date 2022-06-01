@@ -47,6 +47,13 @@ export const changeMentionCounters = (mentionIds, activeChapterId) => {
   };
 };
 
+export const overwriteContent = (newData) => {
+  return {
+    type: "OVERWRITE_CONTENT",
+    newData: newData
+  };
+};
+
 // export const changeMentionCounters = (mentionId, activeChapterId, addition) => {
 //   return {
 //     type: "CHANGE_MENTION_COUNTERS",

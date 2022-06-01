@@ -8,5 +8,6 @@ export {
   removeCard,
   addCard,
   closeCards,
-  changeMentionCounters
+  changeMentionCounters,
+  overwriteContent
 } from "./contentData";

@@ -24,7 +24,7 @@ const DownloadFileButton = (props) => {
   const downloadFileHandler = (event) => {
     event.preventDefault();
     // Prepare the file
-    let output = JSON.stringify({ states: props.npcs }, null, 4);
+    let output = JSON.stringify(props.npcs, null, 4);
 
     // Download it
     const blob = new Blob([output]);

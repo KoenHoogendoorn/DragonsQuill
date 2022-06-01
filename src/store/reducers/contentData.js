@@ -420,6 +420,24 @@ const reducer = (state = initialState, action) => {
         chapters: chapters7
       };
       return updateObject(state, updatedState7);
+
+    case "OVERWRITE_CONTENT":
+      //let chapters8 = action.chapters;
+      let npcs8 = state.npcs.slice();
+      let localDataNpcs = action.newData;
+      // let monsters8 = action.monsters;
+      // let locations8 = action.locations;
+      npcs8 = localDataNpcs;
+
+      const updatedState8 = {
+        // chapters: chapters8,
+        npcs: npcs8
+        // monsters: monsters8,
+        // locations: locations8
+      };
+
+      return updateObject(state, updatedState8);
+
     default:
       return state;
   }
