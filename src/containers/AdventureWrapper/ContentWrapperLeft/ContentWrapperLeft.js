@@ -13,6 +13,7 @@ import TabsContainer from "./TabsContainer/TabsContainer";
 import Modal from "../../../components/Modal/Modal";
 import Logo from "../../../assets/logo/DragonsQuillLogo";
 import DownloadFileButton from "../../../components/DownloadFileButton/DownloadFileButton";
+import UploadFileInput from "../../../components/UploadFileInput/UploadFileInput";
 
 import DeleteItemIllustration from "../../../assets/illustrations/DeleteItemIllustration";
 
@@ -389,6 +390,7 @@ const ContentWrapperLeft = (props) => {
         <div className={classes.HeaderBar}>
           <Logo classes={classes.Logo} />
           <DownloadFileButton />
+          <UploadFileInput />
         </div>
 
         <h1>{props.adventure.value}</h1>
