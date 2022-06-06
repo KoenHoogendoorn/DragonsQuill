@@ -422,18 +422,31 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, updatedState7);
 
     case "OVERWRITE_CONTENT":
-      //let chapters8 = action.chapters;
+      // adventure won't work if it's only one
+      // let adventure8 = state.adventure.slice();
+      let chapters8 = state.chapters.slice();
       let npcs8 = state.npcs.slice();
-      let localDataNpcs = action.newData;
-      // let monsters8 = action.monsters;
-      // let locations8 = action.locations;
-      npcs8 = localDataNpcs;
+      let monsters8 = state.monsters.slice();
+      let locations8 = state.locations.slice();
+
+      // let localAdventure = action.newData[0];
+      let localChapters = action.newData[0];
+      let localNpcs = action.newData[1];
+      let localMonsters = action.newData[2];
+      let localLocations = action.newData[3];
+
+      // adventure8 = localAdventure;
+      chapters8 = localChapters;
+      npcs8 = localNpcs;
+      monsters8 = localMonsters;
+      locations8 = localLocations;
 
       const updatedState8 = {
-        // chapters: chapters8,
-        npcs: npcs8
-        // monsters: monsters8,
-        // locations: locations8
+        // adventure: adventure8,
+        chapters: chapters8,
+        npcs: npcs8,
+        monsters: monsters8,
+        locations: locations8
       };
 
       return updateObject(state, updatedState8);

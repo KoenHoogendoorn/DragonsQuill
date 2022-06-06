@@ -7,7 +7,6 @@ import Button from "../Button/Button";
 const DownloadFileButton = (props) => {
   const fileName = "states.json";
   const [fileDownloadUrl, setFileDownloadUrl] = useState(null);
-  //const [status, setStatus] = useState("");
 
   // prettier-ignore
   let doFileDownload = useRef<HTMLInputElement>(null);
@@ -24,7 +23,17 @@ const DownloadFileButton = (props) => {
   const downloadFileHandler = (event) => {
     event.preventDefault();
     // Prepare the file
-    let output = JSON.stringify(props.npcs, null, 4);
+    let output = JSON.stringify(
+      [
+        // props.adventure,
+        props.chapters,
+        props.npcs,
+        props.monsters,
+        props.locations
+      ],
+      null,
+      4
+    );
 
     // Download it
     const blob = new Blob([output]);
@@ -58,12 +67,11 @@ const DownloadFileButton = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    //   adventure: state.contentData.adventure,
-    //   chapters: state.contentData.chapters,
-    npcs: state.contentData.npcs
-    //   monsters: state.contentData.monsters,
-    //   locations: state.contentData.locations,
-    //   activeTab: state.activeTab.activeTab
+    adventure: state.contentData.adventure,
+    chapters: state.contentData.chapters,
+    npcs: state.contentData.npcs,
+    monsters: state.contentData.monsters,
+    locations: state.contentData.locations
   };
 };
 
