@@ -1,6 +1,12 @@
 # To do:
 
+bugs:
+
 - als je ‘edit’ klikt voor een stuk en dan ‘cancel’ dan sluit ie het hele ding, maar de cancel zou je eigenlijk terug moeten brengen naar de ‘reading mode’
+
+Test:
+
+- checken of namen met gekke tekens e.d. voor problemen zorgen bij file download en upload
 
 - firebase setup
 - log in page
