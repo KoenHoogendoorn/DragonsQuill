@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import classes from "./AdventureWrapper.module.scss";
 
+import LandingPage from "./LandingPage/LandingPage";
 import ContentWrapperLeft from "./ContentWrapperLeft/ContentWrapperLeft";
 import ContentWrapperRight from "./ContentWrapperRight/ContentWrapperRight";
 import MobileHeaderBar from "../../components/MobileHeaderBar/MobileHeaderBar";
@@ -9,6 +10,7 @@ import Button from "../../components/Button/Button";
 import Logo from "../../assets/logo/DragonsQuillLogo";
 
 const AdventureWrapper = () => {
+  const [activePage, setActivePage] = useState("landingPage");
   const [activeContentWrapper, setActiveContentWrapper] = useState("left");
   let addedClassesLeft = "";
   let addedClassesRight = "";
@@ -49,7 +51,9 @@ const AdventureWrapper = () => {
     </MobileHeaderBar>
   );
 
-  return (
+  const landingPage = <LandingPage />;
+
+  const editorPage = (
     <React.Fragment>
       {activeContentWrapper === "left"
         ? mobileHeaderBarLeft
@@ -61,6 +65,12 @@ const AdventureWrapper = () => {
           setActiveContentWrapperLeft={() => setActiveContentWrapper("left")}
         />
       </div>
+    </React.Fragment>
+  );
+
+  return (
+    <React.Fragment>
+      {activePage === "landingPage" ? landingPage : editorPage}
     </React.Fragment>
   );
 };

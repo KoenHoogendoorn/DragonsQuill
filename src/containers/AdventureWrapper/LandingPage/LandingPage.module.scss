@@ -1,0 +1,49 @@
+@import "../../../shared/variables.scss";
+
+.LandingPage {
+    width: 800px;
+    margin: 0 auto;
+    padding-top: 120px;
+    text-align: center;
+
+    .Logo {
+        margin-bottom: 32px;
+    }
+
+    .LandingPageText {
+        margin-bottom: 24px;
+    }
+
+    .ButtonWrapper {
+        display: flex;
+        justify-content: center;
+        margin-bottom:32px;
+
+        :first-child {
+            margin-right: 12px;
+          }
+      
+          :last-child {
+            margin-left: 12px;
+          }
+    }
+
+    .InputBox {
+        width:400px;
+        margin: 0 auto;
+        padding: 32px 0;
+        border: 2px dashed $clr-dustyGray;
+
+        .InputBoxText {
+            margin-bottom: 24px;
+
+            .HelpText {
+                font-size: 12px;
+                color: $clr-dustyGray;
+            }
+        }
+        
+    }
+}
+
+
