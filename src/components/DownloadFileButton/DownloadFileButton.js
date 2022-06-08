@@ -5,7 +5,14 @@ import classes from "./DownloadFileButton.module.scss";
 import Button from "../Button/Button";
 
 const DownloadFileButton = (props) => {
-  const fileName = "states.json";
+  let today = new Date();
+  let date =
+    today.getFullYear() + "/" + (today.getMonth() + 1) + "/" + today.getDate();
+  let time =
+    today.getHours() + "_" + today.getMinutes() + "_" + today.getSeconds();
+  const dateTime = date + " - " + time;
+
+  const fileName = `${"DQ-Adventure - " + dateTime + ".json"}`;
   const [fileDownloadUrl, setFileDownloadUrl] = useState(null);
 
   // prettier-ignore

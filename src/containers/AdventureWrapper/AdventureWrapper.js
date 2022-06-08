@@ -10,7 +10,7 @@ import Button from "../../components/Button/Button";
 import Logo from "../../assets/logo/DragonsQuillLogo";
 
 const AdventureWrapper = () => {
-  const [activePage, setActivePage] = useState("landingPage");
+  const [activePage, setActivePage] = useState("landingPag");
   const [activeContentWrapper, setActiveContentWrapper] = useState("left");
   let addedClassesLeft = "";
   let addedClassesRight = "";
