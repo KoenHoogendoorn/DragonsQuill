@@ -393,7 +393,7 @@ const ContentWrapperLeft = (props) => {
           <UploadFileInput />
         </div>
 
-        <h1>{props.adventure.value}</h1>
+        <h1>{props.adventure[0].value}</h1>
         <TabsContainer
           tabsContainerClasses={classes.Tabs}
           cancelEditingCard={cancelEditingCard}

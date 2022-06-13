@@ -32,7 +32,7 @@ const DownloadFileButton = (props) => {
     // Prepare the file
     let output = JSON.stringify(
       [
-        // props.adventure,
+        props.adventure,
         props.chapters,
         props.npcs,
         props.monsters,

@@ -1,29 +1,27 @@
 # To do:
 
-bugs:
+### bugs:
 
 - als je ‘edit’ klikt voor een stuk en dan ‘cancel’ dan sluit ie het hele ding, maar de cancel zou je eigenlijk terug moeten brengen naar de ‘reading mode’
+- mentiondropdown searching for 'monsters' will show only the label
 
-Test:
+### Test:
 
 - checken of namen met gekke tekens e.d. voor problemen zorgen bij file download en upload
 
-- firebase setup
-- log in page
-- export/import data to start typing adventures in this
+### High prio
 
-- logo toevoegen
+- Ability to change adventure title
+- new adventure on click button in landing page
+- demo adventure on click button in landing page
+
+- drag n drop state file in landing page
 
 - change Input component name to Searchbar
 
-- change contentdatabase to firebase
 - switch mention setup to async
 
 - style external link and inputlightbox you get when you add a link in editor
-
-- adventures overview
-
-- mentiondropdown searching for 'monsters' will show only the label
 
 ## Not that important right now:
 
@@ -32,12 +30,21 @@ Test:
 - show headers after typing in mention
 - animation when card gets deleted
 
+- firebase setup
+- log in page
+- export/import data to start typing adventures in this
+
+- change contentdatabase to firebase
+- adventures overview
+
 ## Maybe:
 
 - content card groups
 - add/remove categories
 
 # DONE
+
+- logo toevoegen
 
 ## past
 

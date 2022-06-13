@@ -3,10 +3,12 @@ import Norlbelorg from "../../assets/images/norlbelorg.png";
 import BeachBattleMap from "../../assets/images/BeachBattleMap.jpg";
 
 const initialState = {
-  adventure: {
-    id: "ad0",
-    value: "Moonhaven's curse"
-  },
+  adventure: [
+    {
+      id: "ad0",
+      value: "Moonhaven's curse"
+    }
+  ],
   chapters: [
     {
       id: "ch0",
@@ -423,26 +425,26 @@ const reducer = (state = initialState, action) => {
 
     case "OVERWRITE_CONTENT":
       // adventure won't work if it's only one
-      // let adventure8 = state.adventure.slice();
+      let adventure8 = state.adventure.slice();
       let chapters8 = state.chapters.slice();
       let npcs8 = state.npcs.slice();
       let monsters8 = state.monsters.slice();
       let locations8 = state.locations.slice();
 
-      // let localAdventure = action.newData[0];
-      let localChapters = action.newData[0];
-      let localNpcs = action.newData[1];
-      let localMonsters = action.newData[2];
-      let localLocations = action.newData[3];
+      let localAdventure = action.newData[0];
+      let localChapters = action.newData[1];
+      let localNpcs = action.newData[2];
+      let localMonsters = action.newData[3];
+      let localLocations = action.newData[4];
 
-      // adventure8 = localAdventure;
+      adventure8 = localAdventure;
       chapters8 = localChapters;
       npcs8 = localNpcs;
       monsters8 = localMonsters;
       locations8 = localLocations;
 
       const updatedState8 = {
-        // adventure: adventure8,
+        adventure: adventure8,
         chapters: chapters8,
         npcs: npcs8,
         monsters: monsters8,
