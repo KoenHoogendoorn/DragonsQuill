@@ -5,6 +5,8 @@
 - als je ‘edit’ klikt voor een stuk en dan ‘cancel’ dan sluit ie het hele ding, maar de cancel zou je eigenlijk terug moeten brengen naar de ‘reading mode’
 - mentiondropdown searching for 'monsters' will show only the label
 
+- after clicking elipses in card, clicking anywhere else should close the dropdown
+
 ### Test:
 
 - checken of namen met gekke tekens e.d. voor problemen zorgen bij file download en upload
@@ -12,6 +14,12 @@
 ### High prio
 
 - Ability to change adventure title
+
+  - create dropdown component
+  - create settings button next to logo
+  - put download data, upload json file and change adventure title in it
+  - if change adventure title is clicked, show modal with input to change it
+
 - new adventure on click button in landing page
 - demo adventure on click button in landing page
 
@@ -44,7 +52,7 @@
 
 # DONE
 
-- logo toevoegen
+- added adventure to state down/upload
 
 ## past
 

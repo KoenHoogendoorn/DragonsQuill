@@ -4,15 +4,15 @@ import { connect } from "react-redux";
 import classes1 from "../AdventureWrapper.module.scss";
 import classes2 from "./ContentWrapperLeft.module.scss";
 
-import Inputbar from "../../../components/Inputbar/Inputbar";
 import Button from "../../../components/Button/Button";
 import Chapter from "../../../components/Chapter/Chapter";
 import CardItem from "../../../components/CardItem/CardItem";
 import CardItemEditor from "../../../components/CardItem/CardItemEditor/CardItemEditor";
-import TabsContainer from "./TabsContainer/TabsContainer";
-import Modal from "../../../components/Modal/Modal";
-import Logo from "../../../assets/logo/DragonsQuillLogo";
 import DownloadFileButton from "../../../components/DownloadFileButton/DownloadFileButton";
+import Inputbar from "../../../components/Inputbar/Inputbar";
+import Logo from "../../../assets/logo/DragonsQuillLogo";
+import Modal from "../../../components/Modal/Modal";
+import TabsContainer from "./TabsContainer/TabsContainer";
 import UploadFileInput from "../../../components/UploadFileInput/UploadFileInput";
 
 import DeleteItemIllustration from "../../../assets/illustrations/DeleteItemIllustration";
