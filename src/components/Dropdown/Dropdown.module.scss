@@ -14,7 +14,6 @@
     }
 
     .DropdownContent {
-      display: none;
       position: absolute;
       background-color: white;
       min-width: 160px;
@@ -47,10 +46,6 @@
           color: $clr-tertiary-active;
         }
       }
-    }
-
-    .Show {
-      display: block;
     }
   }
 
