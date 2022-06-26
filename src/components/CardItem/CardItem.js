@@ -11,7 +11,6 @@ import CardBackground from "../CardParts/CardBackground/CardBackground";
 import CardBody from "../CardParts/CardBody/CardBody";
 import CardHeaderContainer from "../CardParts/CardHeaderContainer/CardHeaderContainer";
 import CardToolbar from "../CardParts/CardToolbar/CardToolbar";
-import ClickableIcon from "../ClickableIcon/ClickableIcon";
 
 const CardItem = (props) => {
   const classes = { ...cardBackgroundClasses, ...CardItemclasses };
@@ -56,9 +55,9 @@ const CardItem = (props) => {
             <h4>{props.value}</h4>
             <p className={classes.CardSubtitle}>{props.description}</p>
           </div>
-          <ClickableIcon>
+          <div className={classes.ChevronContainer}>
             <i className={`fas fa-chevron-down ${chevronClass}`}></i>
-          </ClickableIcon>
+          </div>
         </CardHeaderContainer>
         <CardBody id={props.id}>
           <div dangerouslySetInnerHTML={{ __html: props.content }}></div>

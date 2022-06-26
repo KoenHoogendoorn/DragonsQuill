@@ -14,3 +14,15 @@
 img {
   margin: 12px 0;
 }
+
+.ChevronContainer {
+  color: $clr-tertiary;
+
+  &:hover {
+    color: $clr-tertiary-hover;
+  }
+
+  &:active {
+    color: $clr-tertiary-active;
+  }
+}

@@ -15,6 +15,7 @@
 
 - Ability to change adventure title
 
+  - remove clickable icon component
   - create dropdown component
   - create settings button next to logo
   - put download data, upload json file and change adventure title in it
