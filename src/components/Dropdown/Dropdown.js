@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import classes from "./Dropdown.module.scss";
 
+import Button from "../Button/Button";
+
 const Dropdown = (props) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -27,6 +29,22 @@ const Dropdown = (props) => {
     }, [ref]);
   }
 
+  let button = props.fullButton ? (
+    <Button
+      clicked={() => setShowDropdown(!showDropdown)}
+      size="small"
+      priority="tertiary"
+      iconPlacement="left"
+    >
+      <i className={props.clickableIconName}></i>Settings
+    </Button>
+  ) : (
+    <i
+      className={props.clickableIconName}
+      onClick={() => setShowDropdown(!showDropdown)}
+    ></i>
+  );
+
   let dropdownContent = showDropdown ? (
     <div className={classes.DropdownContent} ref={wrapperRef}>
       {props.children}
@@ -35,10 +53,8 @@ const Dropdown = (props) => {
 
   return (
     <div className={classes.Dropdown}>
-      <i
-        className={props.clickableIconName}
-        onClick={() => setShowDropdown(!showDropdown)}
-      ></i>
+      {button}
+
       {dropdownContent}
     </div>
   );

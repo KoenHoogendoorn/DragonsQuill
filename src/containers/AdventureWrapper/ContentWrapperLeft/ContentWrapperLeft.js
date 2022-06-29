@@ -8,6 +8,7 @@ import Button from "../../../components/Button/Button";
 import Chapter from "../../../components/Chapter/Chapter";
 import CardItem from "../../../components/CardItem/CardItem";
 import CardItemEditor from "../../../components/CardItem/CardItemEditor/CardItemEditor";
+import Dropdown from "../../../components/Dropdown/Dropdown";
 import DownloadFileButton from "../../../components/DownloadFileButton/DownloadFileButton";
 import Inputbar from "../../../components/Inputbar/Inputbar";
 import Logo from "../../../assets/logo/DragonsQuillLogo";
@@ -389,8 +390,11 @@ const ContentWrapperLeft = (props) => {
       >
         <div className={classes.HeaderBar}>
           <Logo classes={classes.Logo} />
-          <DownloadFileButton />
-          <UploadFileInput />
+
+          <Dropdown clickableIconName={"fas fa-cog"} fullButton={true}>
+            <DownloadFileButton />
+            <UploadFileInput />
+          </Dropdown>
         </div>
 
         <h1>{props.adventure[0].value}</h1>

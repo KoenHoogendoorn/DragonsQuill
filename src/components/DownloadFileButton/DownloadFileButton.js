@@ -58,7 +58,7 @@ const DownloadFileButton = (props) => {
         priority="primary"
         iconPlacement="left"
       >
-        <i className="far fa-save"></i>Download data
+        <i className="far fa-save"></i>Download adventure data
       </Button>
       <a
         className={classes.Hidden}

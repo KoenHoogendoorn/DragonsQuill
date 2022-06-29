@@ -7,6 +7,8 @@
 
 - after clicking elipses in card, clicking anywhere else should close the dropdown
 
+- if you click on an icon that opens a dropdown, when the dropdown is open, it should close again. Now it stays open.
+
 ### Test:
 
 - checken of namen met gekke tekens e.d. voor problemen zorgen bij file download en upload
@@ -15,9 +17,10 @@
 
 - Ability to change adventure title
 
-  - remove clickable icon component
-  - create dropdown component
-  - create settings button next to logo
+  X remove clickable icon component
+  X create dropdown component
+  X create settings button next to logo, add dropdown component to it
+
   - put download data, upload json file and change adventure title in it
   - if change adventure title is clicked, show modal with input to change it
 

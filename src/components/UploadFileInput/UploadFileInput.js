@@ -50,7 +50,8 @@ const UploadFileInput = (props) => {
           priority="secondary"
           iconPlacement="left"
         >
-          Upload a JSON file
+          <i className="fas fa-upload"></i>
+          Upload adventure data (JSON file)
         </Button>
       </p>
 
