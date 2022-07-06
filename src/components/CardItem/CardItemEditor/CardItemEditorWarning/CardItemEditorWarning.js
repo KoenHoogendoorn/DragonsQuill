@@ -8,6 +8,9 @@ const CardItemEditorWarning = (props) => {
   if (props.fadeout) {
     warningClasses += `${classes.Deleted}`;
   }
+  if (props.adventureName) {
+    warningClasses += `${classes.AdventureNameModal}`;
+  }
 
   return (
     <div className={warningClasses}>

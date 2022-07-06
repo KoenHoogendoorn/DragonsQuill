@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import classes1 from "../AdventureWrapper.module.scss";
 import classes2 from "./ContentWrapperLeft.module.scss";
 
+import AdventureNameEditModal from "../../../components/AdventureNameEditModal/AdventureNameEditModal";
 import Button from "../../../components/Button/Button";
 import Chapter from "../../../components/Chapter/Chapter";
 import CardItem from "../../../components/CardItem/CardItem";
@@ -39,6 +40,7 @@ const ContentWrapperLeft = (props) => {
     id: "",
     name: ""
   });
+  const [openAdventureNameModal, setOpenAdventureNameModal] = useState(false);
 
   const [addingChapter, setAddingChapter] = useState(false);
   const [addingNPC, setAddingNPC] = useState(false);
@@ -385,6 +387,10 @@ const ContentWrapperLeft = (props) => {
       <Modal show={deleting} modalClosed={() => setDeleting(false)}>
         {deleteItemModalContent}
       </Modal>
+      <AdventureNameEditModal
+        openAdventureNameModal={openAdventureNameModal}
+        setOpenAdventureNameModal={() => setOpenAdventureNameModal(false)}
+      />
       <div
         className={`${classes.ContentWrapper} ${classes.WrapperLeft} ${props.addedClassesLeft}`}
       >
@@ -394,6 +400,15 @@ const ContentWrapperLeft = (props) => {
           <Dropdown clickableIconName={"fas fa-cog"} fullButton={true}>
             <DownloadFileButton />
             <UploadFileInput />
+            {/* Made this a button component because the other 2 items in this dropdown are also based on this component and I didn't feel like transforming them all to normal buttons */}
+            <Button
+              size="small"
+              iconPlacement="left"
+              clicked={() => setOpenAdventureNameModal(true)}
+            >
+              <i className="far fa-edit"></i>
+              Edit adventure title
+            </Button>
           </Dropdown>
         </div>
 

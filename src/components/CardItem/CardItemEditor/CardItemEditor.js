@@ -183,6 +183,7 @@ class CardItemEditor extends Component {
 
   handleSave = () => {
     const value = this.state.value;
+
     if (value.trim() === "") {
       this.setState({ CardItemEditorWarning: true });
       return;
@@ -203,6 +204,7 @@ class CardItemEditor extends Component {
         );
       }
     }
+
     if (this.props.activeTab === "Chapters") {
       this.props.addCardHandler({
         id: this.state.id,

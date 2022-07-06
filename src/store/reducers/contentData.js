@@ -285,12 +285,18 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, updatedState3);
 
     case "REMOVE_CARD":
+      let adventure5 = state.adventure.slice();
       let chapters5 = state.chapters.slice();
       let npcs5 = state.npcs.slice();
       let monsters5 = state.monsters.slice();
       let locations5 = state.locations.slice();
 
       switch (action.id.substring(0, 2)) {
+        case "ad":
+          adventure5 = adventure5.filter((adventure) => {
+            return adventure.id !== action.id;
+          });
+          break;
         case "ch":
           chapters5 = chapters5.filter((chapter) => {
             return chapter.id !== action.id;
@@ -315,6 +321,7 @@ const reducer = (state = initialState, action) => {
           break;
       }
       const updatedState5 = {
+        adventure: adventure5,
         chapters: chapters5,
         npcs: npcs5,
         monsters: monsters5,
@@ -323,12 +330,16 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, updatedState5);
 
     case "ADD_CARD":
+      let adventure4 = state.adventure.slice();
       let chapters4 = state.chapters.slice();
       let npcs4 = state.npcs.slice();
       let monsters4 = state.monsters.slice();
       let locations4 = state.locations.slice();
 
       switch (action.itemData.id.substring(0, 2)) {
+        case "ad":
+          adventure4.push(action.itemData);
+          break;
         case "ch":
           chapters4.push(action.itemData);
           break;
@@ -345,6 +356,7 @@ const reducer = (state = initialState, action) => {
           break;
       }
       const updatedState4 = {
+        adventure: adventure4,
         chapters: chapters4,
         npcs: npcs4,
         monsters: monsters4,

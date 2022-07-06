@@ -2,6 +2,7 @@
 
 ### bugs:
 
+- if you edit a chapter name, it deletes it.
 - als je ‘edit’ klikt voor een stuk en dan ‘cancel’ dan sluit ie het hele ding, maar de cancel zou je eigenlijk terug moeten brengen naar de ‘reading mode’
 - mentiondropdown searching for 'monsters' will show only the label
 
@@ -14,15 +15,6 @@
 - checken of namen met gekke tekens e.d. voor problemen zorgen bij file download en upload
 
 ### High prio
-
-- Ability to change adventure title
-
-  X remove clickable icon component
-  X create dropdown component
-  X create settings button next to logo, add dropdown component to it
-
-  - put download data, upload json file and change adventure title in it
-  - if change adventure title is clicked, show modal with input to change it
 
 - new adventure on click button in landing page
 - demo adventure on click button in landing page
@@ -171,6 +163,17 @@ X - editing newly created chapter error
 X - hover op header icons in editor toolbar
 X - zoekbalk query blijft staan tussen tabswitch
 X - tooltip dropdown in chapter cuts off on mobile
+
+## 06-07-2022
+
+X Ability to change adventure title
+
+X remove clickable icon component
+X create dropdown component
+X create settings button next to logo, add dropdown component to it
+
+X put download data, upload json file and change adventure title in it
+X if change adventure title is clicked, show modal with input to change it
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">

@@ -5,7 +5,6 @@
   color: white;
   font-weight: bold;
   margin: 0 -17px;
-  border-radius: 0 0 4px 4px;
   padding: 4px 16px;
   opacity: 1;
   transition: opacity 0.1s ease-out;
@@ -17,4 +16,10 @@
 
 .Deleted {
   opacity: 0;
+}
+
+.AdventureNameModal {
+  position: absolute;
+  bottom: 0;
+  border-radius: 0 0 4px 4px;
 }
