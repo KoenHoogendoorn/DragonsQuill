@@ -10,7 +10,7 @@ import Button from "../../components/Button/Button";
 import Logo from "../../assets/logo/DragonsQuillLogo";
 
 const AdventureWrapper = () => {
-  const [activePage, setActivePage] = useState("landingPag");
+  const [activePage, setActivePage] = useState("landingPage");
   const [activeContentWrapper, setActiveContentWrapper] = useState("left");
   let addedClassesLeft = "";
   let addedClassesRight = "";
@@ -51,7 +51,7 @@ const AdventureWrapper = () => {
     </MobileHeaderBar>
   );
 
-  const landingPage = <LandingPage />;
+  const landingPage = <LandingPage setActivePage={() => setActivePage("")} />;
 
   const editorPage = (
     <React.Fragment>

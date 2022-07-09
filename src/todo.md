@@ -3,6 +3,7 @@
 ### bugs:
 
 - if you edit a chapter name, it deletes it.
+- when there are no chapters, typing in quill crashes. Add readOnly prop as true so you can't type
 - als je ‘edit’ klikt voor een stuk en dan ‘cancel’ dan sluit ie het hele ding, maar de cancel zou je eigenlijk terug moeten brengen naar de ‘reading mode’
 - mentiondropdown searching for 'monsters' will show only the label
 
@@ -16,7 +17,6 @@
 
 ### High prio
 
-- new adventure on click button in landing page
 - demo adventure on click button in landing page
 
 - drag n drop state file in landing page
@@ -29,7 +29,6 @@
 
 ## Not that important right now:
 
-- make sure dropdown from 'more icon' in chapter goes away when clicking outside it.
 - renaming NPCs to general cards
 - show headers after typing in mention
 - animation when card gets deleted
@@ -174,6 +173,15 @@ X create settings button next to logo, add dropdown component to it
 
 X put download data, upload json file and change adventure title in it
 X if change adventure title is clicked, show modal with input to change it
+
+## 09-07-2022
+
+X new adventure on click button in landing page. When you click on 'new adventure':
+
+X. overwrite contentdata with fully empty state
+X. you see a modal where you can input an adventure title
+X. make it so you can change the title in the adventure name modal
+X. add new adventure title in state
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">

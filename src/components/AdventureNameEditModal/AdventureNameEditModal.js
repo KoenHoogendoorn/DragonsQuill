@@ -38,7 +38,10 @@ const AdventureNameEditModal = (props) => {
       value: value
     });
     closeAdventureNameModalHandler();
+    //custom functions if passed on through props
+    props.addToSaveHandler();
   };
+  let modalTitle = props.modalTitle ? props.modalTitle : "Edit adventure name";
 
   return (
     <Modal
@@ -46,13 +49,7 @@ const AdventureNameEditModal = (props) => {
       modalClosed={() => closeAdventureNameModalHandler()}
     >
       <div className={classes.editAdventureNameModalContent}>
-        <h4>Edit adventure name</h4>
-        {/* <input
-          type="text"
-          id="adventureName"
-          value={adventureNameState}
-          onChange={(e) => setAdventureNameState(e.target.value)}
-        /> */}
+        <h4>{modalTitle}</h4>
         <Inputbar
           id="adventureName"
           type="text"
