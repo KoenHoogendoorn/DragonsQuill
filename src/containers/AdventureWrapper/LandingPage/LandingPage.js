@@ -86,7 +86,7 @@ const LandingPage = (props) => {
         <Button
           priority="secondary"
           size="big"
-          // clicked={() => setActiveContentWrapper("left")}
+          clicked={() => props.setActivePage()}
         >
           Show demo
         </Button>

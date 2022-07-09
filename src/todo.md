@@ -17,8 +17,6 @@
 
 ### High prio
 
-- demo adventure on click button in landing page
-
 - drag n drop state file in landing page
 
 - change Input component name to Searchbar
@@ -182,6 +180,8 @@ X. overwrite contentdata with fully empty state
 X. you see a modal where you can input an adventure title
 X. make it so you can change the title in the adventure name modal
 X. add new adventure title in state
+
+X demo adventure on click button in landing page
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">
