@@ -5,6 +5,7 @@ import classes from "./AdventureNameEditModal.module.scss";
 import Modal from "../Modal/Modal";
 import Button from "../Button/Button";
 import CardItemEditorWarning from "../CardItem/CardItemEditor/CardItemEditorWarning/CardItemEditorWarning";
+import Inputbar from "../Inputbar/Inputbar";
 
 import * as actions from "../../store/actions/actionsIndex";
 
@@ -46,11 +47,17 @@ const AdventureNameEditModal = (props) => {
     >
       <div className={classes.editAdventureNameModalContent}>
         <h4>Edit adventure name</h4>
-        <input
+        {/* <input
           type="text"
           id="adventureName"
           value={adventureNameState}
           onChange={(e) => setAdventureNameState(e.target.value)}
+        /> */}
+        <Inputbar
+          id="adventureName"
+          type="text"
+          val={adventureNameState}
+          changed={(e) => setAdventureNameState(e.target.value)}
         />
 
         <div className={classes.DeleteItemModalButtons}>
