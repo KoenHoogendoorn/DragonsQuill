@@ -1,21 +1,10 @@
 # To do:
 
-### bugs:
-
-- if you edit a chapter name, it deletes it.
-- when there are no chapters, typing in quill crashes. Add readOnly prop as true so you can't type
-- als je ‘edit’ klikt voor een stuk en dan ‘cancel’ dan sluit ie het hele ding, maar de cancel zou je eigenlijk terug moeten brengen naar de ‘reading mode’
-- mentiondropdown searching for 'monsters' will show only the label
-
-- after clicking elipses in card, clicking anywhere else should close the dropdown
-
-- if you click on an icon that opens a dropdown, when the dropdown is open, it should close again. Now it stays open.
-
 ### Test:
 
 - checken of namen met gekke tekens e.d. voor problemen zorgen bij file download en upload
 
-### High prio
+### High prio features
 
 - drag n drop state file in landing page
 
@@ -25,7 +14,20 @@
 
 - style external link and inputlightbox you get when you add a link in editor
 
+- click on logo to get back to landing page
+  - click logo
+  - show are you sure modal
+
 ## Not that important right now:
+
+### bug
+
+- if you click on an icon that opens a dropdown, when the dropdown is open, it should close again. Now it stays open.
+- if you edit a chapter name, removes the mention icons and shows them only after editing text in editor.
+- als je ‘edit’ klikt voor een niet-chapter stuk en dan ‘cancel’ dan sluit ie het hele ding, maar de cancel zou je eigenlijk terug moeten brengen naar de ‘reading mode’
+- mentiondropdown searching for 'monsters' will show only the label
+
+### features
 
 - renaming NPCs to general cards
 - show headers after typing in mention
@@ -182,6 +184,10 @@ X. make it so you can change the title in the adventure name modal
 X. add new adventure title in state
 
 X demo adventure on click button in landing page
+
+## 13-07-2022
+
+X. Bug - when there are no chapters, typing in quill crashes. Add readOnly prop as true so you can't type
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">
