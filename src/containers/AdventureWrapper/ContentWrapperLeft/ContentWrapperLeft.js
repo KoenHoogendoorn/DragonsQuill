@@ -399,7 +399,10 @@ const ContentWrapperLeft = (props) => {
 
           <Dropdown clickableIconName={"fas fa-cog"} fullButton={true}>
             <DownloadFileButton />
-            <UploadFileInput />
+            <UploadFileInput
+              priority={"secondary"}
+              buttonText={"Upload adventure data (JSON file)"}
+            />
             {/* Made this a button component because the other 2 items in this dropdown are also based on this component and I didn't feel like transforming them all to normal buttons */}
             <Button
               size="small"

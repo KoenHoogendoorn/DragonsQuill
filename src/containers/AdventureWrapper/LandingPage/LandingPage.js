@@ -6,6 +6,7 @@ import classes from "./LandingPage.module.scss";
 import AdventureNameEditModal from "../../../components/AdventureNameEditModal/AdventureNameEditModal";
 import Button from "../../../components/Button/Button";
 import Logo from "../../../assets/logo/DragonsQuillLogo";
+import UploadFileInput from "../../../components/UploadFileInput/UploadFileInput";
 
 import * as actions from "../../../store/actions/actionsIndex";
 
@@ -62,6 +63,14 @@ const LandingPage = (props) => {
         setOpenAdventureNameModal={() => setOpenAdventureNameModal(false)}
         addToSaveHandler={() => props.setActivePage()}
       />
+      <div className={classes.ExistingStory}>
+        <p>Existing story? Upload adventure data (JSON file) here:</p>
+        <UploadFileInput
+          priority={"primary"}
+          buttonText={"Upload file"}
+          conclusiveFunction={() => props.setActivePage()}
+        />
+      </div>
       <Logo classes={classes.Logo} />
       <div className={classes.LandingPageText}>
         <h2>
@@ -89,19 +98,6 @@ const LandingPage = (props) => {
           clicked={() => props.setActivePage()}
         >
           Show demo
-        </Button>
-      </div>
-      <div className={classes.InputBox}>
-        <div className={classes.InputBoxText}>
-          <h4>Drop an existing adventure file here</h4>
-          <i className={classes.HelpText}>.JSON files only</i>
-        </div>
-        <Button
-          priority="secondary"
-          size="big"
-          // clicked={() => setActiveContentWrapper("left")}
-        >
-          or click here
         </Button>
       </div>
     </div>

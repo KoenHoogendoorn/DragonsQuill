@@ -39,7 +39,9 @@ const AdventureNameEditModal = (props) => {
     });
     closeAdventureNameModalHandler();
     //custom functions if passed on through props
-    props.addToSaveHandler();
+    if (props.addToSaveHandler) {
+      props.addToSaveHandler();
+    }
   };
   let modalTitle = props.modalTitle ? props.modalTitle : "Edit adventure name";
 

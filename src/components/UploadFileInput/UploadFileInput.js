@@ -39,6 +39,8 @@ const UploadFileInput = (props) => {
     // The fileloaded event handler is triggered when the read completes
     reader.onload = fileloaded;
     reader.readAsText(fileObj); // read the file
+
+    props.conclusiveFunction();
   };
 
   return (
@@ -47,11 +49,11 @@ const UploadFileInput = (props) => {
         <Button
           clicked={uploadfilehandler}
           size="small"
-          priority="secondary"
+          priority={props.priority}
           iconPlacement="left"
         >
           <i className="fas fa-upload"></i>
-          Upload adventure data (JSON file)
+          {props.buttonText}
         </Button>
       </p>
 

@@ -6,7 +6,7 @@
 
 ### High prio features
 
-- drag n drop state file in landing page
+- responsiveness landingpage
 
 - change Input component name to Searchbar
 
@@ -188,6 +188,12 @@ X demo adventure on click button in landing page
 ## 13-07-2022
 
 X. Bug - when there are no chapters, typing in quill crashes. Add readOnly prop as true so you can't type
+
+## 20-07-2022
+
+X upload state in landingpage
+X change design to remove drag n drop in landing page
+X change css design
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">

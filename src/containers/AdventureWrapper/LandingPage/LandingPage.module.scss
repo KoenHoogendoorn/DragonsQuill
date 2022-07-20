@@ -3,8 +3,28 @@
 .LandingPage {
     width: 800px;
     margin: 0 auto;
-    padding-top: 120px;
+    padding-top: 48px;
     text-align: center;
+
+    .ExistingStory {
+        width: -moz-fit-content;
+        width: fit-content;
+        margin: 0 auto 64px auto;
+        padding: 8px 8px 8px 12px;
+        background-color: $clr-snuff;
+        border: 1px solid $clr-purpleHeart;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        p {
+            color: $clr-purpleHeart;
+            font-weight:600;
+        }
+        button {
+            margin-left:8px;
+        }
+        
+    }
 
     .Logo {
         margin-bottom: 32px;
@@ -45,5 +65,3 @@
         
     }
 }
-
-
