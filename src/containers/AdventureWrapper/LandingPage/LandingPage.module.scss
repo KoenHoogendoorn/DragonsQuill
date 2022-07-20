@@ -65,3 +65,24 @@
         
     }
 }
+@media screen and (max-width: 880px) {
+    .LandingPage {
+        width: 100%;
+        padding: 32px 32px 0 32px;
+        .ExistingStory {
+            text-align: left;
+        }
+    }
+}
+
+@media screen and (max-width: 501px) {
+    .LandingPage {
+    padding: 16px 16px 0 16px;
+    .ExistingStory {
+        margin-bottom: 32px;
+    }
+    .Logo {
+        margin-bottom: 24px;
+    }
+    }
+}

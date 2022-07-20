@@ -6,8 +6,6 @@
 
 ### High prio features
 
-- responsiveness landingpage
-
 - change Input component name to Searchbar
 
 - switch mention setup to async
@@ -194,6 +192,7 @@ X. Bug - when there are no chapters, typing in quill crashes. Add readOnly prop 
 X upload state in landingpage
 X change design to remove drag n drop in landing page
 X change css design
+X responsiveness landingpage
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">
