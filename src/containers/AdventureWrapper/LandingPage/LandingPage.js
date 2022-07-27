@@ -64,7 +64,7 @@ const LandingPage = (props) => {
         addToSaveHandler={() => props.setActivePage()}
       />
       <div className={classes.ExistingStory}>
-        <p>Existing story? Upload adventure data (JSON file) here:</p>
+        <p>Existing story? Click here to upload adventure data (JSON file):</p>
         <UploadFileInput
           priority={"primary"}
           buttonText={"Upload file"}
@@ -78,10 +78,10 @@ const LandingPage = (props) => {
           in a more structured way
         </h2>
         <p>
-          This is very much a work in progress. There is no online backup of any
-          content you write. You can save your content by downloading your
-          adventure file. Upload it next time you want to continue working on
-          your adventures.
+          This is very much a work in progress.{" "}
+          <strong>There is no online backup of any content you write.</strong>{" "}
+          You can save your content by downloading your adventure file. Upload
+          it next time you want to continue working on your adventures.
         </p>
       </div>
       <div className={classes.ButtonWrapper}>

@@ -36,11 +36,14 @@ const ContentWrapperLeft = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentItem, setCurrentItem] = useState(initialItemState);
   const [deleting, setDeleting] = useState(false);
+
   const [toBeDeletedItem, setToBeDeletedItem] = useState({
     id: "",
     name: ""
   });
   const [openAdventureNameModal, setOpenAdventureNameModal] = useState(false);
+
+  const [openLogoClickedModal, setOpenLogoClickedModal] = useState(false);
 
   const [addingChapter, setAddingChapter] = useState(false);
   const [addingNPC, setAddingNPC] = useState(false);
@@ -353,11 +356,11 @@ const ContentWrapperLeft = (props) => {
   };
 
   const deleteItemModalContent = (
-    <div className={classes.DeleteItemModalContent}>
+    <div className={classes.ModalContent}>
       <DeleteItemIllustration />
       <h4>Delete '{toBeDeletedItem.name}'?</h4>
       <p>It can't be recovered.</p>
-      <div className={classes.DeleteItemModalButtons}>
+      <div className={classes.ModalButtons}>
         <Button
           size="medium"
           priority="secondary"
@@ -380,12 +383,49 @@ const ContentWrapperLeft = (props) => {
     </div>
   );
 
+  const logoClickedModalContent = (
+    <div className={classes.ModalContent}>
+      <h4>Go back to home?</h4>
+      <p className={classes.ModalContentText}>
+        Your story will not be saved. If you want to keep it, make sure to
+        download your adventure file.
+      </p>
+      <DownloadFileButton />
+      <div className={classes.ModalButtons}>
+        <Button
+          size="medium"
+          priority="secondary"
+          iconPlacement="left"
+          clicked={() => setOpenLogoClickedModal(false)}
+        >
+          <i className="fas fa-ban"></i>
+          Cancel
+        </Button>
+        <Button
+          size="medium"
+          priority="primary"
+          iconPlacement="left"
+          clicked={() => props.setActivePage()}
+        >
+          <i class="fas fa-check"></i>
+          Continue
+        </Button>
+      </div>
+    </div>
+  );
+
   let buttonText = "Add " + props.activeTab.slice(0, -1);
 
   return (
     <React.Fragment>
       <Modal show={deleting} modalClosed={() => setDeleting(false)}>
         {deleteItemModalContent}
+      </Modal>
+      <Modal
+        show={openLogoClickedModal}
+        modalClosed={() => setOpenLogoClickedModal(false)}
+      >
+        {logoClickedModalContent}
       </Modal>
       <AdventureNameEditModal
         openAdventureNameModal={openAdventureNameModal}
@@ -395,7 +435,11 @@ const ContentWrapperLeft = (props) => {
         className={`${classes.ContentWrapper} ${classes.WrapperLeft} ${props.addedClassesLeft}`}
       >
         <div className={classes.HeaderBar}>
-          <Logo classes={classes.Logo} />
+          <Logo
+            classes={classes.Logo}
+            clicked={() => setOpenLogoClickedModal(true)}
+            style={{ cursor: "pointer" }}
+          />
 
           <Dropdown clickableIconName={"fas fa-cog"} fullButton={true}>
             <DownloadFileButton />

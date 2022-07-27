@@ -12,10 +12,6 @@
 
 - style external link and inputlightbox you get when you add a link in editor
 
-- click on logo to get back to landing page
-  - click logo
-  - show are you sure modal
-
 ## Not that important right now:
 
 ### bug
@@ -193,6 +189,12 @@ X upload state in landingpage
 X change design to remove drag n drop in landing page
 X change css design
 X responsiveness landingpage
+
+## 27-07-2022
+
+X click on logo to get back to landing page
+X click logo
+X show are you sure modal
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">

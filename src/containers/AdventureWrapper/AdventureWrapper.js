@@ -59,7 +59,10 @@ const AdventureWrapper = () => {
         ? mobileHeaderBarLeft
         : mobileHeaderBarRight}
       <div className={classes.AdventureWrapper}>
-        <ContentWrapperLeft addedClassesLeft={addedClassesLeft} />
+        <ContentWrapperLeft
+          addedClassesLeft={addedClassesLeft}
+          setActivePage={() => setActivePage("landingPage")}
+        />
         <ContentWrapperRight
           addedClassesRight={addedClassesRight}
           setActiveContentWrapperLeft={() => setActiveContentWrapper("left")}

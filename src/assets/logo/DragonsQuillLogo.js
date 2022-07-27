@@ -9,6 +9,8 @@ const DragonsQuillLogo = (props) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={props.classes}
+      onClick={props.clicked}
+      style={props.style}
     >
       <g clip-path="url(#clip0)">
         <path

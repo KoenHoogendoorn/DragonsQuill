@@ -47,12 +47,15 @@
     color: $clr-silverChalice;
   }
 }
-.DeleteItemModalContent {
+.ModalContent {
   h4 {
     margin-top: 8px;
   }
+  .ModalContentText {
+    margin-bottom: 8px;
+  }
 
-  .DeleteItemModalButtons {
+  .ModalButtons {
     margin-top: 16px;
 
     :first-child {
