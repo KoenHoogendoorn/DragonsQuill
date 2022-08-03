@@ -9,11 +9,14 @@ import Dropdown from "../Dropdown/Dropdown";
 import MentionToken from "./ChapterMentionTokens/MentionToken";
 
 const Chapter = (props) => {
-  const MentionTokens = (contentType) => {
+  const mentionTokensMapper = (contentType) => {
+    //go through chapters
     return props.chapters.map((chapter) => {
+      //check subarray (npc, monster, location)
       if (props.id === chapter.id) {
         const currentMentionIdArray = chapter.mentionIds[contentType];
         const distinctMentionIds = [...new Set(currentMentionIdArray)];
+        //store mention IDs in a set and go through them
         return distinctMentionIds.map((mentionId) => {
           return (
             <MentionToken key={mentionId} id={mentionId} type={contentType} />
@@ -46,13 +49,13 @@ const Chapter = (props) => {
       </div>
       <div className={classes.MentionTokenBar}>
         <div className={classes.MentionTokenContainer}>
-          {MentionTokens("npc")}
+          {mentionTokensMapper("npc")}
         </div>
         <div className={classes.MentionTokenContainer}>
-          {MentionTokens("monster")}
+          {mentionTokensMapper("monster")}
         </div>
         <div className={classes.MentionTokenContainer}>
-          {MentionTokens("location")}
+          {mentionTokensMapper("location")}
         </div>
       </div>
     </CardBackground>

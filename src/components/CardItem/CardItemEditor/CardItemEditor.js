@@ -22,6 +22,11 @@ class CardItemEditor extends Component {
       description: "",
       content: null,
       open: false,
+      mentionIds: {
+        npc: [],
+        monster: [],
+        location: []
+      },
       fadeout: false,
       CardItemEditorWarning: false
     };
@@ -36,18 +41,25 @@ class CardItemEditor extends Component {
   };
 
   componentDidMount() {
-    this.setState({
-      id: this.props.id,
-      key: this.props.key,
-      value: this.props.value,
-      description: this.props.description,
-      content: this.props.content,
-      open: this.props.open,
-      editingExistingCardItem: this.props.editingExistingCardItem
-    });
-
     if (this.props.activeTab !== "Chapters") {
+      this.setState({
+        id: this.props.id,
+        key: this.props.key,
+        value: this.props.value,
+        description: this.props.description,
+        content: this.props.content,
+        open: this.props.open,
+        editingExistingCardItem: this.props.editingExistingCardItem
+      });
       this.attachQuillRefs();
+    } else if (this.props.activeTab === "Chapters") {
+      this.setState({
+        id: this.props.id,
+        key: this.props.key,
+        value: this.props.value,
+        mentionIds: this.props.mentionIds,
+        editingExistingCardItem: this.props.editingExistingCardItem
+      });
     }
   }
 
@@ -55,7 +67,7 @@ class CardItemEditor extends Component {
     //Creates and sets new id and key
     const Chapters = this.props.chapters;
     const NPCs = this.props.npcs;
-    const Monsters = this.props.npcs;
+    const Monsters = this.props.monsters;
     const Locations = this.props.locations;
     let idNumbers = null;
     let currentIdPrefix = null;
@@ -189,6 +201,7 @@ class CardItemEditor extends Component {
       return;
     }
 
+    //Remove card and update name in editor
     if (this.state.editingExistingCardItem) {
       //remove old copied item
       this.props.removeCardHandler(this.state.id);
@@ -197,6 +210,7 @@ class CardItemEditor extends Component {
         this.props.value !== this.state.value &&
         this.props.activeTab !== "Chapters"
       ) {
+        //Updates mentions in editor
         this.props.editedNameHandler(
           this.props.value,
           this.state.value,
@@ -204,19 +218,29 @@ class CardItemEditor extends Component {
         );
       }
     }
-
+    // update existing chapter
     if (this.props.activeTab === "Chapters") {
       this.props.addCardHandler({
         id: this.state.id,
         key: this.state.id,
         value: this.state.value,
-        mentionIds: {
-          npc: [],
-          monster: [],
-          location: []
-        }
+        mentionIds: this.state.mentionIds
       });
-    } else {
+    }
+    // else if (
+    //   this.props.activeTab === "Chapters" &&
+    //   !this.state.editingExistingCardItem
+    // ) {
+    //   // add new card - chapter
+    //   this.props.addCardHandler({
+    //     id: this.state.id,
+    //     key: this.state.id,
+    //     value: this.state.value,
+    //     mentionIds: this.state.mentionIds
+    //   });
+    // }
+    else {
+      // add new card - npc, monster, location
       this.props.addCardHandler({
         id: this.state.id,
         key: this.state.id,

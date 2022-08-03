@@ -6,19 +6,23 @@
 
 ### High prio features
 
-- change Input component name to Searchbar
-
-- switch mention setup to async
-
-- style external link and inputlightbox you get when you add a link in editor
+- make save button more prominent and add shortcut
 
 ## Not that important right now:
 
+- change Input component name to Searchbar
+- switch mention setup to async - not sure what I wanted here
+
 ### bug
 
+- if you edit a chapter name, it removes the mention icons and shows them only after editing text in editor.
+
+- clicking NPC's adds a border that forces the last tab on the next line, probably do something with box-sizing to fix this.
+
 - if you click on an icon that opens a dropdown, when the dropdown is open, it should close again. Now it stays open.
-- if you edit a chapter name, removes the mention icons and shows them only after editing text in editor.
+
 - als je ‘edit’ klikt voor een niet-chapter stuk en dan ‘cancel’ dan sluit ie het hele ding, maar de cancel zou je eigenlijk terug moeten brengen naar de ‘reading mode’
+
 - mentiondropdown searching for 'monsters' will show only the label
 
 ### features
@@ -36,6 +40,7 @@
 
 ## Maybe:
 
+- style external link and inputlightbox you get when you add a link in editor
 - content card groups
 - add/remove categories
 

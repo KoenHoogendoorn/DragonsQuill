@@ -29,6 +29,11 @@ const ContentWrapperLeft = (props) => {
     key: "",
     value: "",
     description: "",
+    mentionIds: {
+      npc: [],
+      monster: [],
+      location: []
+    },
     content: null,
     open: false
   };
@@ -113,6 +118,7 @@ const ContentWrapperLeft = (props) => {
             description={currentItem.description}
             content={currentItem.content}
             open={currentItem.open}
+            mentionIds={currentItem.mentionIds}
             editingExistingCardItem={true}
             removeNewCardItemCard={() => cancelEditingCard()}
           />
@@ -127,6 +133,7 @@ const ContentWrapperLeft = (props) => {
             description={currentItem.description}
             content={currentItem.content}
             open={currentItem.open}
+            mentionIds={currentItem.mentionIds}
             editingExistingCardItem={false}
             removeNewCardItemCard={() => cancelEditingCard()}
           />
