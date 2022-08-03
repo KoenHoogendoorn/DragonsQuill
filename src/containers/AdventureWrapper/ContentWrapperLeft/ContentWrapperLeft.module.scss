@@ -68,6 +68,16 @@
   }
 }
 
+.CardsEmptyState {
+  display: flex;
+  padding-right: 4px;
+  
+  i {
+    color: $clr-silverChalice;
+    margin-left: 8px;
+  }
+}
+
 @media screen and (max-width: 960px) {
   .CardToolbar {
     flex-direction: column;
@@ -83,7 +93,7 @@
   .Logo {
     display: none;
   }
-  
+
   .HeaderBar {
     justify-content: flex-end;
   }

@@ -317,10 +317,13 @@ const ContentWrapperLeft = (props) => {
     };
 
     const noItemsYet = (
-      <h4>
-        Add some {props.activeTab.toLowerCase()} by clicking the purple button
-        above.
-      </h4>
+      <div className={classes.CardsEmptyState}>
+        <h4>
+          Add some {props.activeTab.toLowerCase()} by clicking the purple button
+          above.
+        </h4>
+        <i class="fas fa-level-up-alt"></i>
+      </div>
     );
 
     const emptySearchResults = (
