@@ -452,7 +452,7 @@ const ContentWrapperLeft = (props) => {
             <DownloadFileButton />
             <UploadFileInput
               priority={"secondary"}
-              buttonText={"Upload adventure data (JSON file)"}
+              buttonText={"Upload adventure (JSON file)"}
             />
             {/* Made this a button component because the other 2 items in this dropdown are also based on this component and I didn't feel like transforming them all to normal buttons */}
             <Button

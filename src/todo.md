@@ -6,8 +6,6 @@
 
 ### High prio features
 
-- make save button more prominent and add shortcut
-
 ## Not that important right now:
 
 - change Input component name to Searchbar
@@ -39,6 +37,7 @@
 - style external link and inputlightbox you get when you add a link in editor
 - content card groups
 - add/remove categories
+- add shortcut to save file
 
 # DONE
 
@@ -204,6 +203,7 @@ X if you edit a chapter name, it removes the mention icons and shows them only a
 ## 03-08-2022
 
 X settings button on mobile goes offscreen
+X make save button more prominent
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">
