@@ -15,10 +15,6 @@
 
 ### bug
 
-- if you edit a chapter name, it removes the mention icons and shows them only after editing text in editor.
-
-- clicking NPC's adds a border that forces the last tab on the next line, probably do something with box-sizing to fix this.
-
 - if you click on an icon that opens a dropdown, when the dropdown is open, it should close again. Now it stays open.
 
 - als je ‘edit’ klikt voor een niet-chapter stuk en dan ‘cancel’ dan sluit ie het hele ding, maar de cancel zou je eigenlijk terug moeten brengen naar de ‘reading mode’
@@ -200,6 +196,14 @@ X responsiveness landingpage
 X click on logo to get back to landing page
 X click logo
 X show are you sure modal
+
+## 30-07-2022
+
+X if you edit a chapter name, it removes the mention icons and shows them only after editing text in editor.
+
+## 03-08-2022
+
+X settings button on mobile goes offscreen
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">
