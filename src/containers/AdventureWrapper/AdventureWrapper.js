@@ -12,6 +12,7 @@ import Logo from "../../assets/logo/DragonsQuillLogo";
 const AdventureWrapper = () => {
   const [activePage, setActivePage] = useState("landingPage");
   const [activeContentWrapper, setActiveContentWrapper] = useState("left");
+
   let addedClassesLeft = "";
   let addedClassesRight = "";
 
