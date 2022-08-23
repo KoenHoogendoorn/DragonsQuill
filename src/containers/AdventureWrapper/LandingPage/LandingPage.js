@@ -222,7 +222,9 @@ const LandingPage = (props) => {
         </h2>
         <p>
           This is very much a work in progress.{" "}
-          <strong>There is no online backup of any content you write.</strong>{" "}
+          <span>
+            There is no (automatic) online backup of any content you write.
+          </span>{" "}
           You can save your content by downloading your adventure file. Upload
           it next time you want to continue working on your adventures.
         </p>

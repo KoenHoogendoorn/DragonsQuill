@@ -32,6 +32,12 @@
 
     .LandingPageText {
         margin-bottom: 24px;
+        span {
+            //color: white;
+            background: $clr-snuff;
+            font-weight: bold;
+            padding: 2px 4px;
+        }
     }
 
     .ButtonWrapper {
