@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import classes from "./AdventureWrapper.module.scss";
 
@@ -12,6 +12,9 @@ import Logo from "../../assets/logo/DragonsQuillLogo";
 const AdventureWrapper = () => {
   const [activePage, setActivePage] = useState("landingPage");
   const [activeContentWrapper, setActiveContentWrapper] = useState("left");
+  const [showDemoContent, setShowDemoContent] = useState(false);
+
+  useEffect(() => {}, []);
 
   let addedClassesLeft = "";
   let addedClassesRight = "";
@@ -52,7 +55,12 @@ const AdventureWrapper = () => {
     </MobileHeaderBar>
   );
 
-  const landingPage = <LandingPage setActivePage={() => setActivePage("")} />;
+  const landingPage = (
+    <LandingPage
+      setActivePage={() => setActivePage("")}
+      setShowDemoContent={(boolean) => setShowDemoContent(boolean)}
+    />
+  );
 
   const editorPage = (
     <React.Fragment>
@@ -67,6 +75,7 @@ const AdventureWrapper = () => {
         <ContentWrapperRight
           addedClassesRight={addedClassesRight}
           setActiveContentWrapperLeft={() => setActiveContentWrapper("left")}
+          showDemoContent={showDemoContent}
         />
       </div>
     </React.Fragment>

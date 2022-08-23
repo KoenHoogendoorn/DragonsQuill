@@ -47,12 +47,20 @@ export const changeMentionCounters = (mentionIds, activeChapterId) => {
   };
 };
 
-export const overwriteContent = (newData) => {
+export const overwriteAllContent = (newData) => {
   return {
-    type: "OVERWRITE_CONTENT",
+    type: "OVERWRITE_ALL_CONTENT",
     newData: newData
   };
 };
+
+// export const overwriteItem = (id, itemData) => {
+//   return {
+//     type: "OVERWRITE_ITEM",
+//     id: id,
+//     itemData: itemData
+//   };
+// };
 
 // export const changeMentionCounters = (mentionId, activeChapterId, addition) => {
 //   return {

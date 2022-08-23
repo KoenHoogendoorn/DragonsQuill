@@ -6,8 +6,22 @@
 
 ### High prio features
 
+- show demo non-story-content is not uploaded when show demo is clicked after upload file or new adventure is clicked. Dit omdat het hardcoded in contentdata staat, en niet los geupload wordt zoals de content in componentdidmount van contentwrapperright. Ik denk dat alle npcs etc daar ook geupload moeten worden.
+
+- the story isn't being saved
+
+  X add input value to app state instead of local state
+
+  XX Als showdemo geklikt wordt, en daarna nieuwe content geupload, blijft de democontent staan. eigenlijk moet het zo werken dat geen content in contentData standaard is en democontent eropgezet wordt als op show demo geklikt wordt. Als het goed is wordt de content dan standaard gecleared als de app opstart/herstart.
+  X bug: geuploade content staat er pas na de 2e keer uploaden
+
+  - update downloadfilebutton to include input value/story
+
+- ability for chapters to change order
+
 ## Not that important right now:
 
+- only show 'are you sure alert' when you've changed something
 - change Input component name to Searchbar
 - switch mention setup to async - not sure what I wanted here
 

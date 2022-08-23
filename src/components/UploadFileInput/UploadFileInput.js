@@ -31,7 +31,7 @@ const UploadFileInput = (props) => {
       // Test any assumptions about its contents!
       const fileContents = e.target.result;
       const newContentData = JSON.parse(fileContents);
-      props.overwriteContentHandler(newContentData);
+      props.overwriteAllContentHandler(newContentData);
     };
 
     // Mainline of the method
@@ -71,8 +71,8 @@ const UploadFileInput = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    overwriteContentHandler: (newData) =>
-      dispatch(actions.overwriteContent(newData))
+    overwriteAllContentHandler: (newData) =>
+      dispatch(actions.overwriteAllContent(newData))
   };
 };
 

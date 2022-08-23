@@ -1,36 +1,16 @@
 import { updateObject } from "../../shared/utility";
-import Norlbelorg from "../../assets/images/norlbelorg.png";
-import BeachBattleMap from "../../assets/images/BeachBattleMap.jpg";
 
 const initialState = {
   adventure: [
     {
       id: "ad0",
-      value: "Moonhaven's curse"
+      value: ""
     }
   ],
   chapters: [
     {
       id: "ch0",
       value: "Chapters"
-    },
-    {
-      id: "ch1",
-      value: "The Beach",
-      mentionIds: {
-        npc: [],
-        monster: [],
-        location: []
-      }
-    },
-    {
-      id: "ch2",
-      value: "Entering Moonhaven",
-      mentionIds: {
-        npc: [],
-        monster: [],
-        location: []
-      }
     }
   ],
   npcs: [
@@ -38,37 +18,6 @@ const initialState = {
       id: "np0",
       value: "NPC's",
       disabled: true
-    },
-    {
-      id: "np1",
-      value: "Syka Twocreek",
-      description: "Human female, Chaotic good",
-      content:
-        "Young girl that helps them at the start. She is the daughter of the village elder and good friends with the tortles. Didn’t eat fish because her mother the village elder doesn’t like it.",
-      open: false
-    },
-    {
-      id: "np2",
-      value: "Lura Twocreek",
-      description: "Human female, Neutral good",
-      content:
-        "Village elder, human woman in her 50s. She is concerned with the villagers. She doesn’t like fish so she isn’t affected by the addiction. Lived in the town since her childhood.",
-      open: false
-    },
-    {
-      id: "np3",
-      value: "Kilki",
-      description: "Tortle Male, Neutral good",
-      content: "Retired old monk Tortle.",
-      open: false
-    },
-    {
-      id: "np4",
-      value: "Falmo",
-      description: "Tortle Male, Neutral Neutral",
-      content:
-        "A surfing dude Tortle with a floral headband. Loves to surf the waves on his belly and shield. Didn’t eat fishes because he doesn’t like to eat creatures. Wears a necklace with a bear tooth on it.",
-      open: false
     }
   ],
   monsters: [
@@ -76,29 +25,6 @@ const initialState = {
       id: "mo0",
       value: "Monsters",
       disabled: true
-    },
-    {
-      id: "mo1",
-      value: "Giant Scorpion",
-      description: "Large beast, unaligned",
-      content:
-        "Multiattack: The scorpion makes three attacks: two with its claws and one with its sting.",
-      open: false
-    },
-    {
-      id: "mo2",
-      value: "Giant Crab",
-      description: "Large beast, unaligned",
-      content:
-        "Multiattack: The scorpion makes two attacks: two with its claws.",
-      open: false
-    },
-    {
-      id: "mo3",
-      value: "Bjorlbelorg",
-      description: "Small humanoid, neutral evil",
-      content: `Small creature with big dreams.. of stabbing you in the face. <img src="${Norlbelorg}">`,
-      open: false
     }
   ],
   locations: [
@@ -106,29 +32,6 @@ const initialState = {
       id: "lo0",
       value: "Locations",
       disabled: true
-    },
-    {
-      id: "lo1",
-      value: "Moonhaven",
-      description: "Small town",
-      content:
-        "Moonhaven is a town in the south of Gurntaur. It’s not a well known town, and that’s a good thing because they wouldn’t last long against raiders. It’s a small fishing town that keeps to itself. ‘Give a man a fish, and he eats for a day.’. The people are simple and they like it like that. They are great friends with the Tortles living on and around the islands in the opening of Dina Anto. Every full moon (around every 30 days) they hold a friendly surfing match and feast together on the islands. Tortles are mainly hippies. Lately the humans from Moonhaven started to become more greedy. They are fishing more than they need. They even canceled the last moonparties! The humans are being influenced by new fish that they are suddenly catching. They haven’t seen the orange and purple fishes before, but they are delicious and they need to catch more and more. They are getting really fat and some people have eaten themselves to death. The Tortles aren’t eating the new fish because they don’t like new things.",
-      open: false
-    },
-    {
-      id: "lo2",
-      value: "Gurntaur",
-      description: "Region",
-      content:
-        "Gurntaur is a quiet place. It’s not rich in a lot of special recources so it has never really been contested. There’s farmland, lakes and wood, and that’s enough for the people living there. It’s connected in the north to Vallahir through Khro Burakrin and it’s disconnected from Wellhaven by the mystic marshes to the west. In the centre there are rolling hills that are inhabited by a tribe of hill giants.",
-      open: false
-    },
-    {
-      id: "lo3",
-      value: "Beach",
-      description: "Battlegrounds",
-      content: `Inspiration for battlemap: <img src="${BeachBattleMap}">`,
-      open: false
     }
   ]
 };
@@ -293,6 +196,7 @@ const reducer = (state = initialState, action) => {
 
       switch (action.id.substring(0, 2)) {
         case "ad":
+          //filter here only shows the items where the id is not the passed id. So it leaves all others.
           adventure5 = adventure5.filter((adventure) => {
             return adventure.id !== action.id;
           });
@@ -435,7 +339,8 @@ const reducer = (state = initialState, action) => {
       };
       return updateObject(state, updatedState7);
 
-    case "OVERWRITE_CONTENT":
+    case "OVERWRITE_ALL_CONTENT":
+      // overwrites all content. Input is array.
       // adventure won't work if it's only one
       let adventure8 = state.adventure.slice();
       let chapters8 = state.chapters.slice();
@@ -464,6 +369,54 @@ const reducer = (state = initialState, action) => {
       };
 
       return updateObject(state, updatedState8);
+
+    // case "OVERWRITE_ITEM":
+    //   let adventure9 = state.adventure.slice();
+    //   let chapters9 = state.chapters.slice();
+    //   let npcs9 = state.npcs.slice();
+    //   let monsters9 = state.monsters.slice();
+    //   let locations9 = state.locations.slice();
+
+    //   switch (action.id.substring(0, 2)) {
+    //     case "ad":
+    //       const index = adventure9.findIndex((adventure) => {
+    //         return adventure.id === action.id;
+    //       });
+    //       adventure9.splice(index, 1, action.itemData); //startindex, how many elements of array to delete, what to add.
+    //       break;
+    //     case "ch":
+    //       const index2 = chapters9.findIndex((chapter) => {
+    //         return chapter.id === action.id;
+    //       });
+    //       chapters9.splice(index2, 1, action.itemData);
+    //       break;
+    //     case "np":
+    //       const index3 = npcs9.findIndex((npc) => {
+    //         return npc.id === action.id;
+    //       });
+    //       npcs9.splice(index3, 1, action.itemData);
+    //       break;
+    //     case "mo":
+    //       monsters9 = monsters9.filter((monster) => {
+    //         return monster.id !== action.id;
+    //       });
+    //       break;
+    //     case "lo":
+    //       locations9 = locations9.filter((location) => {
+    //         return location.id !== action.id;
+    //       });
+    //       break;
+    //     default:
+    //       break;
+    //   }
+    //   const updatedState9 = {
+    //     adventure: adventure9,
+    //     chapters: chapters9,
+    //     npcs: npcs9,
+    //     monsters: monsters9,
+    //     locations: locations9
+    //   };
+    //   return updateObject(state, updatedState9);
 
     default:
       return state;
