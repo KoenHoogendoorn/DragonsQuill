@@ -32,6 +32,7 @@ const UploadFileInput = (props) => {
       const fileContents = e.target.result;
       const newContentData = JSON.parse(fileContents);
       props.overwriteAllContentHandler(newContentData);
+      props.conclusiveFunction();
     };
 
     // Mainline of the method
@@ -39,8 +40,6 @@ const UploadFileInput = (props) => {
     // The fileloaded event handler is triggered when the read completes
     reader.onload = fileloaded;
     reader.readAsText(fileObj); // read the file
-
-    props.conclusiveFunction();
   };
 
   return (
@@ -62,7 +61,9 @@ const UploadFileInput = (props) => {
         className={classes.Hidden}
         multiple={false}
         accept=".json,application/json"
-        onChange={(evt) => openFile(evt)}
+        onChange={(evt) => {
+          openFile(evt);
+        }}
         ref={(node) => (doFileUpload = node)}
       />
     </div>

@@ -6,9 +6,7 @@
 
 ### High prio features
 
-- show demo non-story-content is not uploaded when show demo is clicked after upload file or new adventure is clicked. Dit omdat het hardcoded in contentdata staat, en niet los geupload wordt zoals de content in componentdidmount van contentwrapperright. Ik denk dat alle npcs etc daar ook geupload moeten worden.
-
-- the story isn't being saved
+- the story isn't being saved in every chapter of niet elke chapter wordt gesaved, alleen de 1e lijkt het
 
   X add input value to app state instead of local state
 
@@ -218,6 +216,27 @@ X if you edit a chapter name, it removes the mention icons and shows them only a
 
 X settings button on mobile goes offscreen
 X make save button more prominent
+
+## 02-10-2022
+
+X show demo non-story-content is not uploaded when show demo is clicked after upload file or new adventure is clicked. Dit omdat het hardcoded in contentdata staat, en niet los geupload wordt zoals de content in componentdidmount van contentwrapperright. Ik denk dat alle npcs etc daar ook geupload moeten worden.
+
+X in contentWrapperRight word content hardcoded geupload naar een locale state. Ik heb geprobeerd om het in LandingPage mee te geven en het uit contentData op te halen in contentwrapper right, maar dat gebeurt niet
+
+X chapter content wordt niet meer meegegeven in contentwrapperright maar vanuit landingpage. In contentwrapperright wordt alleen nog niet data meegegeven uit loaded files. Ook wordt er niet door alle chapters heengegaan als er meer dan 1 is. ->dit hoeft geloof ik niet, alleen de eerste moet erin gezet worden omdat die zichtbaar is
+
+X Als je achter elkaar items upload, zie je telkens de chapter content van de vorige geuploade file. Waarschijnlijk gaat er iets fout bij de componentdidmount in ContentWrapperRight
+
+X De data die geupload wordt, moet eerst volledig geupload zijn voordat er van pagina geswitched wordt naar de editor. Nu doe ik dat lomp met een setTimeout, maar eigenlijk moet het met een await of promise function oid. (misschien: https://www.pluralsight.com/guides/asynchronous-file-upload-react ?)
+of deze: https://www.youtube.com/watch?v=DHvZLI7Db8E en deze https://www.youtube.com/watch?v=V_Kr9OSfDeU
+
+X een nieuwe story wordt ineens niet meer geladen. Oude statefiles komen wel goed door. Nieuwe krijgen 'undefined' in de editor. - gebeurt toch niet
+
+X nieuwe mentions worden niet toegevoegd in de editor. misschien komt dit omdat ik nu de state opsla in contentData? het kan ook komen omdat er in ContentWrapperRight een ... staat bij de quill-mention import. Blijkbaar mist er een file. Het zou kunnen dat deze handmatig toegevoegd moet worden.
+
+X nieuwe mentions worden niet toegevoegd in de editor. Met de commente code in de componentdidmount in contentwrapperright werkt wel.
+
+X zorg ervoor dat de redux state eerst update bij het overwriten van de state met demo of loaded content, en dat de pagina daarna pas switched. Of check in contentwrapperright in componentdidupdate of de soort contentdata overeenkomt met de democontent state die meegegeven wordt. -->alles wat nodig was, was om de 'return' weg te halen in het initialiseren van de ch1 content. Dit zodat het mentiongedeelte gewoon uitgevoerd werd?
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">

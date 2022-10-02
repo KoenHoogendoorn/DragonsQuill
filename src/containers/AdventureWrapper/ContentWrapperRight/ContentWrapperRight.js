@@ -61,19 +61,11 @@ class ContentWrapperRight extends Component {
     //adds all chapters to state with empty values
     // this.props.chapters.map((chapter) => this.setState({ [chapter.id]: "" }));
 
+    //Er wordt in de landingpage bepaald welke content hier wordt ingeladen (nieuw/demo/loadedcontent)
     if (this.props.chapters.length > 1) {
-      this.props.chapters.map((chapter) => {
-        //for demo content
-        if (this.props.showDemoContent) {
-          return this.setState({
-            ch1: "<h1><span style='color: rgb(0, 0, 0);'>The beach</span></h1><blockquote><em style='color: rgb(0, 0, 0);'>You continue south alongside the <span class='dndmention' data-index='0' data-denotation-char='' data-id='lo2' data-value='Gurntaur'>&#65279;<span contenteditable='false'>Gurntaur</span>&#65279;</span> hills on your left hand and green fields on your right. Spring is still in the air and you can smell the flowers around you. After three more relatively quiet days, the sun is shining bright on your heads when you come upon a dense forest. You try to stay on the same path as you were going but it gets harder as you get deeper into the forest. After walking for a couple of hours, you can hear the sea in the distance. But you also hear something else, a childrens scream for help.</em></blockquote><p><span style='color: rgb(0, 0, 0);'>In the forest, a tribe of </span><span class='dndmention' data-index='0' data-denotation-char='' data-id='mo3' data-value='Bjorlbelorg'>&#65279;<span contenteditable='false'>Bjorlbelorg</span>&#65279;</span> is living relatively peacefully. They are protective of their village and trade with pine cones.</p><p><br></p><p><strong style='color: rgb(0, 0, 0);'>After following the sound of the scream</strong></p><blockquote><em style='color: rgb(0, 0, 0);''>As you crest a small rise topped with tall grass, you see the <span class='dndmention' data-index='0' data-denotation-char='' data-id='lo3' data-value='Beach'>&#65279;<span contenteditable='false'>Beach</span>&#65279;</span> below you. The <span class='dndmention' data-index='0' data-denotation-char='' data-id='lo3' data-value='Beach'>&#65279;<span contenteditable='false'>Beach</span>&#65279;</span> is about 100 feet of sand with large rocks jutting up out of the sand. On one of the rocks in the middle of the beach is a child of about 10 years old screaming for help. In front of her, You see a Turtle like humanoid protecting her with a staff. Around the rock are several crab-looking monsters, each one easily the size of a mastiff. Seaweed and coral is sticking to them as if&nbsp; they haven’t seen the surface in a while (perception check for stingers). They have surrounded the rock and are snapping their claws up at their trapped prey.&nbsp;</em></blockquote><p><span class='dndmention' data-index='2' data-denotation-char='' data-id='np3' data-value='Kilki'>&#65279;<span contenteditable='false'>Kilki</span>&#65279;</span> is training <span class='dndmention' data-index='0' data-denotation-char='' data-id='np1' data-value='Syka Twocreek'>&#65279;<span contenteditable='false'>Syka Twocreek</span>&#65279;</span> secretly on the beach. They got surprised by 2 <span class='dndmention' data-index='0' data-denotation-char='' data-id='mo2' data-value='Giant Crab'>&#65279;<span contenteditable='false'>Giant Crab</span>&#65279;</span> and 1 <span class='dndmention' data-index='1' data-denotation-char='' data-id='mo1' data-value='Giant Scorpion'>&#65279;<span contenteditable='false'>Giant Scorpion</span>&#65279;</span>. If the party saves them, both will be very gratefull. <span class='dndmention' data-index='1' data-denotation-char='' data-id='np1' data-value='Syka Twocreek'>&#65279;<span contenteditable='false'>Syka Twocreek</span>&#65279;</span> is very enthousiastic and won't stop talking about all the cool things the the PC's did during the fight. </p>"
-          });
-        } else {
-          //for loaded content
-          return this.setState({
-            ch1: `${chapter.content}`
-          });
-        }
+      this.setState({
+        // alleen ch1 hoeft ingeladen te worden omdat dat de enige is die te zien is in de editor.
+        ch1: `${this.props.chapters[1].content}`
       });
     }
 
@@ -334,7 +326,7 @@ class ContentWrapperRight extends Component {
       });
     }
 
-    //if text gets changed, change the replica in contentData---
+    //if text gets changed, change the replica in contentData
     //find item in contentData chapter that has the same id as current active chapter id from this local state
     if (
       prevState[activeChapterId] !== this.state[activeChapterId] &&
@@ -348,8 +340,9 @@ class ContentWrapperRight extends Component {
       const currentMentionIds = this.props.chapters[index].mentionIds;
       const currentContent = this.state[activeChapterId].slice();
 
-      this.props.removeCardHandler(activeChapterId);
+      this.props.removeCardHandler(activeChapterId); //remove current chapter data
       this.props.addCardHandler({
+        //add new chapter data
         id: activeChapterId,
         key: activeChapterId,
         value: currentValue,
