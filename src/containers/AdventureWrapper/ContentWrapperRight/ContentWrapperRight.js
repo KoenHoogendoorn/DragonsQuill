@@ -58,8 +58,10 @@ class ContentWrapperRight extends Component {
   };
 
   componentDidMount() {
-    //adds all chapters to state with empty values
-    // this.props.chapters.map((chapter) => this.setState({ [chapter.id]: "" }));
+    //adds uploaded chapter content to local state
+    this.props.chapters.map((chapter) =>
+      this.setState({ [chapter.id]: chapter.content })
+    );
 
     //Er wordt in de landingpage bepaald welke content hier wordt ingeladen (nieuw/demo/loadedcontent)
     if (this.props.chapters.length > 1) {
@@ -287,7 +289,7 @@ class ContentWrapperRight extends Component {
       });
     }
 
-    // if an monster gets deleted, copy the name and remove the mention. Place name where mention would be.
+    // if a monster gets deleted, copy the name and remove the mention. Place name where mention would be.
     if (this.props.monsters.length < prevProps.monsters.length) {
       const deletedId = this.findDeletedValueType(
         prevProps.monsters,

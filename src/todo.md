@@ -6,14 +6,18 @@
 
 ### High prio features
 
-- the story isn't being saved in every chapter of niet elke chapter wordt gesaved, alleen de 1e lijkt het
+the story isn't being saved in every chapter of niet elke chapter wordt gesaved, alleen de 1e lijkt het
 
-  X add input value to app state instead of local state
+X add input value to app state instead of local state
 
-  XX Als showdemo geklikt wordt, en daarna nieuwe content geupload, blijft de democontent staan. eigenlijk moet het zo werken dat geen content in contentData standaard is en democontent eropgezet wordt als op show demo geklikt wordt. Als het goed is wordt de content dan standaard gecleared als de app opstart/herstart.
-  X bug: geuploade content staat er pas na de 2e keer uploaden
+XX Als showdemo geklikt wordt, en daarna nieuwe content geupload, blijft de democontent staan. eigenlijk moet het zo werken dat geen content in contentData standaard is en democontent eropgezet wordt als op show demo geklikt wordt. Als het goed is wordt de content dan standaard gecleared als de app opstart/herstart.
+X bug: geuploade content staat er pas na de 2e keer uploaden
 
-  - update downloadfilebutton to include input value/story
+X alles wordt correct gedownload en upload, bij het switchen van chapters met een geuploade file gaat er iets mis. Het klikken op een tab gaat goed, maar het renderen ervan in contentwrapperright niet. Als er op een chaptercard geklikt wordt, wordt er een chapter id meegegeven aan de activeChapterId reducer. Ik geloof dat er iets gebeurt hiervoor in de laatste componentDidUpdate functie, maar waarschijnlijk moet hiervoor iets geschreven worden. -> de state moet worden opgehaald in de localstate als chx (gebruik id) -> CTR F: NIEUWSTUK
+
+- chapters worden niet gesorteerd
+
+- update downloadfilebutton to include input value/story
 
 - ability for chapters to change order
 
