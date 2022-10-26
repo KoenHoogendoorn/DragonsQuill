@@ -123,7 +123,10 @@ class ContentWrapperRight extends Component {
           }, 175);
         } else {
           //togglecardhandler (opens card)
-          this.props.toggleCardHandler(id);
+          // added timeout so the first time a card with an image opens by clicking on the link in the text, it doesn't go through the card background
+          setTimeout(() => {
+            this.props.toggleCardHandler(id);
+          }, 50);
         }
       };
 

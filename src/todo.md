@@ -6,8 +6,6 @@
 
 ### High prio features
 
-- update downloadfilebutton to include input value/story
-
 - ability for chapters to change order
 
 ## Not that important right now:
@@ -48,7 +46,7 @@
 
 - added adventure to state down/upload
 
-## past
+# past
 
 X - 1. hernoemen heeft de addCardHandler argument aangepast, maar kan niet meer terugkijken in de timeline omdat de naam is aangepast.
 X - 4. support longer title + descriptions
@@ -243,6 +241,10 @@ X bug: geuploade content staat er pas na de 2e keer uploaden
 X alles wordt correct gedownload en upload, bij het switchen van chapters met een geuploade file gaat er iets mis. Het klikken op een tab gaat goed, maar het renderen ervan in contentwrapperright niet. Als er op een chaptercard geklikt wordt, wordt er een chapter id meegegeven aan de activeChapterId reducer. Ik geloof dat er iets gebeurt hiervoor in de laatste componentDidUpdate functie, maar waarschijnlijk moet hiervoor iets geschreven worden. -> de state moet worden opgehaald in de localstate als chx (gebruik id) -> CTR F: NIEUWSTUK
 
 X als je typt, gaat een chapter naar onder in volgorde. Bij elke render van contentwrapperleft wordt sortContentHandler uitgevoerd. Misschien moet dit ook gebeuren bij de verandering van een tekst in een chapter. Nu gebeurt dit geloof ik niet, omdat alleen dat onderdeel gererendered wordt.
+
+---
+
+X first time a card with an image opens by clicking on a @link in the story, the chapter goes 'through' the card -> fixed this by adding a timeout when clicking on a mentionlink
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">
