@@ -6,17 +6,6 @@
 
 ### High prio features
 
-the story isn't being saved in every chapter of niet elke chapter wordt gesaved, alleen de 1e lijkt het
-
-X add input value to app state instead of local state
-
-XX Als showdemo geklikt wordt, en daarna nieuwe content geupload, blijft de democontent staan. eigenlijk moet het zo werken dat geen content in contentData standaard is en democontent eropgezet wordt als op show demo geklikt wordt. Als het goed is wordt de content dan standaard gecleared als de app opstart/herstart.
-X bug: geuploade content staat er pas na de 2e keer uploaden
-
-X alles wordt correct gedownload en upload, bij het switchen van chapters met een geuploade file gaat er iets mis. Het klikken op een tab gaat goed, maar het renderen ervan in contentwrapperright niet. Als er op een chaptercard geklikt wordt, wordt er een chapter id meegegeven aan de activeChapterId reducer. Ik geloof dat er iets gebeurt hiervoor in de laatste componentDidUpdate functie, maar waarschijnlijk moet hiervoor iets geschreven worden. -> de state moet worden opgehaald in de localstate als chx (gebruik id) -> CTR F: NIEUWSTUK
-
-- chapters worden niet gesorteerd
-
 - update downloadfilebutton to include input value/story
 
 - ability for chapters to change order
@@ -241,6 +230,19 @@ X nieuwe mentions worden niet toegevoegd in de editor. misschien komt dit omdat 
 X nieuwe mentions worden niet toegevoegd in de editor. Met de commente code in de componentdidmount in contentwrapperright werkt wel.
 
 X zorg ervoor dat de redux state eerst update bij het overwriten van de state met demo of loaded content, en dat de pagina daarna pas switched. Of check in contentwrapperright in componentdidupdate of de soort contentdata overeenkomt met de democontent state die meegegeven wordt. -->alles wat nodig was, was om de 'return' weg te halen in het initialiseren van de ch1 content. Dit zodat het mentiongedeelte gewoon uitgevoerd werd?
+
+## 26-10-2022
+
+the story isn't being saved in every chapter of niet elke chapter wordt gesaved, alleen de 1e lijkt het
+
+X add input value to app state instead of local state
+
+XX Als showdemo geklikt wordt, en daarna nieuwe content geupload, blijft de democontent staan. eigenlijk moet het zo werken dat geen content in contentData standaard is en democontent eropgezet wordt als op show demo geklikt wordt. Als het goed is wordt de content dan standaard gecleared als de app opstart/herstart.
+X bug: geuploade content staat er pas na de 2e keer uploaden
+
+X alles wordt correct gedownload en upload, bij het switchen van chapters met een geuploade file gaat er iets mis. Het klikken op een tab gaat goed, maar het renderen ervan in contentwrapperright niet. Als er op een chaptercard geklikt wordt, wordt er een chapter id meegegeven aan de activeChapterId reducer. Ik geloof dat er iets gebeurt hiervoor in de laatste componentDidUpdate functie, maar waarschijnlijk moet hiervoor iets geschreven worden. -> de state moet worden opgehaald in de localstate als chx (gebruik id) -> CTR F: NIEUWSTUK
+
+X als je typt, gaat een chapter naar onder in volgorde. Bij elke render van contentwrapperleft wordt sortContentHandler uitgevoerd. Misschien moet dit ook gebeuren bij de verandering van een tekst in een chapter. Nu gebeurt dit geloof ik niet, omdat alleen dat onderdeel gererendered wordt.
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">

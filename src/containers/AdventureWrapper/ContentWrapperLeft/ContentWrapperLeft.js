@@ -199,25 +199,31 @@ const ContentWrapperLeft = (props) => {
 
   const activeContentHandler = () => {
     const chaptersList = () => {
-      return props.chapters
-        .filter(
-          (chapter) =>
-            chapter.value.toLowerCase().startsWith(searchTerm.toLowerCase()) &&
-            chapter.id !== currentItem.id
-        )
-        .map((chapter) => {
-          return chapter.value !== "Chapters" ? (
-            <Chapter
-              key={chapter.id}
-              id={chapter.id}
-              value={chapter.value}
-              onDeleteClick={() =>
-                openDeleteItemModal(chapter.id, chapter.value)
-              }
-              onEditClick={() => editItemHandler(chapter)}
-            />
-          ) : null;
-        });
+      return (
+        props.chapters
+          // for search
+          .filter(
+            (chapter) =>
+              chapter.value
+                .toLowerCase()
+                .startsWith(searchTerm.toLowerCase()) &&
+              chapter.id !== currentItem.id
+          )
+          .map((chapter) => {
+            // if statement om label item niet te tonen
+            return chapter.value !== "Chapters" ? (
+              <Chapter
+                key={chapter.id}
+                id={chapter.id}
+                value={chapter.value}
+                onDeleteClick={() =>
+                  openDeleteItemModal(chapter.id, chapter.value)
+                }
+                onEditClick={() => editItemHandler(chapter)}
+              />
+            ) : null;
+          })
+      );
     };
 
     const npcsList = () => {

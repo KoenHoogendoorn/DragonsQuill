@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import classes from "./AdventureWrapper.module.scss";
 
@@ -13,8 +13,6 @@ const AdventureWrapper = () => {
   const [activePage, setActivePage] = useState("landingPage");
   const [activeContentWrapper, setActiveContentWrapper] = useState("left");
   const [showDemoContent, setShowDemoContent] = useState(false);
-
-  useEffect(() => {}, []);
 
   let addedClassesLeft = "";
   let addedClassesRight = "";

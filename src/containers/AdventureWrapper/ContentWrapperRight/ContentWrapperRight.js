@@ -331,9 +331,11 @@ class ContentWrapperRight extends Component {
     //if text gets changed, change the replica in contentData
     //find item in contentData chapter that has the same id as current active chapter id from this local state
     if (
+      //if local state changes
       prevState[activeChapterId] !== this.state[activeChapterId] &&
       this.props.chapters.length > 1 // only do this when there's a chapter that can contain content
     ) {
+      // Find index of current chapter
       const index = this.props.chapters.findIndex((chapter) => {
         return chapter.id === activeChapterId;
       });
@@ -351,6 +353,8 @@ class ContentWrapperRight extends Component {
         content: currentContent,
         mentionIds: currentMentionIds
       });
+      //make sure everythings sorted
+      this.props.sortContentHandler();
     }
   }
 
