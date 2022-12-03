@@ -54,6 +54,15 @@
           }
     }
 
+    .PortfolioLink {
+        position: absolute;
+        bottom: 32px;
+        width: 800px;
+        text-align: center;
+        color: $clr-tertiary;
+        font-size: 14px;
+    }
+
     .InputBox {
         width:400px;
         margin: 0 auto;
@@ -74,21 +83,34 @@
 @media screen and (max-width: 880px) {
     .LandingPage {
         width: 100%;
-        padding: 32px 32px 0 32px;
+        padding: 32px;
+
         .ExistingStory {
             text-align: left;
+        }
+
+        .PortfolioLink {
+            left:0;
+            width: 100%;
+            padding: 0 32px;
         }
     }
 }
 
 @media screen and (max-width: 501px) {
     .LandingPage {
-    padding: 16px 16px 0 16px;
-    .ExistingStory {
-        margin-bottom: 32px;
-    }
-    .Logo {
-        margin-bottom: 24px;
-    }
+        padding: 16px;
+        
+        .ExistingStory {
+            margin-bottom: 32px;
+        }
+
+        .Logo {
+            margin-bottom: 24px;
+        }
+
+        .PortfolioLink {
+            position: unset;
+        }
     }
 }

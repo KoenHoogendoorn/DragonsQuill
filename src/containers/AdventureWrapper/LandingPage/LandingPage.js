@@ -6,6 +6,7 @@ import classes from "./LandingPage.module.scss";
 import AdventureNameEditModal from "../../../components/AdventureNameEditModal/AdventureNameEditModal";
 import Button from "../../../components/Button/Button";
 import Logo from "../../../assets/logo/DragonsQuillLogo";
+import SecondaryLink from "../../../components/SecondaryLink/SecondaryLink";
 import UploadFileInput from "../../../components/UploadFileInput/UploadFileInput";
 
 import Norlbelorg from "../../../assets/images/norlbelorg.png";
@@ -253,6 +254,10 @@ const LandingPage = (props) => {
           Show demo
         </Button>
       </div>
+      <p className={classes.PortfolioLink}>
+        Read more about me and other D&D related apps I made{" "}
+        <SecondaryLink url="https://dddmkoen.com/">here</SecondaryLink>
+      </p>
     </div>
   );
 };

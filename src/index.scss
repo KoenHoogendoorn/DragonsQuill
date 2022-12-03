@@ -26,7 +26,20 @@ body {
 
 p {
   line-height: 1.5;
+  font-size: 16px
 }
+
+// currently no primary links used, just the (secondary) portfolio link.
+// a {
+//   color: $clr-primary;
+//   font-weight: bold;
+//   &:hover {
+//     color: $clr-primary-hover;
+//   }
+//   &:active {
+//     color: $clr-primary-active;
+//   }
+// }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
