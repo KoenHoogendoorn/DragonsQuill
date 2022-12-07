@@ -12,7 +12,7 @@
 }
 
 .CardBodyOpen {
-  overflow: initial;
+  overflow: initial; // if this is 'unset', all cardcontent is invisible after uploading an image and saving a card
   opacity: 1;
 }
 

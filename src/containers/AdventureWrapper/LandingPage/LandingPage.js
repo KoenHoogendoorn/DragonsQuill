@@ -16,6 +16,8 @@ import * as actions from "../../../store/actions/actionsIndex";
 
 const LandingPage = (props) => {
   const [openAdventureNameModal, setOpenAdventureNameModal] = useState(false);
+  const [amountOfImagesLoaded, setAmountOfImagesLoaded] = useState(0);
+
   const emptyContentData = [
     [
       {
@@ -258,6 +260,22 @@ const LandingPage = (props) => {
         Read more about me and other D&D related apps I made{" "}
         <SecondaryLink url="https://dddmkoen.com/">here</SecondaryLink>
       </p>
+
+      {/* It's pretty ugly, but these images need to be loaded so they are cached. If this doesn't happen, they will overflow their boxes. This doesn't happen for user added images. */}
+      {amountOfImagesLoaded < 2 ? (
+        <div className={classes.DemoImages}>
+          <img
+            alt=""
+            src={BeachBattleMap}
+            onLoad={() => setAmountOfImagesLoaded(amountOfImagesLoaded + 1)}
+          />{" "}
+          <img
+            alt=""
+            onLoad={() => setAmountOfImagesLoaded(amountOfImagesLoaded + 1)}
+            src={Norlbelorg}
+          />{" "}
+        </div>
+      ) : null}
     </div>
   );
 };

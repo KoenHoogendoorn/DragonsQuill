@@ -10,6 +10,7 @@
 
 ## Not that important right now:
 
+- add something like 'DOMpurify' to dangerouslySetInnerHTML to make sure no xss code is in there.
 - only show 'are you sure alert' when you've changed something
 - change Input component name to Searchbar
 - switch mention setup to async - not sure what I wanted here
@@ -245,6 +246,10 @@ X als je typt, gaat een chapter naar onder in volgorde. Bij elke render van cont
 ---
 
 X first time a card with an image opens by clicking on a @link in the story, the chapter goes 'through' the card -> fixed this by adding a timeout when clicking on a mentionlink
+
+## 07-12-2022
+
+X images still go through cards the first time they open. Uploaded adventure images from a file do work. it's just the demo images. If the Demo images are loaded one time anywhere, it is cached and works fine. I've tried caching them with this article: https://jackskylord.medium.com/how-to-preload-images-into-cache-in-react-js-ff1642708240, but it didn't work. Another solution would be to load them anywhere in the page if the demo button has been clicked, but have opacity 0 or display none or something. --> Fixed this by having them spawn in landingpage and quickly removing them so they are cached.
 
 <!--
 <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Start writing here...">
